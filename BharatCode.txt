@@ -1,0 +1,96 @@
+PROJECT NAME: CodeAcharya
+
+CATEGORY: Coding & Developer Tools
+
+TAGLINE:
+An Autonomous AI Coding Mentor That Teaches Students to Think, Code, Debug, and Improve.
+
+PROJECT OVERVIEW:
+
+CodeAcharya is an intelligent coding education platform designed to help students improve their programming and problem-solving skills through personalized AI mentorship, interactive coding practice, intelligent code analysis, and performance tracking.
+
+BHARATCODE API - CORE AI BRAIN:
+
+BharatCode API serves as the Core AI Brain (LLM Engine) of CodeAcharya. It powers five major intelligent capabilities:
+
+1. DYNAMIC CODING QUESTION GENERATION
+
+- Generates original coding problems based on topics and difficulty levels.
+- Creates detailed problem statements, constraints, and real-world examples.
+- Generates starter code templates for Python, C, C++, and Java.
+- Produces public test cases and hidden edge-case test cases.
+- Generates reference solutions that are verified through the backend sandbox.
+
+2. SOCRATIC PROGRESSIVE HINTS
+
+- Provides four progressive levels of coding guidance.
+- Level 1: Conceptual understanding.
+- Level 2: Algorithmic approach and data structure selection.
+- Level 3: Structural logic, mathematical rules, and boundary conditions.
+- Level 4: Step-by-step resolution guidance.
+- Encourages independent problem-solving without directly revealing the complete answer.
+
+3. AI VIVA VOCE
+
+- Simulates technical interviews after coding submissions.
+- Evaluates time and space complexity.
+- Examines data structure and algorithm choices.
+- Tests edge-case understanding and alternative approaches.
+- Evaluates student responses and provides a scorecard with feedback.
+
+4. INTELLIGENT BUG ANALYSIS
+
+- Analyzes student code and error messages.
+- Identifies potential root causes of programming errors.
+- Provides step-by-step debugging guidance.
+- Helps students understand issues such as missing base cases, infinite loops, and incorrect logic.
+
+5. DETERMINISTIC FALLBACK SYSTEM
+
+- Provides a built-in blueprint engine with 245+ pre-saved coding problems.
+- Maintains platform functionality when the BharatCode API is unavailable or API configuration is missing.
+- Provides a reliable fallback for coding practice.
+
+CORE PLATFORM FEATURES:
+
+- Interactive multi-language coding IDE.
+- Monaco Editor integration.
+- Python, C, C++, and Java support.
+- Intelligent code analysis.
+- AI-generated coding problems.
+- Progressive Socratic hints.
+- AI Viva Voce and interview simulation.
+- Coding assessments and practice sessions.
+- Performance analytics.
+- Adaptive learning recommendations.
+- Session monitoring and assessment controls.
+- PDF performance reports.
+
+TECHNOLOGY STACK:
+
+Frontend:
+React, Vite, Monaco Editor, JavaScript
+
+Backend:
+Python, FastAPI
+
+Database:
+SQLite
+
+AI:
+BharatCode API
+
+Code Execution:
+Python, C, C++, Java
+
+TARGET USERS:
+
+Students, programming beginners, computer science learners, and aspiring software developers.
+
+GITHUB REPOSITORY:
+
+https://github.com/heyranjanshaw07/CodeAcharya
+
+PROJECT STATUS:
+
+Active Development
