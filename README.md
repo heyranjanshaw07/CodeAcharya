@@ -76,12 +76,6 @@ Open your browser to: `http://localhost:5173/`
 
 ---
 
-## ⚙️ AI Configuration
-- **BharatCode API:** CodeAcharya is integrated with the **BharatCode API** (`https://bharatcode.ai/api/model/v1`) for dynamic AI coding problem generation, progressive Socratic hints, algorithmic debugging guidance, and automated AI viva voce defense.
-- **Environment Setup:** Configure your BharatCode API credentials in `backend/.env`:
-  ```env
-  BHARATCODE_API_KEY=your_bharatcode_api_key
-  BHARATCODE_BASE_URL=https://bharatcode.ai/api/model/v1
-  BHARATCODE_MODEL=qwen-3.8-27b
-  ```
-- **Deterministic Offline Fallback:** If `BHARATCODE_API_KEY` is not set or network is unavailable, CodeAcharya automatically operates using its built-in Deterministic Blueprint Engine across 8 algorithmic topics with 245+ verified problems, multi-language starter code, and progressive Socratic hints.
+## ⚙️ AI Engine
+- **BharatCode API:** CodeAcharya is powered by the **BharatCode API** for dynamic AI coding problem generation, progressive Socratic hints, algorithmic debugging guidance, and automated AI viva voce interview simulation.
+- **Deterministic Offline Fallback:** The platform includes a built-in Deterministic Blueprint Engine across 8 algorithmic topics with 245+ verified problems, multi-language starter code, and progressive Socratic hints, ensuring complete functionality even without network access.

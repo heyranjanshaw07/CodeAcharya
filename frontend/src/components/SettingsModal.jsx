@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { 
   Settings, 
-  KeyRound, 
   Sparkles, 
   Brain, 
   X, 
@@ -19,7 +18,6 @@ export default function SettingsModal({
   isAssessmentMode = true,
   onToggleAssessmentMode
 }) {
-  const [apiKey, setApiKey] = useState('');
   const [selectedPersona, setSelectedPersona] = useState(currentPersona || 'socratic');
   const [isSaved, setIsSaved] = useState(false);
 
@@ -27,7 +25,6 @@ export default function SettingsModal({
 
   const handleSave = () => {
     onSaveSettings({
-      gemini_api_key: apiKey.trim() || undefined,
       mentor_persona: selectedPersona
     });
     setIsSaved(true);
@@ -105,36 +102,9 @@ export default function SettingsModal({
               AI Mentor Settings
             </h2>
             <p style={{ fontSize: '0.8rem', color: 'var(--text-muted)', margin: 0 }}>
-              Configure AI intelligence source and teaching persona
+              Customize teaching persona and assessment environment
             </p>
           </div>
-        </div>
-
-        {/* Gemini API Key Section */}
-        <div style={{ marginBottom: 24 }}>
-          <label style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.85rem', fontWeight: 600, marginBottom: 6 }}>
-            <KeyRound size={16} color="#6366f1" />
-            Google Gemini API Key (Optional):
-          </label>
-          <input 
-            type="password"
-            value={apiKey}
-            onChange={(e) => setApiKey(e.target.value)}
-            placeholder={hasKey ? "Key is set! Enter new key to override..." : "Enter Gemini API key (e.g. AIzaSy...)"}
-            style={{
-              width: '100%',
-              background: 'rgba(15, 23, 42, 0.9)',
-              border: '1px solid var(--border-glass)',
-              borderRadius: 8,
-              padding: '10px 14px',
-              color: '#fff',
-              fontSize: '0.9rem',
-              fontFamily: 'var(--font-mono)'
-            }}
-          />
-          <p style={{ fontSize: '0.75rem', color: 'var(--text-subtle)', marginTop: 6 }}>
-            CodeAcharya includes an intelligent local curriculum analyzer that works 100% out of the box without any key. Adding your Gemini API key activates dynamic LLM reasoning powered by Gemini 2.5 Flash!
-          </p>
         </div>
 
         {/* Copy-Paste Assessment Mode Preference */}
