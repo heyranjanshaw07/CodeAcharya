@@ -101,9 +101,8 @@ def health_check():
         "status": "online",
         "service": "CodeAcharya AI Coding Mentor API",
         "has_gemini_key": bool(mentor_ai.api_key),
-        "has_bharatcode_key": bool(mentor_ai.api_key),
         "has_llm_key": bool(mentor_ai.api_key),
-        "provider": "bharatcode",
+        "provider": "gemini",
         "persona": mentor_ai.persona,
         "model": mentor_ai.model,
         "total_problems": len(PROBLEMS),
@@ -1444,18 +1443,17 @@ def get_recommendations(user: Dict[str, Any] = Depends(get_current_user)):
 
 @app.post("/api/settings")
 def update_settings(req: UpdateSettingsRequest):
-    api_key = req.bharatcode_api_key or req.gemini_api_key
-    model = req.bharatcode_model or req.gemini_model
+    api_key = req.api_key or req.gemini_api_key
+    model = req.model or req.gemini_model
     mentor_ai.set_config(
         api_key=api_key,
         persona=req.mentor_persona,
         model=model,
-        base_url=req.bharatcode_base_url
+        base_url=req.base_url
     )
     return {
         "message": "Settings updated successfully",
         "has_gemini_key": bool(mentor_ai.api_key),
-        "has_bharatcode_key": bool(mentor_ai.api_key),
         "has_llm_key": bool(mentor_ai.api_key),
         "persona": mentor_ai.persona,
         "model": mentor_ai.model

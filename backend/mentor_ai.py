@@ -17,8 +17,7 @@ try:
 except ImportError:
     pass
 
-DEFAULT_BHARATCODE_BASE_URL = os.environ.get("BHARATCODE_BASE_URL", "https://bharatcode.ai/api/model/v1")
-DEFAULT_BHARATCODE_MODEL = os.environ.get("BHARATCODE_MODEL", "qwen-3.8-27b")
+DEFAULT_LLM_BASE_URL = os.environ.get("LLM_BASE_URL", "")
 DEFAULT_GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-1.5-flash")
 
 class MentorAI:
@@ -29,9 +28,9 @@ class MentorAI:
         base_url: Optional[str] = None,
         model: Optional[str] = None
     ):
-        self.api_key = api_key or os.environ.get("BHARATCODE_API_KEY") or os.environ.get("GEMINI_API_KEY")
-        self.base_url = base_url or os.environ.get("BHARATCODE_BASE_URL", DEFAULT_BHARATCODE_BASE_URL)
-        self.model = model or os.environ.get("BHARATCODE_MODEL") or (DEFAULT_BHARATCODE_MODEL if os.environ.get("BHARATCODE_API_KEY") else DEFAULT_GEMINI_MODEL)
+        self.api_key = api_key or os.environ.get("GEMINI_API_KEY") or os.environ.get("LLM_API_KEY")
+        self.base_url = base_url or os.environ.get("LLM_BASE_URL", DEFAULT_LLM_BASE_URL)
+        self.model = model or os.environ.get("LLM_MODEL") or DEFAULT_GEMINI_MODEL
         self.persona = persona  # "socratic", "strict", "friendly"
 
     def set_config(
@@ -53,16 +52,15 @@ class MentorAI:
     def call_llm(self, system_instruction: str, prompt: str) -> Optional[str]:
         """
         Provider-neutral LLM calling method.
-        Directs calls to BharatCode API client, or legacy Gemini if Gemini key is active.
+        Directs calls to configured LLM client, or legacy Gemini if Gemini key is active.
         """
         if not self.api_key:
             return None
 
-        # 1. Prefer BharatCode API client
-        if self.api_key.startswith("bc_") or os.environ.get("BHARATCODE_API_KEY") or not self.api_key.startswith("AIza"):
+        if self.base_url:
             try:
-                from llm_client import call_llm as send_bharatcode_call
-                result = send_bharatcode_call(
+                from llm_client import call_llm as send_llm_call
+                result = send_llm_call(
                     system_instruction=system_instruction,
                     prompt=prompt,
                     api_key=self.api_key,
@@ -72,7 +70,7 @@ class MentorAI:
                 if result:
                     return result
             except Exception as e:
-                print(f"[MentorAI] BharatCode client notice: {e}")
+                print(f"[MentorAI] LLM client notice: {e}")
 
         # 2. Legacy Gemini fallback if specifically using Google Gemini key
         return self._call_gemini_direct(system_instruction, prompt)
@@ -2042,7 +2040,7 @@ Respond strictly with valid JSON conforming to:
         previous_ids: Optional[List[str]] = None
     ) -> Dict[str, Any]:
         """
-        Dynamically generates a coding problem using BharatCode AI if available,
+        Dynamically generates a coding problem using AI if available,
         or the high-quality parameterized algorithm blueprints.
         Guarantees topic, difficulty, language adherence, and duplicate prevention.
         """

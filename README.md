@@ -77,5 +77,5 @@ Open your browser to: `http://localhost:5173/`
 ---
 
 ## ⚙️ AI Engine
-- **BharatCode API:** CodeAcharya is powered by the **BharatCode API** for dynamic AI coding problem generation, progressive Socratic hints, algorithmic debugging guidance, and automated AI viva voce interview simulation.
+- **Autonomous AI Mentor Engine:** CodeAcharya is powered by an intelligent LLM Engine for dynamic coding problem generation, progressive Socratic hints, algorithmic debugging guidance, and automated AI viva voce interview simulation.
 - **Deterministic Offline Fallback:** The platform includes a built-in Deterministic Blueprint Engine across 8 algorithmic topics with 245+ verified problems, multi-language starter code, and progressive Socratic hints, ensuring complete functionality even without network access.

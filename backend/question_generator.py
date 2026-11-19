@@ -2305,7 +2305,7 @@ def generate_coding_problem_service(
     AI-powered question generation service.
     Coordinates prompting, JSON response parsing, schema validation, duplicate detection,
     sandboxed test-case verification, and seamless blueprint fallback.
-    Uses BharatCode / provider-neutral LLM client.
+    Uses provider-neutral LLM / Gemini client.
     """
     norm_topic = normalize_topic(topic)
     norm_diff = normalize_difficulty(difficulty)
@@ -2323,7 +2323,7 @@ def generate_coding_problem_service(
 
     # Resolve provider-neutral LLM function and credentials
     effective_call_fn = call_llm_fn or kwargs.get("call_gemini_fn")
-    effective_api_key = api_key or os.environ.get("BHARATCODE_API_KEY")
+    effective_api_key = api_key or os.environ.get("GEMINI_API_KEY") or os.environ.get("LLM_API_KEY")
 
     # If api_key is present but no custom function was passed, use default call_llm from llm_client
     if effective_api_key and effective_call_fn is None:
@@ -2333,7 +2333,7 @@ def generate_coding_problem_service(
         except ImportError:
             pass
 
-    # 1. Attempt AI Generation via configured LLM (e.g. BharatCode) if configured
+    # 1. Attempt AI Generation via configured LLM if configured
     if effective_api_key and effective_call_fn:
         system_instruction = (
             "You are an expert computer science curriculum designer and competitive programming instructor. "
@@ -2500,7 +2500,7 @@ def generate_coding_problems_batch(
     seen_ids = list(previous_ids or [])
 
     effective_call_fn = call_llm_fn or kwargs.get("call_gemini_fn")
-    effective_api_key = api_key or os.environ.get("BHARATCODE_API_KEY")
+    effective_api_key = api_key or os.environ.get("GEMINI_API_KEY") or os.environ.get("LLM_API_KEY")
 
     for i in range(count):
         prob = generate_coding_problem_service(

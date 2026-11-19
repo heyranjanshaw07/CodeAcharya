@@ -286,9 +286,9 @@ class UpdateSettingsRequest(BaseModel):
     gemini_api_key: Optional[str] = None
     mentor_persona: Optional[str] = "socratic" # socratic, strict, friendly
     gemini_model: Optional[str] = None
-    bharatcode_api_key: Optional[str] = None
-    bharatcode_base_url: Optional[str] = None
-    bharatcode_model: Optional[str] = None
+    api_key: Optional[str] = None
+    base_url: Optional[str] = None
+    model: Optional[str] = None
 
 class RegisterRequest(BaseModel):
     full_name: str
