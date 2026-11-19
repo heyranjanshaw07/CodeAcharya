@@ -1,7 +1,7 @@
 # CodeAcharya — AI Coding Mentor
 ### An Intelligent Personalized Programming Learning and Debugging Platform
 
-> **"Instead of simply generating solutions, CodeAcharya analyzes a student's code, identifies errors and misconceptions, provides progressive hints, recommends suitable coding problems, tracks learning progress, and conducts AI-powered viva sessions."**
+> "Instead of simply generating solutions, CodeAcharya analyzes a student's code, identifies errors and misconceptions, provides progressive hints, recommends suitable coding problems, tracks learning progress, and conducts AI-powered viva sessions."
 
 ---
 
