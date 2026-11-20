@@ -18,7 +18,7 @@ except ImportError:
     pass
 
 DEFAULT_LLM_BASE_URL = os.environ.get("LLM_BASE_URL", "")
-DEFAULT_GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-1.5-flash")
+DEFAULT_GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.8-flash")
 
 class MentorAI:
     def __init__(
@@ -30,7 +30,7 @@ class MentorAI:
     ):
         self.api_key = api_key or os.environ.get("GEMINI_API_KEY") or os.environ.get("LLM_API_KEY")
         self.base_url = base_url or os.environ.get("LLM_BASE_URL", DEFAULT_LLM_BASE_URL)
-        self.model = model or os.environ.get("LLM_MODEL") or DEFAULT_GEMINI_MODEL
+        self.model = model or os.environ.get("GEMINI_MODEL") or os.environ.get("LLM_MODEL") or DEFAULT_GEMINI_MODEL
         self.persona = persona  # "socratic", "strict", "friendly"
 
     def set_config(
@@ -84,10 +84,9 @@ class MentorAI:
             return None
         
         models_to_try = [self.model]
-        if self.model != "gemini-1.5-flash":
-            models_to_try.append("gemini-1.5-flash")
-        if "gemini-2.0-flash" not in models_to_try:
-            models_to_try.append("gemini-2.0-flash")
+        for m in ["gemini-3.8-flash", "gemini-3.5-flash", "gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash"]:
+            if m not in models_to_try:
+                models_to_try.append(m)
 
         is_json_request = "json" in system_instruction.lower() or "json" in prompt.lower()
         generation_config: Dict[str, Any] = {
@@ -112,7 +111,7 @@ class MentorAI:
                     ],
                     "generationConfig": generation_config
                 }
-                res = requests.post(url, json=payload, timeout=10)
+                res = requests.post(url, json=payload, timeout=60)
                 if res.status_code == 200:
                     data = res.json()
                     candidates = data.get("candidates", [])

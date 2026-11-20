@@ -17,8 +17,8 @@ logger = logging.getLogger("codeacharya.llm_client")
 
 # Environment configuration defaults
 DEFAULT_LLM_BASE_URL = os.environ.get("LLM_BASE_URL", "").strip()
-DEFAULT_LLM_MODEL = os.environ.get("LLM_MODEL", "gpt-4o-mini").strip()
-DEFAULT_REQUEST_TIMEOUT = 15
+DEFAULT_LLM_MODEL = os.environ.get("GEMINI_MODEL", os.environ.get("LLM_MODEL", "gemini-3.8-flash")).strip()
+DEFAULT_REQUEST_TIMEOUT = 60
 
 
 def get_llm_config() -> Dict[str, Any]:
@@ -26,15 +26,15 @@ def get_llm_config() -> Dict[str, Any]:
     Returns the current LLM configuration loaded from the backend environment.
     Never exposes API secrets.
     """
-    api_key = os.environ.get("LLM_API_KEY") or os.environ.get("OPENAI_API_KEY")
+    api_key = os.environ.get("GEMINI_API_KEY") or os.environ.get("LLM_API_KEY") or os.environ.get("OPENAI_API_KEY")
     base_url = os.environ.get("LLM_BASE_URL", DEFAULT_LLM_BASE_URL).strip()
-    model = os.environ.get("LLM_MODEL", DEFAULT_LLM_MODEL).strip()
+    model = os.environ.get("GEMINI_MODEL") or os.environ.get("LLM_MODEL") or DEFAULT_LLM_MODEL
 
     return {
         "has_api_key": bool(api_key and api_key.strip()),
         "base_url": base_url or DEFAULT_LLM_BASE_URL,
         "model": model or DEFAULT_LLM_MODEL,
-        "provider": "llm"
+        "provider": "gemini" if not base_url else "llm"
     }
 
 
@@ -100,15 +100,44 @@ def call_llm(
     Returns:
         Generated text string on success, or None on any failure/timeout/missing credentials.
     """
-    effective_api_key = (api_key or os.environ.get("LLM_API_KEY") or os.environ.get("OPENAI_API_KEY") or "").strip()
+    effective_api_key = (api_key or os.environ.get("GEMINI_API_KEY") or os.environ.get("LLM_API_KEY") or os.environ.get("OPENAI_API_KEY") or "").strip()
     if not effective_api_key:
         return None
 
     effective_base_url = (base_url or os.environ.get("LLM_BASE_URL") or DEFAULT_LLM_BASE_URL).strip().rstrip('/')
-    if not effective_base_url:
-        return None
+    effective_model = (model or os.environ.get("GEMINI_MODEL") or os.environ.get("LLM_MODEL") or DEFAULT_LLM_MODEL).strip()
 
-    effective_model = (model or os.environ.get("LLM_MODEL") or DEFAULT_LLM_MODEL).strip()
+    if not effective_base_url:
+        # Direct Gemini API call when no custom OpenAI-compatible base URL is provided
+        is_json_request = "json" in system_instruction.lower() or "json" in prompt.lower()
+        generation_config = {"temperature": 0.3, "maxOutputTokens": 2048}
+        if is_json_request:
+            generation_config["responseMimeType"] = "application/json"
+
+        models_to_try = [effective_model]
+        for m in ["gemini-3.8-flash", "gemini-3.5-flash", "gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash"]:
+            if m not in models_to_try:
+                models_to_try.append(m)
+
+        for model_name in models_to_try:
+            try:
+                url = f"https://generativelanguage.googleapis.com/v1beta/models/{model_name}:generateContent?key={effective_api_key}"
+                payload = {
+                    "systemInstruction": {"parts": [{"text": system_instruction}]},
+                    "contents": [{"role": "user", "parts": [{"text": prompt}]}],
+                    "generationConfig": generation_config
+                }
+                res = requests.post(url, json=payload, timeout=timeout)
+                if res.status_code == 200:
+                    data = res.json()
+                    candidates = data.get("candidates", [])
+                    if candidates:
+                        parts = candidates[0].get("content", {}).get("parts", [])
+                        if parts:
+                            return parts[0].get("text", "")
+            except Exception as e:
+                logger.warning(f"[LLM] Gemini call attempt error ({model_name}): {e}")
+        return None
 
     headers = {
         "Authorization": f"Bearer {effective_api_key}",
