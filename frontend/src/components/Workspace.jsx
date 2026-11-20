@@ -2204,6 +2204,31 @@ export default function Workspace({
                 <BookOpen size={14} />
                 <span>View Full Curriculum Matrix</span>
               </button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  window.history.pushState({ tab: 'ai_mode' }, '', '?tab=ai_mode');
+                  window.dispatchEvent(new PopStateEvent('popstate', { state: { tab: 'ai_mode' } }));
+                }}
+                style={{
+                  background: 'linear-gradient(135deg, #6366f1 0%, #a855f7 100%)',
+                  color: '#fff',
+                  border: 'none',
+                  borderRadius: 10,
+                  padding: '8px 18px',
+                  fontSize: '0.82rem',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 6,
+                  boxShadow: '0 0 15px rgba(99, 102, 241, 0.45)'
+                }}
+              >
+                <Sparkles size={14} />
+                <span>✨ Launch AI Mode Assessment</span>
+              </button>
             </div>
           </div>
 

@@ -51,6 +51,13 @@ Guided problem solving that avoids immediately handing over the answer:
 ### 6. Adaptive Problem Recommendations
 - Recommends tailored practice problems targeted at the student's lowest scored mastery areas.
 
+### 7. AI Mode — Dynamic Coding Question Generation
+- **Dynamic Assessment Configuration:** Configure assessments by Language (Python, Java, C, C++), Difficulty (Easy, Medium, Hard), 11 core DSA Topics, and Question Count (3, 5, 10).
+- **Intelligent Question Generation:** Generates original coding problems with problem descriptions, constraints, I/O formats, sample test cases, starter code, and hidden evaluation test cases.
+- **Real-Time Proctoring & Anti-Cheat:** Tracks active coding time, tab switches, and enforces full-screen assessment conditions.
+- **Sandboxed Test Case Validation:** Evaluates solutions against hidden test cases using the secure backend execution engine.
+- **Scorecards & PDF Reports:** Generates detailed assessment scorecards and downloadable PDF performance reports.
+
 ---
 
 ## 🚀 Quickstart Guide

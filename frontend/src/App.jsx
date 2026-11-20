@@ -9,10 +9,13 @@ import SettingsModal from './components/SettingsModal';
 import LoginPage from './components/LoginPage';
 import SignUpPage from './components/SignUpPage';
 import LogoutConfirmModal from './components/LogoutConfirmModal';
+import AIModeConfig from './components/AIModeConfig';
+import AIAssessmentView from './components/AIAssessmentView';
+import AIAssessmentResults from './components/AIAssessmentResults';
 import { BrainCircuit } from 'lucide-react';
 
-const VALID_TABS = ['workspace', 'viva', 'performance', 'analytics', 'recommendations', 'login', 'signup'];
-const PROTECTED_TABS = ['workspace', 'viva', 'performance', 'analytics', 'recommendations'];
+const VALID_TABS = ['workspace', 'ai_mode', 'viva', 'performance', 'analytics', 'recommendations', 'login', 'signup'];
+const PROTECTED_TABS = ['workspace', 'ai_mode', 'viva', 'performance', 'analytics', 'recommendations'];
 
 export default function App() {
   // Authentication state
@@ -89,6 +92,63 @@ export default function App() {
     if (typeof localStorage !== 'undefined') {
       localStorage.setItem('codeacharya_assessment_mode', val ? 'true' : 'false');
     }
+  };
+
+  // AI Mode Dynamic Assessment state
+  const [aiAssessmentSession, setAiAssessmentSession] = useState(null);
+  const [aiAssessmentSummary, setAiAssessmentSummary] = useState(null);
+  const [isStartingAIAssessment, setIsStartingAIAssessment] = useState(false);
+  const [isFinishingAIAssessment, setIsFinishingAIAssessment] = useState(false);
+  const [aiAssessmentError, setAiAssessmentError] = useState('');
+
+  const handleStartAIAssessment = async (config) => {
+    setIsStartingAIAssessment(true);
+    setAiAssessmentError('');
+    try {
+      const res = await fetch('/api/ai-mode/start', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(config)
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.detail || 'Failed to start AI assessment');
+      }
+      const data = await res.json();
+      setAiAssessmentSession(data);
+      setAiAssessmentSummary(null);
+    } catch (err) {
+      setAiAssessmentError(err.message || 'Failed to initiate dynamic questions');
+    } finally {
+      setIsStartingAIAssessment(false);
+    }
+  };
+
+  const handleFinishAIAssessment = async (payload) => {
+    setIsFinishingAIAssessment(true);
+    try {
+      const res = await fetch('/api/ai-mode/finish', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.detail || 'Failed to finalize assessment');
+      }
+      const data = await res.json();
+      setAiAssessmentSummary(data);
+    } catch (err) {
+      console.error('Error finalizing AI assessment:', err);
+    } finally {
+      setIsFinishingAIAssessment(false);
+    }
+  };
+
+  const handleStartNewAIAssessment = () => {
+    setAiAssessmentSession(null);
+    setAiAssessmentSummary(null);
+    setAiAssessmentError('');
   };
 
   // Install transparent global fetch interceptor to attach Bearer token and credentials
@@ -562,6 +622,30 @@ export default function App() {
             isAssessmentMode={isAssessmentMode}
             setIsAssessmentMode={handleSetAssessmentMode}
           />
+        )}
+
+        {/* AI Mode Dynamic Assessment */}
+        {user && activeTab === 'ai_mode' && (
+          aiAssessmentSummary ? (
+            <AIAssessmentResults 
+              summary={aiAssessmentSummary}
+              assessment={aiAssessmentSession}
+              onStartNewAssessment={handleStartNewAIAssessment}
+              onGoHome={handleGoHome}
+            />
+          ) : aiAssessmentSession ? (
+            <AIAssessmentView 
+              assessment={aiAssessmentSession}
+              onFinishAssessment={handleFinishAIAssessment}
+              isFinishing={isFinishingAIAssessment}
+            />
+          ) : (
+            <AIModeConfig 
+              onStartAssessment={handleStartAIAssessment}
+              isLoading={isStartingAIAssessment}
+              error={aiAssessmentError}
+            />
+          )
         )}
 
         {user && activeTab === 'viva' && (

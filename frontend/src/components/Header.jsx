@@ -10,7 +10,8 @@ import {
   GraduationCap, 
   ArrowLeft,
   LogOut,
-  TrendingUp
+  TrendingUp,
+  Sparkles
 } from 'lucide-react';
 
 export default function Header({ 
@@ -123,6 +124,22 @@ export default function Header({
               onClick={() => setActiveTab('workspace')}
             >
               <Terminal size={15} /> Code IDE & Hints
+            </button>
+
+            <button 
+              type="button"
+              className={`btn ${activeTab === 'ai_mode' ? 'btn-primary' : 'btn-secondary'}`}
+              style={{
+                padding: '6px 14px',
+                fontSize: '0.825rem',
+                background: activeTab === 'ai_mode' ? 'linear-gradient(135deg, #6366f1 0%, #a855f7 100%)' : undefined,
+                color: activeTab === 'ai_mode' ? '#fff' : undefined,
+                boxShadow: activeTab === 'ai_mode' ? '0 0 15px rgba(99, 102, 241, 0.45)' : undefined,
+                borderColor: activeTab === 'ai_mode' ? '#818cf8' : undefined
+              }}
+              onClick={() => setActiveTab('ai_mode')}
+            >
+              <Sparkles size={15} color={activeTab === 'ai_mode' ? '#fff' : '#a855f7'} /> AI Mode
             </button>
 
             <button 

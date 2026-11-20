@@ -502,8 +502,36 @@ def init_database():
                 )
             """)
 
-            # 12. Indexes for fast, scalable queries
+            # 13. AI Assessment Sessions table (AI Mode dynamic assessments)
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS ai_assessments (
+                    id TEXT PRIMARY KEY,
+                    user_id TEXT NOT NULL,
+                    assessment_mode TEXT DEFAULT 'ai_mode',
+                    language TEXT NOT NULL,
+                    difficulty TEXT NOT NULL,
+                    topic TEXT NOT NULL,
+                    num_questions INTEGER NOT NULL,
+                    questions_json TEXT NOT NULL,
+                    submissions_json TEXT DEFAULT '{}',
+                    results_json TEXT DEFAULT '{}',
+                    overall_score REAL DEFAULT 0.0,
+                    passed_count INTEGER DEFAULT 0,
+                    total_count INTEGER DEFAULT 0,
+                    time_taken_seconds INTEGER DEFAULT 0,
+                    tab_switch_count INTEGER DEFAULT 0,
+                    status TEXT DEFAULT 'in_progress',
+                    started_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    completed_at TIMESTAMP,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+                )
+            """)
+
+            # 14. Indexes for fast, scalable queries
             cursor.execute("CREATE INDEX IF NOT EXISTS idx_users_email ON users(email)")
+            cursor.execute("CREATE INDEX IF NOT EXISTS idx_ai_assessments_user ON ai_assessments(user_id)")
+            cursor.execute("CREATE INDEX IF NOT EXISTS idx_ai_assessments_status ON ai_assessments(status)")
             cursor.execute("CREATE INDEX IF NOT EXISTS idx_paste_events_user ON paste_events(user_id)")
             cursor.execute("CREATE INDEX IF NOT EXISTS idx_paste_events_attempt ON paste_events(attempt_id)")
             cursor.execute("CREATE INDEX IF NOT EXISTS idx_users_provider ON users(auth_provider, provider_subject_id)")

@@ -430,8 +430,8 @@
     "id": "climbing-stairs",
     "title": "Climbing Stairs (Dynamic Programming)",
     "difficulty": "Easy",
-    "topic": "Dynamic Programming",
-    "subtopic": "Memoization",
+    "topic": "Arrays",
+    "subtopic": "Prefix Sums",
     "description": "You are climbing a staircase. It takes `n` steps to reach the top.\n\nEach time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?",
     "examples": [
       {
@@ -491,7 +491,7 @@
       {
         "level": 1,
         "title": "Conceptual Understanding",
-        "content": "Consider the core characteristics of Dynamic Programming. What fundamental condition marks the start or termination of Climbing Stairs (Dynamic Programming)?",
+        "content": "Consider the core characteristics of Arrays. What fundamental condition marks the start or termination of Climbing Stairs (Dynamic Programming)?",
         "thought_questions": [
           "What is the simplest input possible?",
           "Can this be reduced to smaller subproblems?"
@@ -534,8 +534,8 @@
     "time_complexity": "O(N)",
     "space_complexity": "O(1)",
     "relevant_concepts": [
-      "Dynamic Programming",
-      "Memoization"
+      "Arrays",
+      "Prefix Sums"
     ],
     "is_generated": true,
     "source": "blueprint_fallback"
@@ -544,7 +544,7 @@
     "id": "contains-duplicate",
     "title": "Contains Duplicate",
     "difficulty": "Easy",
-    "topic": "Arrays & Hashing",
+    "topic": "Arrays",
     "subtopic": "Hash Maps & Sets",
     "description": "Given an integer array `nums`, return `True` if any value appears at least twice in the array, and return `False` if every element is distinct.",
     "examples": [
@@ -627,7 +627,7 @@
       {
         "level": 1,
         "title": "Conceptual Understanding",
-        "content": "Consider the core characteristics of Arrays & Hashing. What fundamental condition marks the start or termination of Contains Duplicate?",
+        "content": "Consider the core characteristics of Arrays. What fundamental condition marks the start or termination of Contains Duplicate?",
         "thought_questions": [
           "What is the simplest input possible?",
           "Can this be reduced to smaller subproblems?"
@@ -670,7 +670,7 @@
     "time_complexity": "O(N)",
     "space_complexity": "O(1)",
     "relevant_concepts": [
-      "Arrays & Hashing",
+      "Arrays",
       "Hash Maps & Sets"
     ],
     "is_generated": true,
@@ -6855,6 +6855,3790 @@
     "relevant_concepts": [
       "Recursion & Backtracking",
       "Backtracking"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "valid-anagram",
+    "title": "Valid Anagram",
+    "difficulty": "Easy",
+    "topic": "Arrays",
+    "subtopic": "Prefix Sums",
+    "description": "Given two strings `s` and `t`, return `True` if `t` is an anagram of `s`, and `False` otherwise.\n\nAn Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.",
+    "examples": [
+      {
+        "input": "s = 'anagram', t = 'nagaram'",
+        "output": "True",
+        "explanation": "Characters match frequency exactly."
+      },
+      {
+        "input": "s = 'rat', t = 'car'",
+        "output": "False",
+        "explanation": "Frequencies do not match."
+      }
+    ],
+    "constraints": [
+      "1 <= s.length, t.length <= 5 * 10^4",
+      "s and t consist of lowercase English letters."
+    ],
+    "starter_code": {
+      "python": "def is_anagram(s: str, t: str) -> bool:\n    pass\n",
+      "c": "#include <stdio.h>\n#include <stdbool.h>\n#include <string.h>\n\nbool isAnagram(char* s, char* t) {\n    \n}\n",
+      "cpp": "#include <string>\n#include <vector>\n\nbool isAnagram(std::string s, std::string t) {\n    \n}\n",
+      "java": "public class Solution {\n    public static boolean isAnagram(String s, String t) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": {
+          "s": "anagram",
+          "t": "nagaram"
+        },
+        "expected_output": true,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": {
+          "s": "rat",
+          "t": "car"
+        },
+        "expected_output": false,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": {
+          "s": "ab",
+          "t": "a"
+        },
+        "expected_output": false,
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Counting frequencies with constant O(1) space for 26 alphabet characters",
+      "Quick rejection using string length invariant"
+    ],
+    "common_misconceptions": [
+      "Sorting both strings (O(N log N)) when O(N) frequency tallying is faster"
+    ],
+    "input_format": "Two strings `s` and `t`.",
+    "output_format": "Boolean `True` if valid anagram, `False` otherwise.",
+    "hint": "If the lengths differ, return False. Count character frequencies using a fixed 26-element array or hash map.",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Arrays. What fundamental condition marks the start or termination of Valid Anagram?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "If the lengths differ, return False. Count character frequencies using a fixed 26-element array or hash map. Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "def is_anagram(s: str, t: str) -> bool:\n    # TODO: Compare character frequencies\n    if len(s) != len(t): return False\n    counts = {}\n    for ch in s: counts[ch] = counts.get(ch, 0) + 1\n    for ch in t:\n        if ch not in counts or counts[ch] == 0: return False\n        counts[ch] -= 1\n    return True\n",
+      "c": "#include <stdio.h>\n#include <stdbool.h>\n#include <string.h>\n\nbool isAnagram(char* s, char* t) {\n    // TODO: Compare character counts\n    if (strlen(s) != strlen(t)) return False;\n    int counts[26] = {0};\n    for (int i = 0; s[i] != '\u0000'; i++) counts[s[i] - 'a']++;\n    for (int i = 0; t[i] != '\u0000'; i++) {\n        if (--counts[t[i] - 'a'] < 0) return False;\n    }\n    return True;\n}\n",
+      "cpp": "#include <string>\n#include <vector>\n\nbool isAnagram(std::string s, std::string t) {\n    // TODO: Compare character counts\n    if (s.length() != t.length()) return False;\n    std::vector<int> counts(26, 0);\n    for (char c : s) counts[c - 'a']++;\n    for (char c : t) {\n        if (--counts[c - 'a'] < 0) return False;\n    }\n    return True;\n}\n",
+      "java": "public class Solution {\n    public static boolean isAnagram(String s, String t) {\n        // TODO: Compare character counts\n        if (s.length() != t.length()) return False;\n        int[] counts = new int[26];\n        for (char c : s.toCharArray()) counts[c - 'a']++;\n        for (char c : t.toCharArray()) {\n            if (--counts[c - 'a'] < 0) return False;\n        }\n        return True;\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Arrays",
+      "Prefix Sums"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "sum-of-digits-recursion",
+    "title": "Sum of Digits (Recursion)",
+    "difficulty": "Easy",
+    "topic": "Arrays",
+    "subtopic": "Hash Maps & Sets",
+    "description": "Given a non-negative integer `n`, compute the sum of its digits recursively.\n\n### Requirements\n- Implement your solution using **recursion**.\n- Do not convert the integer to a string or use loops.",
+    "examples": [
+      {
+        "input": "n = 126",
+        "output": "9",
+        "explanation": "1 + 2 + 6 = 9"
+      },
+      {
+        "input": "n = 49",
+        "output": "13",
+        "explanation": "4 + 9 = 13"
+      },
+      {
+        "input": "n = 0",
+        "output": "0",
+        "explanation": "Sum of digits for 0 is 0"
+      }
+    ],
+    "constraints": [
+      "0 <= n <= 10^9"
+    ],
+    "starter_code": {
+      "python": "def sum_digits(n: int) -> int:\n    pass\n",
+      "c": "#include <stdio.h>\n\nint sumDigits(int n) {\n    \n}\n",
+      "cpp": "#include <iostream>\n\nint sumDigits(int n) {\n    \n}\n",
+      "java": "public class Solution {\n    public static int sumDigits(int n) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": 126,
+        "expected_output": 9,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": 49,
+        "expected_output": 13,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": 7,
+        "expected_output": 7,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 4,
+        "input": 10005,
+        "expected_output": 6,
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Identify division and modulo as recursive decomposition",
+      "Establish termination condition on single-digit numbers"
+    ],
+    "common_misconceptions": [
+      "Attempting iterative while loops instead of recursive stack reduction"
+    ],
+    "input_format": "A single non-negative integer `n`.",
+    "output_format": "An integer representing the sum of all digits in `n`.",
+    "hint": "Consider the base case when n < 10. For larger numbers, add the last digit `n % 10` to the recursive result of `n // 10`.",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Arrays. What fundamental condition marks the start or termination of Sum of Digits (Recursion)?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "Consider the base case when n < 10. For larger numbers, add the last digit `n % 10` to the recursive result of `n // 10`. Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "def sum_digits(n: int) -> int:\n    if n < 10:\n        return n\n    return (n % 10) + sum_digits(n // 10)\n",
+      "c": "#include <stdio.h>\n\nint sumDigits(int n) {\n    if (n < 10) return n;\n    return (n % 10) + sumDigits(n / 10);\n}\n",
+      "cpp": "#include <iostream>\n\nint sumDigits(int n) {\n    if (n < 10) return n;\n    return (n % 10) + sumDigits(n / 10);\n}\n",
+      "java": "public class Solution {\n    public static int sumDigits(int n) {\n        if (n < 10) return n;\n        return (n % 10) + sumDigits(n / 10);\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Arrays",
+      "Hash Maps & Sets"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "number-of-islands",
+    "title": "Number of Islands (Grid BFS/DFS)",
+    "difficulty": "Medium",
+    "topic": "Searching and Sorting",
+    "subtopic": "Two Pointers",
+    "description": "Given an `m x n` 2D binary grid `grid` which represents a map of `'1'`s (land) and `'0'`s (water), return the number of islands.\n\nAn **island** is surrounded by water and is formed by connecting adjacent lands horizontally or vertically. You may assume all four edges of the grid are surrounded by water.",
+    "examples": [
+      {
+        "input": "grid = [['1','1','1','0'],['1','1','0','0'],['0','0','1','0']]",
+        "output": "2",
+        "explanation": "Two distinct connected land masses."
+      }
+    ],
+    "constraints": [
+      "m == grid.length",
+      "n == grid[i].length",
+      "1 <= m, n <= 300"
+    ],
+    "starter_code": {
+      "python": "def num_islands(grid: list[list[str]]) -> int:\n    pass\n",
+      "c": "#include <stdio.h>\n\nint numIslands(char** grid, int gridSize, int* gridColSize) {\n    \n}\n",
+      "cpp": "#include <vector>\n\nint numIslands(std::vector<std::vector<char>>& grid) {\n    \n}\n",
+      "java": "public class Solution {\n    public static int numIslands(char[][] grid) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": [
+          [
+            "1",
+            "1",
+            "1",
+            "0"
+          ],
+          [
+            "1",
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "1",
+            "0"
+          ]
+        ],
+        "expected_output": 2,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": [
+          [
+            "1",
+            "1"
+          ],
+          [
+            "1",
+            "1"
+          ]
+        ],
+        "expected_output": 1,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ],
+        "expected_output": 0,
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Translate 2D grid matrices into implicit unweighted graphs",
+      "Use in-place cell modification ('0') as visited marker to achieve O(1) space"
+    ],
+    "common_misconceptions": [
+      "Including diagonal neighbors when problem specifies horizontal/vertical adjacency"
+    ],
+    "input_format": "A 2D array of character strings `grid` containing '1' and '0'.",
+    "output_format": "An integer representing total number of islands.",
+    "hint": "Iterate through each cell. When you find a '1', increment island count and trigger a BFS/DFS flood fill to sink all connected '1's to '0'.",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Searching and Sorting. What fundamental condition marks the start or termination of Number of Islands (Grid BFS/DFS)?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "Iterate through each cell. When you find a '1', increment island count and trigger a BFS/DFS flood fill to sink all connected '1's to '0'. Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "def num_islands(grid: list[list[str]]) -> int:\n    # TODO: Connected component counting\n    if not grid: return 0\n    R, C = len(grid), len(grid[0])\n    count = 0\n    def sink(r, c):\n        if r < 0 or r >= R or c < 0 or c >= C or grid[r][c] != '1': return\n        grid[r][c] = '0'\n        sink(r + 1, c)\n        sink(r - 1, c)\n        sink(r, c + 1)\n        sink(r, c - 1)\n    for r in range(R):\n        for c in range(C):\n            if grid[r][c] == '1':\n                count += 1\n                sink(r, c)\n    return count\n",
+      "c": "#include <stdio.h>\n\nint numIslands(char** grid, int gridSize, int* gridColSize) {\n    // TODO: Connected components\n    return 0;\n}\n",
+      "cpp": "#include <vector>\n\nint numIslands(std::vector<std::vector<char>>& grid) {\n    // TODO: Write solution here\n    if (grid.empty()) return 0;\n    int R = grid.size(), C = grid[0].size(), count = 0;\n    auto sink = [&](auto& self, int r, int c) -> void {\n        if (r < 0 || r >= R || c < 0 || c >= C || grid[r][c] != '1') return;\n        grid[r][c] = '0';\n        self(self, r + 1, c); self(self, r - 1, c);\n        self(self, r, c + 1); self(self, r, c - 1);\n    };\n    for (int r = 0; r < R; r++) {\n        for (int c = 0; c < C; c++) {\n            if (grid[r][c] == '1') {\n                count++;\n                sink(sink, r, c);\n            }\n        }\n    }\n    return count;\n}\n",
+      "java": "public class Solution {\n    public static int numIslands(char[][] grid) {\n        // TODO: Write solution here\n        if (grid == None || grid.length == 0) return 0;\n        int R = grid.length, C = grid[0].length, count = 0;\n        for (int r = 0; r < R; r++) {\n            for (int c = 0; c < C; c++) {\n                if (grid[r][c] == '1') {\n                    count++;\n                    sink(grid, r, c);\n                }\n            }\n        }\n        return count;\n    }\n    private static void sink(char[][] g, int r, int c) {\n        if (r < 0 || r >= g.length || c < 0 || c >= g[0].length || g[r][c] != '1') return;\n        g[r][c] = '0';\n        sink(g, r + 1, c); sink(g, r - 1, c); sink(g, r, c + 1); sink(g, r, c - 1);\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Searching and Sorting",
+      "Two Pointers"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "group-anagrams",
+    "title": "Group Anagrams",
+    "difficulty": "Medium",
+    "topic": "Searching and Sorting",
+    "subtopic": "Merge & Quick Sort",
+    "description": "Given an array of strings `strs`, group the anagrams together. You can return the answer in any order.\n\nAn Anagram is a word or phrase formed by rearranging the letters of a different word or phrase.",
+    "examples": [
+      {
+        "input": "strs = ['eat','tea','tan','ate','nat','bat']",
+        "output": "[['bat'], ['nat','tan'], ['ate','eat','tea']]",
+        "explanation": "Words with identical character counts are grouped together."
+      }
+    ],
+    "constraints": [
+      "1 <= strs.length <= 10^4",
+      "0 <= strs[i].length <= 100",
+      "strs[i] consists of lowercase English letters."
+    ],
+    "starter_code": {
+      "python": "def group_anagrams(strs: list[str]) -> list[list[str]]:\n    pass\n",
+      "c": "#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n\nvoid groupAnagrams(char** strs, int strsSize) {\n    \n}\n",
+      "cpp": "#include <vector>\n#include <string>\n#include <unordered_map>\n#include <algorithm>\n\nstd::vector<std::vector<std::string>> groupAnagrams(std::vector<std::string>& strs) {\n    \n}\n",
+      "java": "import java.util.*;\n\npublic class Solution {\n    public static List<List<String>> groupAnagrams(String[] strs) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": [
+          "a"
+        ],
+        "expected_output": [
+          [
+            "a"
+          ]
+        ],
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": [
+          "ab",
+          "ba"
+        ],
+        "expected_output": [
+          [
+            "ab",
+            "ba"
+          ]
+        ],
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": [
+          "cat",
+          "tac",
+          "dog"
+        ],
+        "expected_output": [
+          [
+            "cat",
+            "tac"
+          ],
+          [
+            "dog"
+          ]
+        ],
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Design canonical representations for hashing equivalence classes",
+      "Utilize multi-value dictionary mappings"
+    ],
+    "common_misconceptions": [
+      "Comparing every pair of strings directly resulting in O(N^2 * L) runtime"
+    ],
+    "input_format": "A list of strings `strs`.",
+    "output_format": "A list of grouped anagram lists.",
+    "hint": "Use sorted characters or character frequency counts as a canonical hash key for a dictionary.",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Searching and Sorting. What fundamental condition marks the start or termination of Group Anagrams?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "Use sorted characters or character frequency counts as a canonical hash key for a dictionary. Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "from collections import defaultdict\n\ndef group_anagrams(strs: list[str]) -> list[list[str]]:\n    # TODO: Write your hash map grouping solution here\n    groups = defaultdict(list)\n    for s in strs:\n        key = ''.join(sorted(s))\n        groups[key].append(s)\n    return list(groups.values())\n",
+      "c": "#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n\nvoid groupAnagrams(char** strs, int strsSize) {\n    // TODO: Write your grouping solution here\n}\n",
+      "cpp": "#include <vector>\n#include <string>\n#include <unordered_map>\n#include <algorithm>\n\nstd::vector<std::vector<std::string>> groupAnagrams(std::vector<std::string>& strs) {\n        std::unordered_map<std::string, std::vector<std::string>> mp;\n    for (const auto& s : strs) {\n        std::string key = s;\n        std::sort(key.begin(), key.end());\n        mp[key].push_back(s);\n    }\n    std::vector<std::vector<std::string>> res;\n    for (auto& p : mp) res.push_back(p.second);\n    return res;\n}\n",
+      "java": "import java.util.*;\n\npublic class Solution {\n    public static List<List<String>> groupAnagrams(String[] strs) {\n                Map<String, List<String>> map = new HashMap<>();\n        for (String s : strs) {\n            char[] ca = s.toCharArray();\n            Arrays.sort(ca);\n            String key = String.valueOf(ca);\n            map.computeIfAbsent(key, k -> new ArrayList<>()).add(s);\n        }\n        return new ArrayList<>(map.values());\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Searching and Sorting",
+      "Merge & Quick Sort"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "validate-bst",
+    "title": "Validate Binary Search Tree",
+    "difficulty": "Medium",
+    "topic": "Searching and Sorting",
+    "subtopic": "Merge & Quick Sort",
+    "description": "Given the root of a binary tree, determine if it is a valid binary search tree (BST).\n\nA valid BST is defined as follows:\n- The left subtree of a node contains only nodes with keys strictly less than the node's key.\n- The right subtree of a node contains only nodes with keys strictly greater than the node's key.\n- Both the left and right subtrees must also be binary search trees.",
+    "examples": [
+      {
+        "input": "tree = [2, 1, 3]",
+        "output": "True",
+        "explanation": "Left child 1 < 2 < right child 3."
+      },
+      {
+        "input": "tree = [5, 1, 4, None, None, 3, 6]",
+        "output": "False",
+        "explanation": "Node 4 has left child 3 which violates BST rule for root 5."
+      }
+    ],
+    "constraints": [
+      "The number of nodes in the tree is in the range [1, 10^4]."
+    ],
+    "starter_code": {
+      "python": "def is_valid_bst(tree: list) -> bool:\n    pass\n",
+      "c": "#include <stdio.h>\n#include <stdbool.h>\n\nbool isValidBST(int* tree, int treeSize) {\n    \n}\n",
+      "cpp": "#include <vector>\n\nbool isValidBST(std::vector<int>& tree) {\n    \n}\n",
+      "java": "public class Solution {\n    public static boolean isValidBST(Integer[] tree) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": [
+          2,
+          1,
+          3
+        ],
+        "expected_output": true,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": [
+          5,
+          1,
+          4,
+          null,
+          null,
+          3,
+          6
+        ],
+        "expected_output": false,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": [
+          10,
+          5,
+          15
+        ],
+        "expected_output": true,
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Propagate strict open-interval bounds down the call stack",
+      "Enforce whole-subtree BST invariants rather than local parent-child pairs only"
+    ],
+    "common_misconceptions": [
+      "Checking only immediate parent-child relationships instead of global ancestor boundaries"
+    ],
+    "input_format": "A level-order representation of tree values.",
+    "output_format": "Boolean `True` if valid BST, `False` otherwise.",
+    "hint": "Pass allowable min and max bounds down through the recursion: `validate(node, low, high)`. Each node's value must fall strictly between `low` and `high`.",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Searching and Sorting. What fundamental condition marks the start or termination of Validate Binary Search Tree?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "Pass allowable min and max bounds down through the recursion: `validate(node, low, high)`. Each node's value must fall strictly between `low` and `high`. Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "def is_valid_bst(tree: list) -> bool:\n    # TODO: Validate with bounded range check\n    if not tree: return True\n    def helper(i, low, high):\n        if i >= len(tree) or tree[i] is None: return True\n        val = tree[i]\n        if val <= low or val >= high: return False\n        return helper(2 * i + 1, low, val) and helper(2 * i + 2, val, high)\n    return helper(0, float('-inf'), float('inf'))\n",
+      "c": "#include <stdio.h>\n#include <stdbool.h>\n\nbool isValidBST(int* tree, int treeSize) {\n    // TODO: Validate bounded range (-1 as None)\n    return True;\n}\n",
+      "cpp": "#include <vector>\n\nbool isValidBST(std::vector<int>& tree) {\n    // TODO: Write solution here (-1 as None)\n    if (tree.empty()) return True;\n    auto helper = [&](auto& self, int i, long long low, long long high) -> bool {\n        if (i >= tree.size() || tree[i] == -1) return True;\n        long long val = tree[i];\n        if (val <= low || val >= high) return False;\n        return self(self, 2 * i + 1, low, val) && self(self, 2 * i + 2, val, high);\n    };\n    return helper(helper, 0, -1e18, 1e18);\n}\n",
+      "java": "public class Solution {\n    public static boolean isValidBST(Integer[] tree) {\n        // TODO: Write solution here\n        if (tree == None || tree.length == 0) return True;\n        return helper(tree, 0, Long.MIN_VALUE, Long.MAX_VALUE);\n    }\n    private static boolean helper(Integer[] tree, int i, long low, long high) {\n        if (i >= tree.length || tree[i] == None) return True;\n        long val = tree[i];\n        if (val <= low || val >= high) return False;\n        return helper(tree, 2 * i + 1, low, val) && helper(tree, 2 * i + 2, val, high);\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Searching and Sorting",
+      "Merge & Quick Sort"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "find-path-exists-graph",
+    "title": "Find if Path Exists in Graph",
+    "difficulty": "Easy",
+    "topic": "Arrays",
+    "subtopic": "Prefix Sums",
+    "description": "There is a bi-directional graph with `n` vertices, where each vertex is labeled from `0` to `n - 1`.\n\nGiven an integer `n` and an array `edges` where each `edges[i] = [u, v]` denotes an edge between vertices `u` and `v`, determine if there is a valid path from vertex `source` to vertex `destination`.",
+    "examples": [
+      {
+        "input": "n = 3, edges = [[0,1],[1,2],[2,0]], source = 0, destination = 2",
+        "output": "True",
+        "explanation": "Edges form a triangle, path exists."
+      }
+    ],
+    "constraints": [
+      "1 <= n <= 2 * 10^5",
+      "0 <= edges.length <= 2 * 10^5",
+      "0 <= source, destination < n"
+    ],
+    "starter_code": {
+      "python": "def valid_path(n: int, edges: list[list[int]], source: int, destination: int) -> bool:\n    pass\n",
+      "c": "#include <stdio.h>\n#include <stdbool.h>\n\nbool validPath(int n, int** edges, int edgesSize, int* edgesColSize, int source, int destination) {\n    \n}\n",
+      "cpp": "#include <vector>\n#include <queue>\n\nbool validPath(int n, std::vector<std::vector<int>>& edges, int source, int destination) {\n    \n}\n",
+      "java": "import java.util.*;\n\npublic class Solution {\n    public static boolean validPath(int n, int[][] edges, int source, int destination) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": {
+          "n": 3,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              0
+            ]
+          ],
+          "source": 0,
+          "destination": 2
+        },
+        "expected_output": true,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": {
+          "n": 6,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              4,
+              3
+            ]
+          ],
+          "source": 0,
+          "destination": 5
+        },
+        "expected_output": false,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": {
+          "n": 1,
+          "edges": [],
+          "source": 0,
+          "destination": 0
+        },
+        "expected_output": true,
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Construct undirected adjacency representation from edge pairs",
+      "Track visited nodes to prevent cycles in graph exploration"
+    ],
+    "common_misconceptions": [
+      "Failing to add bi-directional edges (u -> v and v -> u)"
+    ],
+    "input_format": "Integer `n`, 2D list `edges`, integer `source`, integer `destination`.",
+    "output_format": "Boolean `True` if path exists, `False` otherwise.",
+    "hint": "Build an adjacency list and run BFS or DFS from `source`. If `destination` is visited, return True.",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Arrays. What fundamental condition marks the start or termination of Find if Path Exists in Graph?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "Build an adjacency list and run BFS or DFS from `source`. If `destination` is visited, return True. Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "from collections import defaultdict, deque\n\ndef valid_path(n: int, edges: list[list[int]], source: int, destination: int) -> bool:\n    # TODO: BFS or DFS traversal\n    if source == destination: return True\n    adj = defaultdict(list)\n    for u, v in edges:\n        adj[u].append(v)\n        adj[v].append(u)\n    visited = {source}\n    queue = deque([source])\n    while queue:\n        curr = queue.popleft()\n        if curr == destination: return True\n        for neighbor in adj[curr]:\n            if neighbor not in visited:\n                visited.add(neighbor)\n                queue.append(neighbor)\n    return False\n",
+      "c": "#include <stdio.h>\n#include <stdbool.h>\n\nbool validPath(int n, int** edges, int edgesSize, int* edgesColSize, int source, int destination) {\n    // TODO: BFS traversal\n    return source == destination;\n}\n",
+      "cpp": "#include <vector>\n#include <queue>\n\nbool validPath(int n, std::vector<std::vector<int>>& edges, int source, int destination) {\n    // TODO: Write solution here\n    if (source == destination) return True;\n    std::vector<std::vector<int>> adj(n);\n    for (auto& e : edges) {\n        adj[e[0]].push_back(e[1]);\n        adj[e[1]].push_back(e[0]);\n    }\n    std::vector<bool> visited(n, False);\n    visited[source] = True;\n    std::queue<int> q;\n    q.push(source);\n    while (!q.empty()) {\n        int curr = q.front(); q.pop();\n        if (curr == destination) return True;\n        for (int nxt : adj[curr]) {\n            if (!visited[nxt]) {\n                visited[nxt] = True;\n                q.push(nxt);\n            }\n        }\n    }\n    return False;\n}\n",
+      "java": "import java.util.*;\n\npublic class Solution {\n    public static boolean validPath(int n, int[][] edges, int source, int destination) {\n        // TODO: Write solution here\n        if (source == destination) return True;\n        List<List<Integer>> adj = new ArrayList<>();\n        for (int i = 0; i < n; i++) adj.add(new ArrayList<>());\n        for (int[] e : edges) {\n            adj.get(e[0]).add(e[1]);\n            adj.get(e[1]).add(e[0]);\n        }\n        boolean[] visited = new boolean[n];\n        visited[source] = True;\n        Queue<Integer> q = new ArrayDeque<>();\n        q.offer(source);\n        while (!q.isEmpty()) {\n            int curr = q.poll();\n            if (curr == destination) return True;\n            for (int nxt : adj.get(curr)) {\n                if (!visited[nxt]) {\n                    visited[nxt] = True;\n                    q.offer(nxt);\n                }\n            }\n        }\n        return False;\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Arrays",
+      "Prefix Sums"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "maximum-depth-binary-tree",
+    "title": "Maximum Depth of Binary Tree",
+    "difficulty": "Easy",
+    "topic": "Arrays",
+    "subtopic": "Frequency Counting",
+    "description": "Given the root of a binary tree represented as a list (where `None` represents None nodes), return its maximum depth.\n\nA binary tree's maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.",
+    "examples": [
+      {
+        "input": "tree = [3, 9, 20, None, None, 15, 7]",
+        "output": "3",
+        "explanation": "Root 3 -> 20 -> 15 (depth 3)."
+      }
+    ],
+    "constraints": [
+      "The number of nodes in the tree is in the range [0, 10^4].",
+      "-100 <= Node.val <= 100"
+    ],
+    "starter_code": {
+      "python": "def max_depth(tree: list) -> int:\n    pass\n",
+      "c": "#include <stdio.h>\n\nint maxDepth(int* tree, int treeSize) {\n    \n}\n",
+      "cpp": "#include <vector>\n#include <algorithm>\n\nint maxDepth(std::vector<int>& tree) {\n    \n}\n",
+      "java": "public class Solution {\n    public static int maxDepth(Integer[] tree) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": [
+          3,
+          9,
+          20,
+          null,
+          null,
+          15,
+          7
+        ],
+        "expected_output": 3,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": [
+          1,
+          null,
+          2
+        ],
+        "expected_output": 2,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": [],
+        "expected_output": 0,
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Recursive depth definition across child subtrees",
+      "Array heap index formulas (2*i + 1, 2*i + 2) for binary trees"
+    ],
+    "common_misconceptions": [
+      "Not adding 1 for the current node's height contribution"
+    ],
+    "input_format": "A list representing binary tree in level order: `[3, 9, 20, None, None, 15, 7]`.",
+    "output_format": "An integer representing tree depth.",
+    "hint": "The depth of an empty tree is 0. The depth of any node is 1 + max(depth(left), depth(right)).",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Arrays. What fundamental condition marks the start or termination of Maximum Depth of Binary Tree?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "The depth of an empty tree is 0. The depth of any node is 1 + max(depth(left), depth(right)). Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "def max_depth(tree: list) -> int:\n    # TODO: Compute tree depth from level-order representation\n    if not tree or tree[0] is None: return 0\n    def get_depth(i):\n        if i >= len(tree) or tree[i] is None: return 0\n        return 1 + max(get_depth(2 * i + 1), get_depth(2 * i + 2))\n    return get_depth(0)\n",
+      "c": "#include <stdio.h>\n\nint maxDepth(int* tree, int treeSize) {\n    // TODO: Compute depth from array representation (-1 as None)\n    return 0;\n}\n",
+      "cpp": "#include <vector>\n#include <algorithm>\n\nint maxDepth(std::vector<int>& tree) {\n    // TODO: Write solution here (with -1 as None)\n    if (tree.empty()) return 0;\n    auto getDepth = [&](auto& self, int i) -> int {\n        if (i >= tree.size() || tree[i] == -1) return 0;\n        return 1 + std::max(self(self, 2 * i + 1), self(self, 2 * i + 2));\n    };\n    return getDepth(getDepth, 0);\n}\n",
+      "java": "public class Solution {\n    public static int maxDepth(Integer[] tree) {\n        // TODO: Write solution here\n        if (tree == None || tree.length == 0 || tree[0] == None) return 0;\n        return getDepth(tree, 0);\n    }\n    private static int getDepth(Integer[] tree, int i) {\n        if (i >= tree.length || tree[i] == None) return 0;\n        return 1 + Math.max(getDepth(tree, 2 * i + 1), getDepth(tree, 2 * i + 2));\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Arrays",
+      "Frequency Counting"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "power-of-two-recursion",
+    "title": "Power of Two Check (Recursion)",
+    "difficulty": "Easy",
+    "topic": "Arrays",
+    "subtopic": "Prefix Sums",
+    "description": "Given an integer `n`, return `True` if it is a power of two, otherwise return `False`.\n\nAn integer `n` is a power of two if there exists an integer `x` such that `n == 2^x`.\n\n### Requirements\n- Solve this problem recursively.",
+    "examples": [
+      {
+        "input": "n = 1",
+        "output": "True",
+        "explanation": "2^0 = 1"
+      },
+      {
+        "input": "n = 16",
+        "output": "True",
+        "explanation": "2^4 = 16"
+      },
+      {
+        "input": "n = 3",
+        "output": "False",
+        "explanation": "3 is not a power of two"
+      }
+    ],
+    "constraints": [
+      "-2^31 <= n <= 2^31 - 1"
+    ],
+    "starter_code": {
+      "python": "def is_power_of_two(n: int) -> bool:\n    pass\n",
+      "c": "#include <stdio.h>\n#include <stdbool.h>\n\nbool isPowerOfTwo(int n) {\n    \n}\n",
+      "cpp": "#include <iostream>\n\nbool isPowerOfTwo(int n) {\n    \n}\n",
+      "java": "public class Solution {\n    public static boolean isPowerOfTwo(int n) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": 1,
+        "expected_output": true,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": 16,
+        "expected_output": true,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": 3,
+        "expected_output": false,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 4,
+        "input": 64,
+        "expected_output": true,
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Break down logarithmic reduction using recursive divide-by-2",
+      "Identify boundary conditions for non-positive integers"
+    ],
+    "common_misconceptions": [
+      "Forgetting that negative numbers cannot be powers of two"
+    ],
+    "input_format": "A single integer `n`.",
+    "output_format": "A boolean indicating whether `n` is a power of two.",
+    "hint": "Any number less than or equal to 0 cannot be a power of two. If n == 1, it is 2^0. If n is odd, it cannot be a power of two.",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Arrays. What fundamental condition marks the start or termination of Power of Two Check (Recursion)?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "Any number less than or equal to 0 cannot be a power of two. If n == 1, it is 2^0. If n is odd, it cannot be a power of two. Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "def is_power_of_two(n: int) -> bool:\n    if n <= 0:\n        return False\n    if n == 1:\n        return True\n    if n % 2 != 0:\n        return False\n    return is_power_of_two(n // 2)\n",
+      "c": "#include <stdio.h>\n#include <stdbool.h>\n\nbool isPowerOfTwo(int n) {\n    if (n <= 0) return False;\n    if (n == 1) return True;\n    if (n % 2 != 0) return False;\n    return isPowerOfTwo(n / 2);\n}\n",
+      "cpp": "#include <iostream>\n\nbool isPowerOfTwo(int n) {\n    if (n <= 0) return False;\n    if (n == 1) return True;\n    if (n % 2 != 0) return False;\n    return isPowerOfTwo(n / 2);\n}\n",
+      "java": "public class Solution {\n    public static boolean isPowerOfTwo(int n) {\n        if (n <= 0) return False;\n        if (n == 1) return True;\n        if (n % 2 != 0) return False;\n        return isPowerOfTwo(n / 2);\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Arrays",
+      "Prefix Sums"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "two-sum-sorted",
+    "title": "Two Sum II (Sorted Array)",
+    "difficulty": "Easy",
+    "topic": "Arrays",
+    "subtopic": "Frequency Counting",
+    "description": "Given a **1-indexed** array of integers `numbers` that is already sorted in non-decreasing order, find two numbers such that they add up to a specific `target` number.\n\nReturn the indices of the two numbers, `index1` and `index2`, added by one as an integer array `[index1, index2]` of length 2.",
+    "examples": [
+      {
+        "input": "numbers = [2, 7, 11, 15], target = 9",
+        "output": "[1, 2]",
+        "explanation": "2 + 7 = 9. Therefore index1 = 1, index2 = 2."
+      }
+    ],
+    "constraints": [
+      "2 <= numbers.length <= 3 * 10^4",
+      "-1000 <= numbers[i] <= 1000",
+      "Exactly one valid solution exists."
+    ],
+    "starter_code": {
+      "python": "def two_sum_sorted(numbers: list[int], target: int) -> list[int]:\n    pass\n",
+      "c": "#include <stdio.h>\n#include <stdlib.h>\n\nint* twoSumSorted(int* numbers, int numbersSize, int target, int* returnSize) {\n    \n}\n",
+      "cpp": "#include <vector>\n\nstd::vector<int> twoSumSorted(std::vector<int>& numbers, int target) {\n    \n}\n",
+      "java": "public class Solution {\n    public static int[] twoSumSorted(int[] numbers, int target) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": {
+          "numbers": [
+            2,
+            7,
+            11,
+            15
+          ],
+          "target": 9
+        },
+        "expected_output": [
+          1,
+          2
+        ],
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": {
+          "numbers": [
+            2,
+            3,
+            4
+          ],
+          "target": 6
+        },
+        "expected_output": [
+          1,
+          3
+        ],
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": {
+          "numbers": [
+            -1,
+            0
+          ],
+          "target": -1
+        },
+        "expected_output": [
+          1,
+          2
+        ],
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Exploit sorted order invariant with convergent inward pointers",
+      "Achieve O(1) space without auxiliary lookup structures"
+    ],
+    "common_misconceptions": [
+      "Returning 0-based indices when question strictly specifies 1-indexed output"
+    ],
+    "input_format": "Sorted list of integers `numbers` and an integer `target`.",
+    "output_format": "Array of two 1-based indices `[index1, index2]`.",
+    "hint": "Place one pointer at index 0 and another at the last element. If sum < target, advance left pointer; if sum > target, retract right pointer.",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Arrays. What fundamental condition marks the start or termination of Two Sum II (Sorted Array)?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "Place one pointer at index 0 and another at the last element. If sum < target, advance left pointer; if sum > target, retract right pointer. Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "def two_sum_sorted(numbers: list[int], target: int) -> list[int]:\n    # TODO: Two pointers converging inward\n    left, right = 0, len(numbers) - 1\n    while left < right:\n        cur = numbers[left] + numbers[right]\n        if cur == target: return [left + 1, right + 1]\n        elif cur < target: left += 1\n        else: right -= 1\n    return []\n",
+      "c": "#include <stdio.h>\n#include <stdlib.h>\n\nint* twoSumSorted(int* numbers, int numbersSize, int target, int* returnSize) {\n    // TODO: Two pointers\n    int left = 0, right = numbersSize - 1;\n    while (left < right) {\n        int cur = numbers[left] + numbers[right];\n        if (cur == target) {\n            *returnSize = 2;\n            int* res = (int*)malloc(2 * sizeof(int));\n            res[0] = left + 1;\n            res[1] = right + 1;\n            return res;\n        }\n        if (cur < target) left++;\n        else right--;\n    }\n    *returnSize = 0;\n    return NULL;\n}\n",
+      "cpp": "#include <vector>\n\nstd::vector<int> twoSumSorted(std::vector<int>& numbers, int target) {\n    // TODO: Write solution here\n    int left = 0, right = numbers.size() - 1;\n    while (left < right) {\n        int cur = numbers[left] + numbers[right];\n        if (cur == target) return {left + 1, right + 1};\n        if (cur < target) left++;\n        else right--;\n    }\n    return {};\n}\n",
+      "java": "public class Solution {\n    public static int[] twoSumSorted(int[] numbers, int target) {\n        // TODO: Write solution here\n        int left = 0, right = numbers.length - 1;\n        while (left < right) {\n            int cur = numbers[left] + numbers[right];\n            if (cur == target) return new int[]{left + 1, right + 1};\n            if (cur < target) left++;\n            else right--;\n        }\n        return new int[]{};\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Arrays",
+      "Frequency Counting"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "valid-parentheses",
+    "title": "Valid Parentheses",
+    "difficulty": "Easy",
+    "topic": "Arrays",
+    "subtopic": "Frequency Counting",
+    "description": "Given a string `s` containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['` and `']'`, determine if the input string is valid.\n\nAn input string is valid if:\n1. Open brackets must be closed by the same type of brackets.\n2. Open brackets must be closed in the correct order.\n3. Every close bracket has a corresponding open bracket of the same type.",
+    "examples": [
+      {
+        "input": "s = '()[]{}'",
+        "output": "True",
+        "explanation": "All brackets match in pairs."
+      },
+      {
+        "input": "s = '(]'",
+        "output": "False",
+        "explanation": "Mismatched bracket pair."
+      }
+    ],
+    "constraints": [
+      "1 <= s.length <= 10^4",
+      "s consists of parentheses only '()[]{}'."
+    ],
+    "starter_code": {
+      "python": "def is_valid(s: str) -> bool:\n    pass\n",
+      "c": "#include <stdio.h>\n#include <stdbool.h>\n#include <string.h>\n\nbool isValid(char* s) {\n    \n}\n",
+      "cpp": "#include <string>\n#include <stack>\n\nbool isValid(std::string s) {\n    \n}\n",
+      "java": "import java.util.*;\n\npublic class Solution {\n    public static boolean isValid(String s) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": "()[]{}",
+        "expected_output": true,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": "(]",
+        "expected_output": false,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": "([{}])",
+        "expected_output": true,
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Apply LIFO stack semantics to enforce balanced syntax matching",
+      "Handle empty stack edge cases during pop operations"
+    ],
+    "common_misconceptions": [
+      "Assuming equal counts of '(' and ')' is sufficient without validating nesting order"
+    ],
+    "input_format": "A string `s` containing only brackets.",
+    "output_format": "Boolean `True` if valid, `False` otherwise.",
+    "hint": "Push opening brackets onto a stack. When a closing bracket arrives, verify that the top of the stack matches its pair. Check if stack is empty at the end.",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Arrays. What fundamental condition marks the start or termination of Valid Parentheses?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "Push opening brackets onto a stack. When a closing bracket arrives, verify that the top of the stack matches its pair. Check if stack is empty at the end. Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "def is_valid(s: str) -> bool:\n    # TODO: Implement stack bracket matching\n    stack = []\n    pairs = {')': '(', '}': '{', ']': '['}\n    for c in s:\n        if c in pairs:\n            if not stack or stack.pop() != pairs[c]: return False\n        else:\n            stack.append(c)\n    return len(stack) == 0\n",
+      "c": "#include <stdio.h>\n#include <stdbool.h>\n#include <string.h>\n\nbool isValid(char* s) {\n    // TODO: Stack matching\n    char stack[10000];\n    int top = -1;\n    for (int i = 0; s[i] != '\u0000'; i++) {\n        char c = s[i];\n        if (c == '(' || c == '{' || c == '[') {\n            stack[++top] = c;\n        } else {\n            if (top < 0) return False;\n            char open = stack[top--];\n            if (c == ')' && open != '(') return False;\n            if (c == '}' && open != '{') return False;\n            if (c == ']' && open != '[') return False;\n        }\n    }\n    return top == -1;\n}\n",
+      "cpp": "#include <string>\n#include <stack>\n\nbool isValid(std::string s) {\n    // TODO: Write solution here\n    std::stack<char> st;\n    for (char c : s) {\n        if (c == '(' || c == '{' || c == '[') st.push(c);\n        else {\n            if (st.empty()) return False;\n            char top = st.top(); st.pop();\n            if (c == ')' && top != '(') return False;\n            if (c == '}' && top != '{') return False;\n            if (c == ']' && top != '[') return False;\n        }\n    }\n    return st.empty();\n}\n",
+      "java": "import java.util.*;\n\npublic class Solution {\n    public static boolean isValid(String s) {\n        // TODO: Write solution here\n        Deque<Character> stack = new ArrayDeque<>();\n        for (char c : s.toCharArray()) {\n            if (c == '(') stack.push(')');\n            else if (c == '{') stack.push('}');\n            else if (c == '[') stack.push(']');\n            else if (stack.isEmpty() || stack.pop() != c) return False;\n        }\n        return stack.isEmpty();\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Arrays",
+      "Frequency Counting"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "contains-duplicate-v84",
+    "title": "Contains Duplicate (Practice Variant v84)",
+    "difficulty": "Easy",
+    "topic": "Arrays",
+    "subtopic": "Prefix Sums",
+    "description": "Given an integer array `nums`, return `True` if any value appears at least twice in the array, and return `False` if every element is distinct.\n\n*Note: This problem variant is tailored for targeted deliberate practice.*",
+    "examples": [
+      {
+        "input": "nums = [1, 2, 3, 1]",
+        "output": "True",
+        "explanation": "Element 1 appears twice."
+      },
+      {
+        "input": "nums = [1, 2, 3, 4]",
+        "output": "False",
+        "explanation": "All elements are unique."
+      }
+    ],
+    "constraints": [
+      "1 <= nums.length <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "starter_code": {
+      "python": "def contains_duplicate(nums: list[int]) -> bool:\n    pass\n",
+      "c": "#include <stdio.h>\n#include <stdbool.h>\n\nbool containsDuplicate(int* nums, int numsSize) {\n    \n}\n",
+      "cpp": "#include <vector>\n#include <unordered_set>\n\nbool containsDuplicate(std::vector<int>& nums) {\n    \n}\n",
+      "java": "import java.util.*;\n\npublic class Solution {\n    public static boolean containsDuplicate(int[] nums) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": [
+          1,
+          2,
+          3,
+          1
+        ],
+        "expected_output": true,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "expected_output": false,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": [
+          1,
+          1,
+          1,
+          3,
+          3,
+          4,
+          3,
+          2,
+          4,
+          2
+        ],
+        "expected_output": true,
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Trade O(N) extra space for O(N) linear time lookup",
+      "Understand hash set membership complexity"
+    ],
+    "common_misconceptions": [
+      "Using nested loops with O(N^2) complexity causing TLE"
+    ],
+    "input_format": "A list of integers `nums`.",
+    "output_format": "Boolean `True` if duplicate exists, `False` otherwise.",
+    "hint": "Use a Hash Set to track seen numbers in O(1) amortized time per lookup.",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Arrays. What fundamental condition marks the start or termination of Contains Duplicate (Practice Variant v84)?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "Use a Hash Set to track seen numbers in O(1) amortized time per lookup. Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "def contains_duplicate(nums: list[int]) -> bool:\n    # TODO: Write your solution using a set\n    seen = set()\n    for x in nums:\n        if x in seen:\n            return True\n        seen.add(x)\n    return False\n",
+      "c": "#include <stdio.h>\n#include <stdbool.h>\n\nbool containsDuplicate(int* nums, int numsSize) {\n        for (int i = 0; i < numsSize; i++) {\n        for (int j = i + 1; j < numsSize; j++) {\n            if (nums[i] == nums[j]) return True;\n        }\n    }\n    return False;\n}\n",
+      "cpp": "#include <vector>\n#include <unordered_set>\n\nbool containsDuplicate(std::vector<int>& nums) {\n        std::unordered_set<int> seen;\n    for (int x : nums) {\n        if (seen.count(x)) return True;\n        seen.insert(x);\n    }\n    return False;\n}\n",
+      "java": "import java.util.*;\n\npublic class Solution {\n    public static boolean containsDuplicate(int[] nums) {\n                Set<Integer> seen = new HashSet<>();\n        for (int x : nums) {\n            if (seen.contains(x)) return True;\n            seen.add(x);\n        }\n        return False;\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Arrays",
+      "Prefix Sums"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "valid-anagram-v34",
+    "title": "Valid Anagram (Practice Variant v34)",
+    "difficulty": "Easy",
+    "topic": "Arrays",
+    "subtopic": "Frequency Counting",
+    "description": "Given two strings `s` and `t`, return `True` if `t` is an anagram of `s`, and `False` otherwise.\n\nAn Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n*Note: This problem variant is tailored for targeted deliberate practice.*",
+    "examples": [
+      {
+        "input": "s = 'anagram', t = 'nagaram'",
+        "output": "True",
+        "explanation": "Characters match frequency exactly."
+      },
+      {
+        "input": "s = 'rat', t = 'car'",
+        "output": "False",
+        "explanation": "Frequencies do not match."
+      }
+    ],
+    "constraints": [
+      "1 <= s.length, t.length <= 5 * 10^4",
+      "s and t consist of lowercase English letters."
+    ],
+    "starter_code": {
+      "python": "def is_anagram(s: str, t: str) -> bool:\n    pass\n",
+      "c": "#include <stdio.h>\n#include <stdbool.h>\n#include <string.h>\n\nbool isAnagram(char* s, char* t) {\n    \n}\n",
+      "cpp": "#include <string>\n#include <vector>\n\nbool isAnagram(std::string s, std::string t) {\n    \n}\n",
+      "java": "public class Solution {\n    public static boolean isAnagram(String s, String t) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": {
+          "s": "anagram",
+          "t": "nagaram"
+        },
+        "expected_output": true,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": {
+          "s": "rat",
+          "t": "car"
+        },
+        "expected_output": false,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": {
+          "s": "ab",
+          "t": "a"
+        },
+        "expected_output": false,
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Counting frequencies with constant O(1) space for 26 alphabet characters",
+      "Quick rejection using string length invariant"
+    ],
+    "common_misconceptions": [
+      "Sorting both strings (O(N log N)) when O(N) frequency tallying is faster"
+    ],
+    "input_format": "Two strings `s` and `t`.",
+    "output_format": "Boolean `True` if valid anagram, `False` otherwise.",
+    "hint": "If the lengths differ, return False. Count character frequencies using a fixed 26-element array or hash map.",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Arrays. What fundamental condition marks the start or termination of Valid Anagram (Practice Variant v34)?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "If the lengths differ, return False. Count character frequencies using a fixed 26-element array or hash map. Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "def is_anagram(s: str, t: str) -> bool:\n    # TODO: Compare character frequencies\n    if len(s) != len(t): return False\n    counts = {}\n    for ch in s: counts[ch] = counts.get(ch, 0) + 1\n    for ch in t:\n        if ch not in counts or counts[ch] == 0: return False\n        counts[ch] -= 1\n    return True\n",
+      "c": "#include <stdio.h>\n#include <stdbool.h>\n#include <string.h>\n\nbool isAnagram(char* s, char* t) {\n    // TODO: Compare character counts\n    if (strlen(s) != strlen(t)) return False;\n    int counts[26] = {0};\n    for (int i = 0; s[i] != '\u0000'; i++) counts[s[i] - 'a']++;\n    for (int i = 0; t[i] != '\u0000'; i++) {\n        if (--counts[t[i] - 'a'] < 0) return False;\n    }\n    return True;\n}\n",
+      "cpp": "#include <string>\n#include <vector>\n\nbool isAnagram(std::string s, std::string t) {\n    // TODO: Compare character counts\n    if (s.length() != t.length()) return False;\n    std::vector<int> counts(26, 0);\n    for (char c : s) counts[c - 'a']++;\n    for (char c : t) {\n        if (--counts[c - 'a'] < 0) return False;\n    }\n    return True;\n}\n",
+      "java": "public class Solution {\n    public static boolean isAnagram(String s, String t) {\n        // TODO: Compare character counts\n        if (s.length() != t.length()) return False;\n        int[] counts = new int[26];\n        for (char c : s.toCharArray()) counts[c - 'a']++;\n        for (char c : t.toCharArray()) {\n            if (--counts[c - 'a'] < 0) return False;\n        }\n        return True;\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Arrays",
+      "Frequency Counting"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "maximum-depth-binary-tree-v53",
+    "title": "Maximum Depth of Binary Tree (Practice Variant v53)",
+    "difficulty": "Easy",
+    "topic": "Arrays",
+    "subtopic": "Hash Maps & Sets",
+    "description": "Given the root of a binary tree represented as a list (where `None` represents None nodes), return its maximum depth.\n\nA binary tree's maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.\n\n*Note: This problem variant is tailored for targeted deliberate practice.*",
+    "examples": [
+      {
+        "input": "tree = [3, 9, 20, None, None, 15, 7]",
+        "output": "3",
+        "explanation": "Root 3 -> 20 -> 15 (depth 3)."
+      }
+    ],
+    "constraints": [
+      "The number of nodes in the tree is in the range [0, 10^4].",
+      "-100 <= Node.val <= 100"
+    ],
+    "starter_code": {
+      "python": "def max_depth(tree: list) -> int:\n    pass\n",
+      "c": "#include <stdio.h>\n\nint maxDepth(int* tree, int treeSize) {\n    \n}\n",
+      "cpp": "#include <vector>\n#include <algorithm>\n\nint maxDepth(std::vector<int>& tree) {\n    \n}\n",
+      "java": "public class Solution {\n    public static int maxDepth(Integer[] tree) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": [
+          3,
+          9,
+          20,
+          null,
+          null,
+          15,
+          7
+        ],
+        "expected_output": 3,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": [
+          1,
+          null,
+          2
+        ],
+        "expected_output": 2,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": [],
+        "expected_output": 0,
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Recursive depth definition across child subtrees",
+      "Array heap index formulas (2*i + 1, 2*i + 2) for binary trees"
+    ],
+    "common_misconceptions": [
+      "Not adding 1 for the current node's height contribution"
+    ],
+    "input_format": "A list representing binary tree in level order: `[3, 9, 20, None, None, 15, 7]`.",
+    "output_format": "An integer representing tree depth.",
+    "hint": "The depth of an empty tree is 0. The depth of any node is 1 + max(depth(left), depth(right)).",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Arrays. What fundamental condition marks the start or termination of Maximum Depth of Binary Tree (Practice Variant v53)?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "The depth of an empty tree is 0. The depth of any node is 1 + max(depth(left), depth(right)). Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "def max_depth(tree: list) -> int:\n    # TODO: Compute tree depth from level-order representation\n    if not tree or tree[0] is None: return 0\n    def get_depth(i):\n        if i >= len(tree) or tree[i] is None: return 0\n        return 1 + max(get_depth(2 * i + 1), get_depth(2 * i + 2))\n    return get_depth(0)\n",
+      "c": "#include <stdio.h>\n\nint maxDepth(int* tree, int treeSize) {\n    // TODO: Compute depth from array representation (-1 as None)\n    return 0;\n}\n",
+      "cpp": "#include <vector>\n#include <algorithm>\n\nint maxDepth(std::vector<int>& tree) {\n    // TODO: Write solution here (with -1 as None)\n    if (tree.empty()) return 0;\n    auto getDepth = [&](auto& self, int i) -> int {\n        if (i >= tree.size() || tree[i] == -1) return 0;\n        return 1 + std::max(self(self, 2 * i + 1), self(self, 2 * i + 2));\n    };\n    return getDepth(getDepth, 0);\n}\n",
+      "java": "public class Solution {\n    public static int maxDepth(Integer[] tree) {\n        // TODO: Write solution here\n        if (tree == None || tree.length == 0 || tree[0] == None) return 0;\n        return getDepth(tree, 0);\n    }\n    private static int getDepth(Integer[] tree, int i) {\n        if (i >= tree.length || tree[i] == None) return 0;\n        return 1 + Math.max(getDepth(tree, 2 * i + 1), getDepth(tree, 2 * i + 2));\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Arrays",
+      "Hash Maps & Sets"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "coin-change-dp",
+    "title": "Coin Change (Fewest Coins)",
+    "difficulty": "Medium",
+    "topic": "Searching and Sorting",
+    "subtopic": "Merge & Quick Sort",
+    "description": "You are given an integer array `coins` representing coins of different denominations and an integer `amount` representing a total amount of money.\n\nReturn the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return -1.\n\nYou may assume that you have an infinite number of each kind of coin.",
+    "examples": [
+      {
+        "input": "coins = [1, 2, 5], amount = 11",
+        "output": "3",
+        "explanation": "11 = 5 + 5 + 1 (3 coins)."
+      },
+      {
+        "input": "coins = [2], amount = 3",
+        "output": "-1",
+        "explanation": "Cannot form 3 using only 2s."
+      }
+    ],
+    "constraints": [
+      "1 <= coins.length <= 12",
+      "1 <= coins[i] <= 2^31 - 1",
+      "0 <= amount <= 10^4"
+    ],
+    "starter_code": {
+      "python": "def coin_change(coins: list[int], amount: int) -> int:\n    pass\n",
+      "c": "#include <stdio.h>\n\nint coinChange(int* coins, int coinsSize, int amount) {\n    \n}\n",
+      "cpp": "#include <vector>\n#include <algorithm>\n\nint coinChange(std::vector<int>& coins, int amount) {\n    \n}\n",
+      "java": "import java.util.*;\n\npublic class Solution {\n    public static int coinChange(int[] coins, int amount) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": {
+          "coins": [
+            1,
+            2,
+            5
+          ],
+          "amount": 11
+        },
+        "expected_output": 3,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": {
+          "coins": [
+            2
+          ],
+          "amount": 3
+        },
+        "expected_output": -1,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": {
+          "coins": [
+            1
+          ],
+          "amount": 0
+        },
+        "expected_output": 0,
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Formulate 1D state transition for unbounded knapsack variant",
+      "Sentinel infinity initialization for minimization problems"
+    ],
+    "common_misconceptions": [
+      "Attempting greedy largest coin pickup which fails for denominations like [1, 3, 4] with amount 6"
+    ],
+    "input_format": "An array of positive integers `coins` and an integer `amount`.",
+    "output_format": "Minimum coins needed, or -1.",
+    "hint": "Define dp[a] = min coins to form amount a. For each coin c, dp[a] = min(dp[a], 1 + dp[a - c]). Initialize with amount + 1.",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Searching and Sorting. What fundamental condition marks the start or termination of Coin Change (Fewest Coins)?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "Define dp[a] = min coins to form amount a. For each coin c, dp[a] = min(dp[a], 1 + dp[a - c]). Initialize with amount + 1. Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "def coin_change(coins: list[int], amount: int) -> int:\n    # TODO: Bottom-up DP tabulation\n    dp = [amount + 1] * (amount + 1)\n    dp[0] = 0\n    for a in range(1, amount + 1):\n        for c in coins:\n            if a - c >= 0:\n                dp[a] = min(dp[a], 1 + dp[a - c])\n    return dp[amount] if dp[amount] != amount + 1 else -1\n",
+      "c": "#include <stdio.h>\n\nint coinChange(int* coins, int coinsSize, int amount) {\n    // TODO: Tabulation DP\n    return -1;\n}\n",
+      "cpp": "#include <vector>\n#include <algorithm>\n\nint coinChange(std::vector<int>& coins, int amount) {\n    // TODO: Write solution here\n    std::vector<int> dp(amount + 1, amount + 1);\n    dp[0] = 0;\n    for (int a = 1; a <= amount; a++) {\n        for (int c : coins) {\n            if (a - c >= 0) {\n                dp[a] = std::min(dp[a], 1 + dp[a - c]);\n            }\n        }\n    }\n    return dp[amount] > amount ? -1 : dp[amount];\n}\n",
+      "java": "import java.util.*;\n\npublic class Solution {\n    public static int coinChange(int[] coins, int amount) {\n        // TODO: Write solution here\n        int[] dp = new int[amount + 1];\n        Arrays.fill(dp, amount + 1);\n        dp[0] = 0;\n        for (int a = 1; a <= amount; a++) {\n            for (int c : coins) {\n                if (a - c >= 0) {\n                    dp[a] = Math.min(dp[a], 1 + dp[a - c]);\n                }\n            }\n        }\n        return dp[amount] > amount ? -1 : dp[amount];\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Searching and Sorting",
+      "Merge & Quick Sort"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "three-sum",
+    "title": "3Sum (Triplets Sum to Zero)",
+    "difficulty": "Medium",
+    "topic": "Searching and Sorting",
+    "subtopic": "Two Pointers",
+    "description": "Given an integer array `nums`, return all the triplets `[nums[i], nums[j], nums[k]]` such that `i != j`, `i != k`, and `j != k`, and `nums[i] + nums[j] + nums[k] == 0`.\n\nNotice that the solution set must not contain duplicate triplets.",
+    "examples": [
+      {
+        "input": "nums = [-1, 0, 1, 2, -1, -4]",
+        "output": "[[-1, -1, 2], [-1, 0, 1]]",
+        "explanation": "Triplets sum to zero without duplicates."
+      }
+    ],
+    "constraints": [
+      "3 <= nums.length <= 3000",
+      "-10^5 <= nums[i] <= 10^5"
+    ],
+    "starter_code": {
+      "python": "def three_sum(nums: list[int]) -> list[list[int]]:\n    pass\n",
+      "c": "#include <stdio.h>\n#include <stdlib.h>\n\nvoid threeSum(int* nums, int numsSize) {\n    \n}\n",
+      "cpp": "#include <vector>\n#include <algorithm>\n\nstd::vector<std::vector<int>> threeSum(std::vector<int>& nums) {\n    \n}\n",
+      "java": "import java.util.*;\n\npublic class Solution {\n    public static List<List<Integer>> threeSum(int[] nums) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": [
+          -1,
+          0,
+          1,
+          2,
+          -1,
+          -4
+        ],
+        "expected_output": [
+          [
+            -1,
+            -1,
+            2
+          ],
+          [
+            -1,
+            0,
+            1
+          ]
+        ],
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": [
+          0,
+          1,
+          1
+        ],
+        "expected_output": [],
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": [
+          0,
+          0,
+          0
+        ],
+        "expected_output": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Reduce 3-variable search to N iterations of 2-pointer sweep",
+      "Systematic deduplication without heavy hash sets"
+    ],
+    "common_misconceptions": [
+      "Generating all combinations through 3 nested loops resulting in O(N^3) timeout"
+    ],
+    "input_format": "An array of integers `nums`.",
+    "output_format": "List of distinct triplet arrays adding up to zero.",
+    "hint": "Sort the array first. Fix each element `i` as the anchor and use two pointers `left` and `right` for the remaining elements. Skip adjacent duplicate values to avoid redundant triplets.",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Searching and Sorting. What fundamental condition marks the start or termination of 3Sum (Triplets Sum to Zero)?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "Sort the array first. Fix each element `i` as the anchor and use two pointers `left` and `right` for the remaining elements. Skip adjacent duplicate values to avoid redundant triplets. Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "def three_sum(nums: list[int]) -> list[list[int]]:\n    # TODO: Sort and run two pointers\n    nums.sort()\n    res = []\n    for i in range(len(nums) - 2):\n        if i > 0 and nums[i] == nums[i - 1]: continue\n        l, r = i + 1, len(nums) - 1\n        while l < r:\n            s = nums[i] + nums[l] + nums[r]\n            if s == 0:\n                res.append([nums[i], nums[l], nums[r]])\n                while l < r and nums[l] == nums[l + 1]: l += 1\n                while l < r and nums[r] == nums[r - 1]: r -= 1\n                l += 1; r -= 1\n            elif s < 0: l += 1\n            else: r -= 1\n    return res\n",
+      "c": "#include <stdio.h>\n#include <stdlib.h>\n\nvoid threeSum(int* nums, int numsSize) {\n    // TODO: Sort and two pointers\n}\n",
+      "cpp": "#include <vector>\n#include <algorithm>\n\nstd::vector<std::vector<int>> threeSum(std::vector<int>& nums) {\n    // TODO: Write solution here\n    std::sort(nums.begin(), nums.end());\n    std::vector<std::vector<int>> res;\n    for (int i = 0; i < (int)nums.size() - 2; i++) {\n        if (i > 0 && nums[i] == nums[i - 1]) continue;\n        int l = i + 1, r = nums.size() - 1;\n        while (l < r) {\n            int s = nums[i] + nums[l] + nums[r];\n            if (s == 0) {\n                res.push_back({nums[i], nums[l], nums[r]});\n                while (l < r && nums[l] == nums[l + 1]) l++;\n                while (l < r && nums[r] == nums[r - 1]) r--;\n                l++; r--;\n            } else if (s < 0) l++;\n            else r--;\n        }\n    }\n    return res;\n}\n",
+      "java": "import java.util.*;\n\npublic class Solution {\n    public static List<List<Integer>> threeSum(int[] nums) {\n        // TODO: Write solution here\n        Arrays.sort(nums);\n        List<List<Integer>> res = new ArrayList<>();\n        for (int i = 0; i < nums.length - 2; i++) {\n            if (i > 0 && nums[i] == nums[i - 1]) continue;\n            int l = i + 1, r = nums.length - 1;\n            while (l < r) {\n                int s = nums[i] + nums[l] + nums[r];\n                if (s == 0) {\n                    res.add(Arrays.asList(nums[i], nums[l], nums[r]));\n                    while (l < r && nums[l] == nums[l + 1]) l++;\n                    while (l < r && nums[r] == nums[r - 1]) r--;\n                    l++; r--;\n                } else if (s < 0) l++;\n                else r--;\n            }\n        }\n        return res;\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Searching and Sorting",
+      "Two Pointers"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "longest-substring-without-repeating",
+    "title": "Longest Substring Without Repeating Characters",
+    "difficulty": "Medium",
+    "topic": "Searching and Sorting",
+    "subtopic": "Binary Search",
+    "description": "Given a string `s`, find the length of the longest substring without repeating characters.",
+    "examples": [
+      {
+        "input": "s = 'abcabcbb'",
+        "output": "3",
+        "explanation": "The answer is 'abc', with the length of 3."
+      },
+      {
+        "input": "s = 'bbbbb'",
+        "output": "1",
+        "explanation": "The answer is 'b', with the length of 1."
+      }
+    ],
+    "constraints": [
+      "0 <= s.length <= 5 * 10^4",
+      "s consists of English letters, digits, symbols and spaces."
+    ],
+    "starter_code": {
+      "python": "def length_of_longest_substring(s: str) -> int:\n    pass\n",
+      "c": "#include <stdio.h>\n#include <string.h>\n\nint lengthOfLongestSubstring(char* s) {\n    \n}\n",
+      "cpp": "#include <string>\n#include <unordered_map>\n#include <algorithm>\n\nint lengthOfLongestSubstring(std::string s) {\n    \n}\n",
+      "java": "import java.util.*;\n\npublic class Solution {\n    public static int lengthOfLongestSubstring(String s) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": "abcabcbb",
+        "expected_output": 3,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": "bbbbb",
+        "expected_output": 1,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": "pwwkew",
+        "expected_output": 3,
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Dynamically contract sliding window boundary on collision",
+      "Maintain last-seen index mapping for O(1) jump updates"
+    ],
+    "common_misconceptions": [
+      "Not checking if the previously seen duplicate falls before current left window boundary"
+    ],
+    "input_format": "A string `s`.",
+    "output_format": "An integer representing the length of the longest substring.",
+    "hint": "Use the Sliding Window technique with two pointers `left` and `right`. Maintain a hash map storing the last seen index of each character.",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Searching and Sorting. What fundamental condition marks the start or termination of Longest Substring Without Repeating Characters?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "Use the Sliding Window technique with two pointers `left` and `right`. Maintain a hash map storing the last seen index of each character. Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "def length_of_longest_substring(s: str) -> int:\n    # TODO: Implement sliding window\n    seen = {}\n    left = 0\n    max_len = 0\n    for right, ch in enumerate(s):\n        if ch in seen and seen[ch] >= left:\n            left = seen[ch] + 1\n        seen[ch] = right\n        max_len = max(max_len, right - left + 1)\n    return max_len\n",
+      "c": "#include <stdio.h>\n#include <string.h>\n\nint lengthOfLongestSubstring(char* s) {\n    // TODO: Sliding window\n    int seen[256];\n    for (int i = 0; i < 256; i++) seen[i] = -1;\n    int left = 0, maxLen = 0;\n    for (int right = 0; s[right] != '\u0000'; right++) {\n        unsigned char ch = (unsigned char)s[right];\n        if (seen[ch] >= left) left = seen[ch] + 1;\n        seen[ch] = right;\n        int len = right - left + 1;\n        if (len > maxLen) maxLen = len;\n    }\n    return maxLen;\n}\n",
+      "cpp": "#include <string>\n#include <unordered_map>\n#include <algorithm>\n\nint lengthOfLongestSubstring(std::string s) {\n    // TODO: Write solution here\n    std::unordered_map<char, int> seen;\n    int left = 0, maxLen = 0;\n    for (int right = 0; right < s.size(); right++) {\n        char ch = s[right];\n        if (seen.count(ch) && seen[ch] >= left) {\n            left = seen[ch] + 1;\n        }\n        seen[ch] = right;\n        maxLen = std::max(maxLen, right - left + 1);\n    }\n    return maxLen;\n}\n",
+      "java": "import java.util.*;\n\npublic class Solution {\n    public static int lengthOfLongestSubstring(String s) {\n        // TODO: Write solution here\n        Map<Character, Integer> seen = new HashMap<>();\n        int left = 0, maxLen = 0;\n        for (int right = 0; right < s.length(); right++) {\n            char ch = s.charAt(right);\n            if (seen.containsKey(ch) && seen.get(ch) >= left) {\n                left = seen.get(ch) + 1;\n            }\n            seen.put(ch, right);\n            maxLen = Math.max(maxLen, right - left + 1);\n        }\n        return maxLen;\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Searching and Sorting",
+      "Binary Search"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "valid-parentheses-v71",
+    "title": "Valid Parentheses (Practice Variant v71)",
+    "difficulty": "Easy",
+    "topic": "Arrays",
+    "subtopic": "Frequency Counting",
+    "description": "Given a string `s` containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['` and `']'`, determine if the input string is valid.\n\nAn input string is valid if:\n1. Open brackets must be closed by the same type of brackets.\n2. Open brackets must be closed in the correct order.\n3. Every close bracket has a corresponding open bracket of the same type.\n\n*Note: This problem variant is tailored for targeted deliberate practice.*",
+    "examples": [
+      {
+        "input": "s = '()[]{}'",
+        "output": "True",
+        "explanation": "All brackets match in pairs."
+      },
+      {
+        "input": "s = '(]'",
+        "output": "False",
+        "explanation": "Mismatched bracket pair."
+      }
+    ],
+    "constraints": [
+      "1 <= s.length <= 10^4",
+      "s consists of parentheses only '()[]{}'."
+    ],
+    "starter_code": {
+      "python": "def is_valid(s: str) -> bool:\n    pass\n",
+      "c": "#include <stdio.h>\n#include <stdbool.h>\n#include <string.h>\n\nbool isValid(char* s) {\n    \n}\n",
+      "cpp": "#include <string>\n#include <stack>\n\nbool isValid(std::string s) {\n    \n}\n",
+      "java": "import java.util.*;\n\npublic class Solution {\n    public static boolean isValid(String s) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": "()[]{}",
+        "expected_output": true,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": "(]",
+        "expected_output": false,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": "([{}])",
+        "expected_output": true,
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Apply LIFO stack semantics to enforce balanced syntax matching",
+      "Handle empty stack edge cases during pop operations"
+    ],
+    "common_misconceptions": [
+      "Assuming equal counts of '(' and ')' is sufficient without validating nesting order"
+    ],
+    "input_format": "A string `s` containing only brackets.",
+    "output_format": "Boolean `True` if valid, `False` otherwise.",
+    "hint": "Push opening brackets onto a stack. When a closing bracket arrives, verify that the top of the stack matches its pair. Check if stack is empty at the end.",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Arrays. What fundamental condition marks the start or termination of Valid Parentheses (Practice Variant v71)?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "Push opening brackets onto a stack. When a closing bracket arrives, verify that the top of the stack matches its pair. Check if stack is empty at the end. Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "def is_valid(s: str) -> bool:\n    # TODO: Implement stack bracket matching\n    stack = []\n    pairs = {')': '(', '}': '{', ']': '['}\n    for c in s:\n        if c in pairs:\n            if not stack or stack.pop() != pairs[c]: return False\n        else:\n            stack.append(c)\n    return len(stack) == 0\n",
+      "c": "#include <stdio.h>\n#include <stdbool.h>\n#include <string.h>\n\nbool isValid(char* s) {\n    // TODO: Stack matching\n    char stack[10000];\n    int top = -1;\n    for (int i = 0; s[i] != '\u0000'; i++) {\n        char c = s[i];\n        if (c == '(' || c == '{' || c == '[') {\n            stack[++top] = c;\n        } else {\n            if (top < 0) return False;\n            char open = stack[top--];\n            if (c == ')' && open != '(') return False;\n            if (c == '}' && open != '{') return False;\n            if (c == ']' && open != '[') return False;\n        }\n    }\n    return top == -1;\n}\n",
+      "cpp": "#include <string>\n#include <stack>\n\nbool isValid(std::string s) {\n    // TODO: Write solution here\n    std::stack<char> st;\n    for (char c : s) {\n        if (c == '(' || c == '{' || c == '[') st.push(c);\n        else {\n            if (st.empty()) return False;\n            char top = st.top(); st.pop();\n            if (c == ')' && top != '(') return False;\n            if (c == '}' && top != '{') return False;\n            if (c == ']' && top != '[') return False;\n        }\n    }\n    return st.empty();\n}\n",
+      "java": "import java.util.*;\n\npublic class Solution {\n    public static boolean isValid(String s) {\n        // TODO: Write solution here\n        Deque<Character> stack = new ArrayDeque<>();\n        for (char c : s.toCharArray()) {\n            if (c == '(') stack.push(')');\n            else if (c == '{') stack.push('}');\n            else if (c == '[') stack.push(']');\n            else if (stack.isEmpty() || stack.pop() != c) return False;\n        }\n        return stack.isEmpty();\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Arrays",
+      "Frequency Counting"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "climbing-stairs-v98",
+    "title": "Climbing Stairs (Dynamic Programming) (Practice Variant v98)",
+    "difficulty": "Easy",
+    "topic": "Arrays",
+    "subtopic": "Hash Maps & Sets",
+    "description": "You are climbing a staircase. It takes `n` steps to reach the top.\n\nEach time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?\n\n*Note: This problem variant is tailored for targeted deliberate practice.*",
+    "examples": [
+      {
+        "input": "n = 2",
+        "output": "2",
+        "explanation": "1 step + 1 step, or 2 steps."
+      },
+      {
+        "input": "n = 3",
+        "output": "3",
+        "explanation": "1+1+1, 1+2, 2+1."
+      }
+    ],
+    "constraints": [
+      "1 <= n <= 45"
+    ],
+    "starter_code": {
+      "python": "def climb_stairs(n: int) -> int:\n    pass\n",
+      "c": "#include <stdio.h>\n\nint climbStairs(int n) {\n    \n}\n",
+      "cpp": "#include <iostream>\n\nint climbStairs(int n) {\n    \n}\n",
+      "java": "public class Solution {\n    public static int climbStairs(int n) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": 2,
+        "expected_output": 2,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": 3,
+        "expected_output": 3,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": 5,
+        "expected_output": 8,
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Identify optimal substructure and overlapping subproblems",
+      "Reduce space complexity from O(N) array to O(1) rolling variables"
+    ],
+    "common_misconceptions": [
+      "Using unmemoized recursion triggering exponential O(2^N) call tree"
+    ],
+    "input_format": "An integer `n` representing number of steps.",
+    "output_format": "Number of distinct ways to climb.",
+    "hint": "To reach step n, you could have come from step (n-1) with 1 step, or from step (n-2) with 2 steps: ways(n) = ways(n-1) + ways(n-2).",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Arrays. What fundamental condition marks the start or termination of Climbing Stairs (Dynamic Programming) (Practice Variant v98)?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "To reach step n, you could have come from step (n-1) with 1 step, or from step (n-2) with 2 steps: ways(n) = ways(n-1) + ways(n-2). Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "def climb_stairs(n: int) -> int:\n    # TODO: DP state transition\n    if n <= 2: return n\n    a, b = 1, 2\n    for _ in range(3, n + 1):\n        a, b = b, a + b\n    return b\n",
+      "c": "#include <stdio.h>\n\nint climbStairs(int n) {\n    // TODO: DP state transition\n    if (n <= 2) return n;\n    int a = 1, b = 2;\n    for (int i = 3; i <= n; i++) {\n        int next = a + b;\n        a = b;\n        b = next;\n    }\n    return b;\n}\n",
+      "cpp": "#include <iostream>\n\nint climbStairs(int n) {\n    // TODO: Write solution here\n    if (n <= 2) return n;\n    int a = 1, b = 2;\n    for (int i = 3; i <= n; i++) {\n        int next = a + b;\n        a = b;\n        b = next;\n    }\n    return b;\n}\n",
+      "java": "public class Solution {\n    public static int climbStairs(int n) {\n        // TODO: Write solution here\n        if (n <= 2) return n;\n        int a = 1, b = 2;\n        for (int i = 3; i <= n; i++) {\n            int next = a + b;\n            a = b;\n            b = next;\n        }\n        return b;\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Arrays",
+      "Hash Maps & Sets"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "sum-of-digits-recursion-v92",
+    "title": "Sum of Digits (Recursion) (Practice Variant v92)",
+    "difficulty": "Easy",
+    "topic": "Arrays",
+    "subtopic": "Prefix Sums",
+    "description": "Given a non-negative integer `n`, compute the sum of its digits recursively.\n\n### Requirements\n- Implement your solution using **recursion**.\n- Do not convert the integer to a string or use loops.\n\n*Note: This problem variant is tailored for targeted deliberate practice.*",
+    "examples": [
+      {
+        "input": "n = 126",
+        "output": "9",
+        "explanation": "1 + 2 + 6 = 9"
+      },
+      {
+        "input": "n = 49",
+        "output": "13",
+        "explanation": "4 + 9 = 13"
+      },
+      {
+        "input": "n = 0",
+        "output": "0",
+        "explanation": "Sum of digits for 0 is 0"
+      }
+    ],
+    "constraints": [
+      "0 <= n <= 10^9"
+    ],
+    "starter_code": {
+      "python": "def sum_digits(n: int) -> int:\n    pass\n",
+      "c": "#include <stdio.h>\n\nint sumDigits(int n) {\n    \n}\n",
+      "cpp": "#include <iostream>\n\nint sumDigits(int n) {\n    \n}\n",
+      "java": "public class Solution {\n    public static int sumDigits(int n) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": 126,
+        "expected_output": 9,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": 49,
+        "expected_output": 13,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": 7,
+        "expected_output": 7,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 4,
+        "input": 10005,
+        "expected_output": 6,
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Identify division and modulo as recursive decomposition",
+      "Establish termination condition on single-digit numbers"
+    ],
+    "common_misconceptions": [
+      "Attempting iterative while loops instead of recursive stack reduction"
+    ],
+    "input_format": "A single non-negative integer `n`.",
+    "output_format": "An integer representing the sum of all digits in `n`.",
+    "hint": "Consider the base case when n < 10. For larger numbers, add the last digit `n % 10` to the recursive result of `n // 10`.",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Arrays. What fundamental condition marks the start or termination of Sum of Digits (Recursion) (Practice Variant v92)?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "Consider the base case when n < 10. For larger numbers, add the last digit `n % 10` to the recursive result of `n // 10`. Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "def sum_digits(n: int) -> int:\n    if n < 10:\n        return n\n    return (n % 10) + sum_digits(n // 10)\n",
+      "c": "#include <stdio.h>\n\nint sumDigits(int n) {\n    if (n < 10) return n;\n    return (n % 10) + sumDigits(n / 10);\n}\n",
+      "cpp": "#include <iostream>\n\nint sumDigits(int n) {\n    if (n < 10) return n;\n    return (n % 10) + sumDigits(n / 10);\n}\n",
+      "java": "public class Solution {\n    public static int sumDigits(int n) {\n        if (n < 10) return n;\n        return (n % 10) + sumDigits(n / 10);\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Arrays",
+      "Prefix Sums"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "daily-temperatures",
+    "title": "Daily Temperatures (Monotonic Stack)",
+    "difficulty": "Medium",
+    "topic": "Searching and Sorting",
+    "subtopic": "Merge & Quick Sort",
+    "description": "Given an array of integers `temperatures` represents the daily temperatures, return an array `answer` such that `answer[i]` is the number of days you have to wait after the `i-th` day to get a warmer temperature. If there is no future day for which this is possible, keep `answer[i] == 0` instead.",
+    "examples": [
+      {
+        "input": "temperatures = [73, 74, 75, 71, 69, 72, 76, 73]",
+        "output": "[1, 1, 4, 2, 1, 1, 0, 0]",
+        "explanation": "Day 0 (73) finds 74 on day 1 (wait 1 day)."
+      }
+    ],
+    "constraints": [
+      "1 <= temperatures.length <= 10^5",
+      "30 <= temperatures[i] <= 100"
+    ],
+    "starter_code": {
+      "python": "def daily_temperatures(temperatures: list[int]) -> list[int]:\n    pass\n",
+      "c": "#include <stdio.h>\n#include <stdlib.h>\n\nint* dailyTemperatures(int* temperatures, int temperaturesSize, int* returnSize) {\n    \n}\n",
+      "cpp": "#include <vector>\n#include <stack>\n\nstd::vector<int> dailyTemperatures(std::vector<int>& temperatures) {\n    \n}\n",
+      "java": "import java.util.*;\n\npublic class Solution {\n    public static int[] dailyTemperatures(int[] temperatures) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": [
+          73,
+          74,
+          75,
+          71,
+          69,
+          72,
+          76,
+          73
+        ],
+        "expected_output": [
+          1,
+          1,
+          4,
+          2,
+          1,
+          1,
+          0,
+          0
+        ],
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": [
+          30,
+          40,
+          50,
+          60
+        ],
+        "expected_output": [
+          1,
+          1,
+          1,
+          0
+        ],
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": [
+          30,
+          60,
+          90
+        ],
+        "expected_output": [
+          1,
+          1,
+          0
+        ],
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Store indices in monotonic stack to capture temporal distance",
+      "Amortized O(N) runtime by pushing and popping each element at most once"
+    ],
+    "common_misconceptions": [
+      "Storing temperature values in stack instead of indices, losing position information"
+    ],
+    "input_format": "An array of daily temperatures `temperatures`.",
+    "output_format": "Array of day wait counts.",
+    "hint": "Use a Monotonic Decreasing Stack storing indices. When a warmer day arrives, pop cooler days and compute day difference.",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Searching and Sorting. What fundamental condition marks the start or termination of Daily Temperatures (Monotonic Stack)?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "Use a Monotonic Decreasing Stack storing indices. When a warmer day arrives, pop cooler days and compute day difference. Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "def daily_temperatures(temperatures: list[int]) -> list[int]:\n    # TODO: Implement monotonic decreasing stack\n    n = len(temperatures)\n    res = [0] * n\n    stack = []  # indices\n    for i, t in enumerate(temperatures):\n        while stack and temperatures[stack[-1]] < t:\n            prev = stack.pop()\n            res[prev] = i - prev\n        stack.append(i)\n    return res\n",
+      "c": "#include <stdio.h>\n#include <stdlib.h>\n\nint* dailyTemperatures(int* temperatures, int temperaturesSize, int* returnSize) {\n    // TODO: Monotonic stack\n    *returnSize = temperaturesSize;\n    int* res = (int*)calloc(temperaturesSize, sizeof(int));\n    return res;\n}\n",
+      "cpp": "#include <vector>\n#include <stack>\n\nstd::vector<int> dailyTemperatures(std::vector<int>& temperatures) {\n    // TODO: Write solution here\n    int n = temperatures.size();\n    std::vector<int> res(n, 0);\n    std::stack<int> st;\n    for (int i = 0; i < n; i++) {\n        while (!st.empty() && temperatures[st.top()] < temperatures[i]) {\n            int prev = st.top(); st.pop();\n            res[prev] = i - prev;\n        }\n        st.push(i);\n    }\n    return res;\n}\n",
+      "java": "import java.util.*;\n\npublic class Solution {\n    public static int[] dailyTemperatures(int[] temperatures) {\n        // TODO: Write solution here\n        int n = temperatures.length;\n        int[] res = new int[n];\n        Deque<Integer> stack = new ArrayDeque<>();\n        for (int i = 0; i < n; i++) {\n            while (!stack.isEmpty() && temperatures[stack.peek()] < temperatures[i]) {\n                int prev = stack.pop();\n                res[prev] = i - prev;\n            }\n            stack.push(i);\n        }\n        return res;\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Searching and Sorting",
+      "Merge & Quick Sort"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "subsets-generator",
+    "title": "All Subsets (Power Set Backtracking)",
+    "difficulty": "Medium",
+    "topic": "Searching and Sorting",
+    "subtopic": "Binary Search",
+    "description": "Given an integer array `nums` of unique elements, return all possible subsets (the power set).\n\nThe solution set must not contain duplicate subsets. Return the subsets in any order.\n\n### Requirements\n- Implement using the **backtracking / decision tree** technique.",
+    "examples": [
+      {
+        "input": "nums = [1, 2, 3]",
+        "output": "[[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]",
+        "explanation": "Total 2^3 = 8 subsets"
+      },
+      {
+        "input": "nums = [0]",
+        "output": "[[], [0]]",
+        "explanation": "Total 2^1 = 2 subsets"
+      }
+    ],
+    "constraints": [
+      "1 <= nums.length <= 10",
+      "-10 <= nums[i] <= 10"
+    ],
+    "starter_code": {
+      "python": "def subsets(nums: list[int]) -> list[list[int]]:\n    pass\n",
+      "c": "#include <stdio.h>\n#include <stdlib.h>\n\nvoid subsets(int* nums, int numsSize) {\n    \n}\n",
+      "cpp": "#include <vector>\n\nstd::vector<std::vector<int>> subsets(std::vector<int>& nums) {\n    \n}\n",
+      "java": "import java.util.*;\n\npublic class Solution {\n    public static List<List<Integer>> subsets(int[] nums) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": [
+          1,
+          2
+        ],
+        "expected_output": [
+          [],
+          [
+            2
+          ],
+          [
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": [
+          0
+        ],
+        "expected_output": [
+          [],
+          [
+            0
+          ]
+        ],
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": [
+          3,
+          5
+        ],
+        "expected_output": [
+          [],
+          [
+            5
+          ],
+          [
+            3
+          ],
+          [
+            3,
+            5
+          ]
+        ],
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Model binary choose-or-skip decisions on recursion tree",
+      "Restore backtrack state via pop operation"
+    ],
+    "common_misconceptions": [
+      "Appending reference instead of copying current list snapshot into result"
+    ],
+    "input_format": "A list of unique integers `nums`.",
+    "output_format": "A list of lists containing all subsets.",
+    "hint": "At each index `i`, you have two choices: include `nums[i]` in the current subset, or exclude it, then recurse on index `i + 1`.",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Searching and Sorting. What fundamental condition marks the start or termination of All Subsets (Power Set Backtracking)?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "At each index `i`, you have two choices: include `nums[i]` in the current subset, or exclude it, then recurse on index `i + 1`. Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "def subsets(nums: list[int]) -> list[list[int]]:\n    # TODO: Write your backtracking solution here\n    result = []\n    def backtrack(idx, current):\n        if idx == len(nums):\n            result.append(list(current))\n            return\n        # Exclude\n        backtrack(idx + 1, current)\n        # Include\n        current.append(nums[idx])\n        backtrack(idx + 1, current)\n        current.pop()\n    backtrack(0, [])\n    return result\n",
+      "c": "#include <stdio.h>\n#include <stdlib.h>\n\nvoid subsets(int* nums, int numsSize) {\n    // TODO: Write your backtracking solution here\n}\n",
+      "cpp": "#include <vector>\n\nstd::vector<std::vector<int>> subsets(std::vector<int>& nums) {\n    // TODO: Write your backtracking solution here\n    std::vector<std::vector<int>> res;\n    std::vector<int> curr;\n    auto backtrack = [&](auto& self, int idx) -> void {\n        if (idx == nums.size()) {\n            res.push_back(curr);\n            return;\n        }\n        self(self, idx + 1);\n        curr.push_back(nums[idx]);\n        self(self, idx + 1);\n        curr.pop_back();\n    };\n    backtrack(backtrack, 0);\n    return res;\n}\n",
+      "java": "import java.util.*;\n\npublic class Solution {\n    public static List<List<Integer>> subsets(int[] nums) {\n        // TODO: Write your backtracking solution here\n        List<List<Integer>> res = new ArrayList<>();\n        backtrack(0, nums, new ArrayList<>(), res);\n        return res;\n    }\n    private static void backtrack(int idx, int[] nums, List<Integer> curr, List<List<Integer>> res) {\n        if (idx == nums.length) {\n            res.add(new ArrayList<>(curr));\n            return;\n        }\n        backtrack(idx + 1, nums, curr, res);\n        curr.add(nums[idx]);\n        backtrack(idx + 1, nums, curr, res);\n        curr.remove(curr.size() - 1);\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Searching and Sorting",
+      "Binary Search"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "coin-change-dp-v75",
+    "title": "Coin Change (Fewest Coins) (Practice Variant v75)",
+    "difficulty": "Medium",
+    "topic": "Searching and Sorting",
+    "subtopic": "Merge & Quick Sort",
+    "description": "You are given an integer array `coins` representing coins of different denominations and an integer `amount` representing a total amount of money.\n\nReturn the fewest number of coins that you need to make up that amount. If that amount of money cannot be made up by any combination of the coins, return -1.\n\nYou may assume that you have an infinite number of each kind of coin.\n\n*Note: This problem variant is tailored for targeted deliberate practice.*",
+    "examples": [
+      {
+        "input": "coins = [1, 2, 5], amount = 11",
+        "output": "3",
+        "explanation": "11 = 5 + 5 + 1 (3 coins)."
+      },
+      {
+        "input": "coins = [2], amount = 3",
+        "output": "-1",
+        "explanation": "Cannot form 3 using only 2s."
+      }
+    ],
+    "constraints": [
+      "1 <= coins.length <= 12",
+      "1 <= coins[i] <= 2^31 - 1",
+      "0 <= amount <= 10^4"
+    ],
+    "starter_code": {
+      "python": "def coin_change(coins: list[int], amount: int) -> int:\n    pass\n",
+      "c": "#include <stdio.h>\n\nint coinChange(int* coins, int coinsSize, int amount) {\n    \n}\n",
+      "cpp": "#include <vector>\n#include <algorithm>\n\nint coinChange(std::vector<int>& coins, int amount) {\n    \n}\n",
+      "java": "import java.util.*;\n\npublic class Solution {\n    public static int coinChange(int[] coins, int amount) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": {
+          "coins": [
+            1,
+            2,
+            5
+          ],
+          "amount": 11
+        },
+        "expected_output": 3,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": {
+          "coins": [
+            2
+          ],
+          "amount": 3
+        },
+        "expected_output": -1,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": {
+          "coins": [
+            1
+          ],
+          "amount": 0
+        },
+        "expected_output": 0,
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Formulate 1D state transition for unbounded knapsack variant",
+      "Sentinel infinity initialization for minimization problems"
+    ],
+    "common_misconceptions": [
+      "Attempting greedy largest coin pickup which fails for denominations like [1, 3, 4] with amount 6"
+    ],
+    "input_format": "An array of positive integers `coins` and an integer `amount`.",
+    "output_format": "Minimum coins needed, or -1.",
+    "hint": "Define dp[a] = min coins to form amount a. For each coin c, dp[a] = min(dp[a], 1 + dp[a - c]). Initialize with amount + 1.",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Searching and Sorting. What fundamental condition marks the start or termination of Coin Change (Fewest Coins) (Practice Variant v75)?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "Define dp[a] = min coins to form amount a. For each coin c, dp[a] = min(dp[a], 1 + dp[a - c]). Initialize with amount + 1. Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "def coin_change(coins: list[int], amount: int) -> int:\n    # TODO: Bottom-up DP tabulation\n    dp = [amount + 1] * (amount + 1)\n    dp[0] = 0\n    for a in range(1, amount + 1):\n        for c in coins:\n            if a - c >= 0:\n                dp[a] = min(dp[a], 1 + dp[a - c])\n    return dp[amount] if dp[amount] != amount + 1 else -1\n",
+      "c": "#include <stdio.h>\n\nint coinChange(int* coins, int coinsSize, int amount) {\n    // TODO: Tabulation DP\n    return -1;\n}\n",
+      "cpp": "#include <vector>\n#include <algorithm>\n\nint coinChange(std::vector<int>& coins, int amount) {\n    // TODO: Write solution here\n    std::vector<int> dp(amount + 1, amount + 1);\n    dp[0] = 0;\n    for (int a = 1; a <= amount; a++) {\n        for (int c : coins) {\n            if (a - c >= 0) {\n                dp[a] = std::min(dp[a], 1 + dp[a - c]);\n            }\n        }\n    }\n    return dp[amount] > amount ? -1 : dp[amount];\n}\n",
+      "java": "import java.util.*;\n\npublic class Solution {\n    public static int coinChange(int[] coins, int amount) {\n        // TODO: Write solution here\n        int[] dp = new int[amount + 1];\n        Arrays.fill(dp, amount + 1);\n        dp[0] = 0;\n        for (int a = 1; a <= amount; a++) {\n            for (int c : coins) {\n                if (a - c >= 0) {\n                    dp[a] = Math.min(dp[a], 1 + dp[a - c]);\n                }\n            }\n        }\n        return dp[amount] > amount ? -1 : dp[amount];\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Searching and Sorting",
+      "Merge & Quick Sort"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "power-of-two-recursion-v21",
+    "title": "Power of Two Check (Recursion) (Practice Variant v21)",
+    "difficulty": "Easy",
+    "topic": "Arrays",
+    "subtopic": "Prefix Sums",
+    "description": "Given an integer `n`, return `True` if it is a power of two, otherwise return `False`.\n\nAn integer `n` is a power of two if there exists an integer `x` such that `n == 2^x`.\n\n### Requirements\n- Solve this problem recursively.\n\n*Note: This problem variant is tailored for targeted deliberate practice.*",
+    "examples": [
+      {
+        "input": "n = 1",
+        "output": "True",
+        "explanation": "2^0 = 1"
+      },
+      {
+        "input": "n = 16",
+        "output": "True",
+        "explanation": "2^4 = 16"
+      },
+      {
+        "input": "n = 3",
+        "output": "False",
+        "explanation": "3 is not a power of two"
+      }
+    ],
+    "constraints": [
+      "-2^31 <= n <= 2^31 - 1"
+    ],
+    "starter_code": {
+      "python": "def is_power_of_two(n: int) -> bool:\n    pass\n",
+      "c": "#include <stdio.h>\n#include <stdbool.h>\n\nbool isPowerOfTwo(int n) {\n    \n}\n",
+      "cpp": "#include <iostream>\n\nbool isPowerOfTwo(int n) {\n    \n}\n",
+      "java": "public class Solution {\n    public static boolean isPowerOfTwo(int n) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": 1,
+        "expected_output": true,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": 16,
+        "expected_output": true,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": 3,
+        "expected_output": false,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 4,
+        "input": 64,
+        "expected_output": true,
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Break down logarithmic reduction using recursive divide-by-2",
+      "Identify boundary conditions for non-positive integers"
+    ],
+    "common_misconceptions": [
+      "Forgetting that negative numbers cannot be powers of two"
+    ],
+    "input_format": "A single integer `n`.",
+    "output_format": "A boolean indicating whether `n` is a power of two.",
+    "hint": "Any number less than or equal to 0 cannot be a power of two. If n == 1, it is 2^0. If n is odd, it cannot be a power of two.",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Arrays. What fundamental condition marks the start or termination of Power of Two Check (Recursion) (Practice Variant v21)?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "Any number less than or equal to 0 cannot be a power of two. If n == 1, it is 2^0. If n is odd, it cannot be a power of two. Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "def is_power_of_two(n: int) -> bool:\n    if n <= 0:\n        return False\n    if n == 1:\n        return True\n    if n % 2 != 0:\n        return False\n    return is_power_of_two(n // 2)\n",
+      "c": "#include <stdio.h>\n#include <stdbool.h>\n\nbool isPowerOfTwo(int n) {\n    if (n <= 0) return False;\n    if (n == 1) return True;\n    if (n % 2 != 0) return False;\n    return isPowerOfTwo(n / 2);\n}\n",
+      "cpp": "#include <iostream>\n\nbool isPowerOfTwo(int n) {\n    if (n <= 0) return False;\n    if (n == 1) return True;\n    if (n % 2 != 0) return False;\n    return isPowerOfTwo(n / 2);\n}\n",
+      "java": "public class Solution {\n    public static boolean isPowerOfTwo(int n) {\n        if (n <= 0) return False;\n        if (n == 1) return True;\n        if (n % 2 != 0) return False;\n        return isPowerOfTwo(n / 2);\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Arrays",
+      "Prefix Sums"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "power-of-two-recursion-v69",
+    "title": "Power of Two Check (Recursion) (Practice Variant v69)",
+    "difficulty": "Easy",
+    "topic": "Arrays",
+    "subtopic": "Frequency Counting",
+    "description": "Given an integer `n`, return `True` if it is a power of two, otherwise return `False`.\n\nAn integer `n` is a power of two if there exists an integer `x` such that `n == 2^x`.\n\n### Requirements\n- Solve this problem recursively.\n\n*Note: This problem variant is tailored for targeted deliberate practice.*",
+    "examples": [
+      {
+        "input": "n = 1",
+        "output": "True",
+        "explanation": "2^0 = 1"
+      },
+      {
+        "input": "n = 16",
+        "output": "True",
+        "explanation": "2^4 = 16"
+      },
+      {
+        "input": "n = 3",
+        "output": "False",
+        "explanation": "3 is not a power of two"
+      }
+    ],
+    "constraints": [
+      "-2^31 <= n <= 2^31 - 1"
+    ],
+    "starter_code": {
+      "python": "def is_power_of_two(n: int) -> bool:\n    pass\n",
+      "c": "#include <stdio.h>\n#include <stdbool.h>\n\nbool isPowerOfTwo(int n) {\n    \n}\n",
+      "cpp": "#include <iostream>\n\nbool isPowerOfTwo(int n) {\n    \n}\n",
+      "java": "public class Solution {\n    public static boolean isPowerOfTwo(int n) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": 1,
+        "expected_output": true,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": 16,
+        "expected_output": true,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": 3,
+        "expected_output": false,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 4,
+        "input": 64,
+        "expected_output": true,
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Break down logarithmic reduction using recursive divide-by-2",
+      "Identify boundary conditions for non-positive integers"
+    ],
+    "common_misconceptions": [
+      "Forgetting that negative numbers cannot be powers of two"
+    ],
+    "input_format": "A single integer `n`.",
+    "output_format": "A boolean indicating whether `n` is a power of two.",
+    "hint": "Any number less than or equal to 0 cannot be a power of two. If n == 1, it is 2^0. If n is odd, it cannot be a power of two.",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Arrays. What fundamental condition marks the start or termination of Power of Two Check (Recursion) (Practice Variant v69)?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "Any number less than or equal to 0 cannot be a power of two. If n == 1, it is 2^0. If n is odd, it cannot be a power of two. Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "def is_power_of_two(n: int) -> bool:\n    if n <= 0:\n        return False\n    if n == 1:\n        return True\n    if n % 2 != 0:\n        return False\n    return is_power_of_two(n // 2)\n",
+      "c": "#include <stdio.h>\n#include <stdbool.h>\n\nbool isPowerOfTwo(int n) {\n    if (n <= 0) return False;\n    if (n == 1) return True;\n    if (n % 2 != 0) return False;\n    return isPowerOfTwo(n / 2);\n}\n",
+      "cpp": "#include <iostream>\n\nbool isPowerOfTwo(int n) {\n    if (n <= 0) return False;\n    if (n == 1) return True;\n    if (n % 2 != 0) return False;\n    return isPowerOfTwo(n / 2);\n}\n",
+      "java": "public class Solution {\n    public static boolean isPowerOfTwo(int n) {\n        if (n <= 0) return False;\n        if (n == 1) return True;\n        if (n % 2 != 0) return False;\n        return isPowerOfTwo(n / 2);\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Arrays",
+      "Frequency Counting"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "valid-parentheses-v51",
+    "title": "Valid Parentheses (Practice Variant v51)",
+    "difficulty": "Easy",
+    "topic": "Arrays",
+    "subtopic": "Prefix Sums",
+    "description": "Given a string `s` containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['` and `']'`, determine if the input string is valid.\n\nAn input string is valid if:\n1. Open brackets must be closed by the same type of brackets.\n2. Open brackets must be closed in the correct order.\n3. Every close bracket has a corresponding open bracket of the same type.\n\n*Note: This problem variant is tailored for targeted deliberate practice.*",
+    "examples": [
+      {
+        "input": "s = '()[]{}'",
+        "output": "True",
+        "explanation": "All brackets match in pairs."
+      },
+      {
+        "input": "s = '(]'",
+        "output": "False",
+        "explanation": "Mismatched bracket pair."
+      }
+    ],
+    "constraints": [
+      "1 <= s.length <= 10^4",
+      "s consists of parentheses only '()[]{}'."
+    ],
+    "starter_code": {
+      "python": "def is_valid(s: str) -> bool:\n    pass\n",
+      "c": "#include <stdio.h>\n#include <stdbool.h>\n#include <string.h>\n\nbool isValid(char* s) {\n    \n}\n",
+      "cpp": "#include <string>\n#include <stack>\n\nbool isValid(std::string s) {\n    \n}\n",
+      "java": "import java.util.*;\n\npublic class Solution {\n    public static boolean isValid(String s) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": "()[]{}",
+        "expected_output": true,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": "(]",
+        "expected_output": false,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": "([{}])",
+        "expected_output": true,
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Apply LIFO stack semantics to enforce balanced syntax matching",
+      "Handle empty stack edge cases during pop operations"
+    ],
+    "common_misconceptions": [
+      "Assuming equal counts of '(' and ')' is sufficient without validating nesting order"
+    ],
+    "input_format": "A string `s` containing only brackets.",
+    "output_format": "Boolean `True` if valid, `False` otherwise.",
+    "hint": "Push opening brackets onto a stack. When a closing bracket arrives, verify that the top of the stack matches its pair. Check if stack is empty at the end.",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Arrays. What fundamental condition marks the start or termination of Valid Parentheses (Practice Variant v51)?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "Push opening brackets onto a stack. When a closing bracket arrives, verify that the top of the stack matches its pair. Check if stack is empty at the end. Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "def is_valid(s: str) -> bool:\n    # TODO: Implement stack bracket matching\n    stack = []\n    pairs = {')': '(', '}': '{', ']': '['}\n    for c in s:\n        if c in pairs:\n            if not stack or stack.pop() != pairs[c]: return False\n        else:\n            stack.append(c)\n    return len(stack) == 0\n",
+      "c": "#include <stdio.h>\n#include <stdbool.h>\n#include <string.h>\n\nbool isValid(char* s) {\n    // TODO: Stack matching\n    char stack[10000];\n    int top = -1;\n    for (int i = 0; s[i] != '\u0000'; i++) {\n        char c = s[i];\n        if (c == '(' || c == '{' || c == '[') {\n            stack[++top] = c;\n        } else {\n            if (top < 0) return False;\n            char open = stack[top--];\n            if (c == ')' && open != '(') return False;\n            if (c == '}' && open != '{') return False;\n            if (c == ']' && open != '[') return False;\n        }\n    }\n    return top == -1;\n}\n",
+      "cpp": "#include <string>\n#include <stack>\n\nbool isValid(std::string s) {\n    // TODO: Write solution here\n    std::stack<char> st;\n    for (char c : s) {\n        if (c == '(' || c == '{' || c == '[') st.push(c);\n        else {\n            if (st.empty()) return False;\n            char top = st.top(); st.pop();\n            if (c == ')' && top != '(') return False;\n            if (c == '}' && top != '{') return False;\n            if (c == ']' && top != '[') return False;\n        }\n    }\n    return st.empty();\n}\n",
+      "java": "import java.util.*;\n\npublic class Solution {\n    public static boolean isValid(String s) {\n        // TODO: Write solution here\n        Deque<Character> stack = new ArrayDeque<>();\n        for (char c : s.toCharArray()) {\n            if (c == '(') stack.push(')');\n            else if (c == '{') stack.push('}');\n            else if (c == '[') stack.push(']');\n            else if (stack.isEmpty() || stack.pop() != c) return False;\n        }\n        return stack.isEmpty();\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Arrays",
+      "Prefix Sums"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "climbing-stairs-v47",
+    "title": "Climbing Stairs (Dynamic Programming) (Practice Variant v47)",
+    "difficulty": "Easy",
+    "topic": "Arrays",
+    "subtopic": "Frequency Counting",
+    "description": "You are climbing a staircase. It takes `n` steps to reach the top.\n\nEach time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?\n\n*Note: This problem variant is tailored for targeted deliberate practice.*",
+    "examples": [
+      {
+        "input": "n = 2",
+        "output": "2",
+        "explanation": "1 step + 1 step, or 2 steps."
+      },
+      {
+        "input": "n = 3",
+        "output": "3",
+        "explanation": "1+1+1, 1+2, 2+1."
+      }
+    ],
+    "constraints": [
+      "1 <= n <= 45"
+    ],
+    "starter_code": {
+      "python": "def climb_stairs(n: int) -> int:\n    pass\n",
+      "c": "#include <stdio.h>\n\nint climbStairs(int n) {\n    \n}\n",
+      "cpp": "#include <iostream>\n\nint climbStairs(int n) {\n    \n}\n",
+      "java": "public class Solution {\n    public static int climbStairs(int n) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": 2,
+        "expected_output": 2,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": 3,
+        "expected_output": 3,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": 5,
+        "expected_output": 8,
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Identify optimal substructure and overlapping subproblems",
+      "Reduce space complexity from O(N) array to O(1) rolling variables"
+    ],
+    "common_misconceptions": [
+      "Using unmemoized recursion triggering exponential O(2^N) call tree"
+    ],
+    "input_format": "An integer `n` representing number of steps.",
+    "output_format": "Number of distinct ways to climb.",
+    "hint": "To reach step n, you could have come from step (n-1) with 1 step, or from step (n-2) with 2 steps: ways(n) = ways(n-1) + ways(n-2).",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Arrays. What fundamental condition marks the start or termination of Climbing Stairs (Dynamic Programming) (Practice Variant v47)?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "To reach step n, you could have come from step (n-1) with 1 step, or from step (n-2) with 2 steps: ways(n) = ways(n-1) + ways(n-2). Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "def climb_stairs(n: int) -> int:\n    # TODO: DP state transition\n    if n <= 2: return n\n    a, b = 1, 2\n    for _ in range(3, n + 1):\n        a, b = b, a + b\n    return b\n",
+      "c": "#include <stdio.h>\n\nint climbStairs(int n) {\n    // TODO: DP state transition\n    if (n <= 2) return n;\n    int a = 1, b = 2;\n    for (int i = 3; i <= n; i++) {\n        int next = a + b;\n        a = b;\n        b = next;\n    }\n    return b;\n}\n",
+      "cpp": "#include <iostream>\n\nint climbStairs(int n) {\n    // TODO: Write solution here\n    if (n <= 2) return n;\n    int a = 1, b = 2;\n    for (int i = 3; i <= n; i++) {\n        int next = a + b;\n        a = b;\n        b = next;\n    }\n    return b;\n}\n",
+      "java": "public class Solution {\n    public static int climbStairs(int n) {\n        // TODO: Write solution here\n        if (n <= 2) return n;\n        int a = 1, b = 2;\n        for (int i = 3; i <= n; i++) {\n            int next = a + b;\n            a = b;\n            b = next;\n        }\n        return b;\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Arrays",
+      "Frequency Counting"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "group-anagrams-v67",
+    "title": "Group Anagrams (Practice Variant v67)",
+    "difficulty": "Medium",
+    "topic": "Searching and Sorting",
+    "subtopic": "Merge & Quick Sort",
+    "description": "Given an array of strings `strs`, group the anagrams together. You can return the answer in any order.\n\nAn Anagram is a word or phrase formed by rearranging the letters of a different word or phrase.\n\n*Note: This problem variant is tailored for targeted deliberate practice.*",
+    "examples": [
+      {
+        "input": "strs = ['eat','tea','tan','ate','nat','bat']",
+        "output": "[['bat'], ['nat','tan'], ['ate','eat','tea']]",
+        "explanation": "Words with identical character counts are grouped together."
+      }
+    ],
+    "constraints": [
+      "1 <= strs.length <= 10^4",
+      "0 <= strs[i].length <= 100",
+      "strs[i] consists of lowercase English letters."
+    ],
+    "starter_code": {
+      "python": "def group_anagrams(strs: list[str]) -> list[list[str]]:\n    pass\n",
+      "c": "#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n\nvoid groupAnagrams(char** strs, int strsSize) {\n    \n}\n",
+      "cpp": "#include <vector>\n#include <string>\n#include <unordered_map>\n#include <algorithm>\n\nstd::vector<std::vector<std::string>> groupAnagrams(std::vector<std::string>& strs) {\n    \n}\n",
+      "java": "import java.util.*;\n\npublic class Solution {\n    public static List<List<String>> groupAnagrams(String[] strs) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": [
+          "a"
+        ],
+        "expected_output": [
+          [
+            "a"
+          ]
+        ],
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": [
+          "ab",
+          "ba"
+        ],
+        "expected_output": [
+          [
+            "ab",
+            "ba"
+          ]
+        ],
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": [
+          "cat",
+          "tac",
+          "dog"
+        ],
+        "expected_output": [
+          [
+            "cat",
+            "tac"
+          ],
+          [
+            "dog"
+          ]
+        ],
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Design canonical representations for hashing equivalence classes",
+      "Utilize multi-value dictionary mappings"
+    ],
+    "common_misconceptions": [
+      "Comparing every pair of strings directly resulting in O(N^2 * L) runtime"
+    ],
+    "input_format": "A list of strings `strs`.",
+    "output_format": "A list of grouped anagram lists.",
+    "hint": "Use sorted characters or character frequency counts as a canonical hash key for a dictionary.",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Searching and Sorting. What fundamental condition marks the start or termination of Group Anagrams (Practice Variant v67)?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "Use sorted characters or character frequency counts as a canonical hash key for a dictionary. Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "from collections import defaultdict\n\ndef group_anagrams(strs: list[str]) -> list[list[str]]:\n    # TODO: Write your hash map grouping solution here\n    groups = defaultdict(list)\n    for s in strs:\n        key = ''.join(sorted(s))\n        groups[key].append(s)\n    return list(groups.values())\n",
+      "c": "#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n\nvoid groupAnagrams(char** strs, int strsSize) {\n    // TODO: Write your grouping solution here\n}\n",
+      "cpp": "#include <vector>\n#include <string>\n#include <unordered_map>\n#include <algorithm>\n\nstd::vector<std::vector<std::string>> groupAnagrams(std::vector<std::string>& strs) {\n        std::unordered_map<std::string, std::vector<std::string>> mp;\n    for (const auto& s : strs) {\n        std::string key = s;\n        std::sort(key.begin(), key.end());\n        mp[key].push_back(s);\n    }\n    std::vector<std::vector<std::string>> res;\n    for (auto& p : mp) res.push_back(p.second);\n    return res;\n}\n",
+      "java": "import java.util.*;\n\npublic class Solution {\n    public static List<List<String>> groupAnagrams(String[] strs) {\n                Map<String, List<String>> map = new HashMap<>();\n        for (String s : strs) {\n            char[] ca = s.toCharArray();\n            Arrays.sort(ca);\n            String key = String.valueOf(ca);\n            map.computeIfAbsent(key, k -> new ArrayList<>()).add(s);\n        }\n        return new ArrayList<>(map.values());\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Searching and Sorting",
+      "Merge & Quick Sort"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "group-anagrams-v77",
+    "title": "Group Anagrams (Practice Variant v77)",
+    "difficulty": "Medium",
+    "topic": "Searching and Sorting",
+    "subtopic": "Two Pointers",
+    "description": "Given an array of strings `strs`, group the anagrams together. You can return the answer in any order.\n\nAn Anagram is a word or phrase formed by rearranging the letters of a different word or phrase.\n\n*Note: This problem variant is tailored for targeted deliberate practice.*",
+    "examples": [
+      {
+        "input": "strs = ['eat','tea','tan','ate','nat','bat']",
+        "output": "[['bat'], ['nat','tan'], ['ate','eat','tea']]",
+        "explanation": "Words with identical character counts are grouped together."
+      }
+    ],
+    "constraints": [
+      "1 <= strs.length <= 10^4",
+      "0 <= strs[i].length <= 100",
+      "strs[i] consists of lowercase English letters."
+    ],
+    "starter_code": {
+      "python": "def group_anagrams(strs: list[str]) -> list[list[str]]:\n    pass\n",
+      "c": "#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n\nvoid groupAnagrams(char** strs, int strsSize) {\n    \n}\n",
+      "cpp": "#include <vector>\n#include <string>\n#include <unordered_map>\n#include <algorithm>\n\nstd::vector<std::vector<std::string>> groupAnagrams(std::vector<std::string>& strs) {\n    \n}\n",
+      "java": "import java.util.*;\n\npublic class Solution {\n    public static List<List<String>> groupAnagrams(String[] strs) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": [
+          "a"
+        ],
+        "expected_output": [
+          [
+            "a"
+          ]
+        ],
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": [
+          "ab",
+          "ba"
+        ],
+        "expected_output": [
+          [
+            "ab",
+            "ba"
+          ]
+        ],
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": [
+          "cat",
+          "tac",
+          "dog"
+        ],
+        "expected_output": [
+          [
+            "cat",
+            "tac"
+          ],
+          [
+            "dog"
+          ]
+        ],
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Design canonical representations for hashing equivalence classes",
+      "Utilize multi-value dictionary mappings"
+    ],
+    "common_misconceptions": [
+      "Comparing every pair of strings directly resulting in O(N^2 * L) runtime"
+    ],
+    "input_format": "A list of strings `strs`.",
+    "output_format": "A list of grouped anagram lists.",
+    "hint": "Use sorted characters or character frequency counts as a canonical hash key for a dictionary.",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Searching and Sorting. What fundamental condition marks the start or termination of Group Anagrams (Practice Variant v77)?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "Use sorted characters or character frequency counts as a canonical hash key for a dictionary. Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "from collections import defaultdict\n\ndef group_anagrams(strs: list[str]) -> list[list[str]]:\n    # TODO: Write your hash map grouping solution here\n    groups = defaultdict(list)\n    for s in strs:\n        key = ''.join(sorted(s))\n        groups[key].append(s)\n    return list(groups.values())\n",
+      "c": "#include <stdio.h>\n#include <stdlib.h>\n#include <string.h>\n\nvoid groupAnagrams(char** strs, int strsSize) {\n    // TODO: Write your grouping solution here\n}\n",
+      "cpp": "#include <vector>\n#include <string>\n#include <unordered_map>\n#include <algorithm>\n\nstd::vector<std::vector<std::string>> groupAnagrams(std::vector<std::string>& strs) {\n        std::unordered_map<std::string, std::vector<std::string>> mp;\n    for (const auto& s : strs) {\n        std::string key = s;\n        std::sort(key.begin(), key.end());\n        mp[key].push_back(s);\n    }\n    std::vector<std::vector<std::string>> res;\n    for (auto& p : mp) res.push_back(p.second);\n    return res;\n}\n",
+      "java": "import java.util.*;\n\npublic class Solution {\n    public static List<List<String>> groupAnagrams(String[] strs) {\n                Map<String, List<String>> map = new HashMap<>();\n        for (String s : strs) {\n            char[] ca = s.toCharArray();\n            Arrays.sort(ca);\n            String key = String.valueOf(ca);\n            map.computeIfAbsent(key, k -> new ArrayList<>()).add(s);\n        }\n        return new ArrayList<>(map.values());\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Searching and Sorting",
+      "Two Pointers"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "three-sum-v48",
+    "title": "3Sum (Triplets Sum to Zero) (Practice Variant v48)",
+    "difficulty": "Medium",
+    "topic": "Searching and Sorting",
+    "subtopic": "Merge & Quick Sort",
+    "description": "Given an integer array `nums`, return all the triplets `[nums[i], nums[j], nums[k]]` such that `i != j`, `i != k`, and `j != k`, and `nums[i] + nums[j] + nums[k] == 0`.\n\nNotice that the solution set must not contain duplicate triplets.\n\n*Note: This problem variant is tailored for targeted deliberate practice.*",
+    "examples": [
+      {
+        "input": "nums = [-1, 0, 1, 2, -1, -4]",
+        "output": "[[-1, -1, 2], [-1, 0, 1]]",
+        "explanation": "Triplets sum to zero without duplicates."
+      }
+    ],
+    "constraints": [
+      "3 <= nums.length <= 3000",
+      "-10^5 <= nums[i] <= 10^5"
+    ],
+    "starter_code": {
+      "python": "def three_sum(nums: list[int]) -> list[list[int]]:\n    pass\n",
+      "c": "#include <stdio.h>\n#include <stdlib.h>\n\nvoid threeSum(int* nums, int numsSize) {\n    \n}\n",
+      "cpp": "#include <vector>\n#include <algorithm>\n\nstd::vector<std::vector<int>> threeSum(std::vector<int>& nums) {\n    \n}\n",
+      "java": "import java.util.*;\n\npublic class Solution {\n    public static List<List<Integer>> threeSum(int[] nums) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": [
+          -1,
+          0,
+          1,
+          2,
+          -1,
+          -4
+        ],
+        "expected_output": [
+          [
+            -1,
+            -1,
+            2
+          ],
+          [
+            -1,
+            0,
+            1
+          ]
+        ],
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": [
+          0,
+          1,
+          1
+        ],
+        "expected_output": [],
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": [
+          0,
+          0,
+          0
+        ],
+        "expected_output": [
+          [
+            0,
+            0,
+            0
+          ]
+        ],
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Reduce 3-variable search to N iterations of 2-pointer sweep",
+      "Systematic deduplication without heavy hash sets"
+    ],
+    "common_misconceptions": [
+      "Generating all combinations through 3 nested loops resulting in O(N^3) timeout"
+    ],
+    "input_format": "An array of integers `nums`.",
+    "output_format": "List of distinct triplet arrays adding up to zero.",
+    "hint": "Sort the array first. Fix each element `i` as the anchor and use two pointers `left` and `right` for the remaining elements. Skip adjacent duplicate values to avoid redundant triplets.",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Searching and Sorting. What fundamental condition marks the start or termination of 3Sum (Triplets Sum to Zero) (Practice Variant v48)?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "Sort the array first. Fix each element `i` as the anchor and use two pointers `left` and `right` for the remaining elements. Skip adjacent duplicate values to avoid redundant triplets. Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "def three_sum(nums: list[int]) -> list[list[int]]:\n    # TODO: Sort and run two pointers\n    nums.sort()\n    res = []\n    for i in range(len(nums) - 2):\n        if i > 0 and nums[i] == nums[i - 1]: continue\n        l, r = i + 1, len(nums) - 1\n        while l < r:\n            s = nums[i] + nums[l] + nums[r]\n            if s == 0:\n                res.append([nums[i], nums[l], nums[r]])\n                while l < r and nums[l] == nums[l + 1]: l += 1\n                while l < r and nums[r] == nums[r - 1]: r -= 1\n                l += 1; r -= 1\n            elif s < 0: l += 1\n            else: r -= 1\n    return res\n",
+      "c": "#include <stdio.h>\n#include <stdlib.h>\n\nvoid threeSum(int* nums, int numsSize) {\n    // TODO: Sort and two pointers\n}\n",
+      "cpp": "#include <vector>\n#include <algorithm>\n\nstd::vector<std::vector<int>> threeSum(std::vector<int>& nums) {\n    // TODO: Write solution here\n    std::sort(nums.begin(), nums.end());\n    std::vector<std::vector<int>> res;\n    for (int i = 0; i < (int)nums.size() - 2; i++) {\n        if (i > 0 && nums[i] == nums[i - 1]) continue;\n        int l = i + 1, r = nums.size() - 1;\n        while (l < r) {\n            int s = nums[i] + nums[l] + nums[r];\n            if (s == 0) {\n                res.push_back({nums[i], nums[l], nums[r]});\n                while (l < r && nums[l] == nums[l + 1]) l++;\n                while (l < r && nums[r] == nums[r - 1]) r--;\n                l++; r--;\n            } else if (s < 0) l++;\n            else r--;\n        }\n    }\n    return res;\n}\n",
+      "java": "import java.util.*;\n\npublic class Solution {\n    public static List<List<Integer>> threeSum(int[] nums) {\n        // TODO: Write solution here\n        Arrays.sort(nums);\n        List<List<Integer>> res = new ArrayList<>();\n        for (int i = 0; i < nums.length - 2; i++) {\n            if (i > 0 && nums[i] == nums[i - 1]) continue;\n            int l = i + 1, r = nums.length - 1;\n            while (l < r) {\n                int s = nums[i] + nums[l] + nums[r];\n                if (s == 0) {\n                    res.add(Arrays.asList(nums[i], nums[l], nums[r]));\n                    while (l < r && nums[l] == nums[l + 1]) l++;\n                    while (l < r && nums[r] == nums[r - 1]) r--;\n                    l++; r--;\n                } else if (s < 0) l++;\n                else r--;\n            }\n        }\n        return res;\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Searching and Sorting",
+      "Merge & Quick Sort"
     ],
     "is_generated": true,
     "source": "blueprint_fallback"

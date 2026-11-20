@@ -7,26 +7,42 @@ from typing import Dict, Any, List, Optional, Callable
 
 # Standard Supported Topics
 TOPIC_NORMALIZATION = {
-    "recursion & backtracking": "Recursion & Backtracking",
-    "recursion": "Recursion & Backtracking",
-    "backtracking": "Recursion & Backtracking",
-    "arrays & hashing": "Arrays & Hashing",
-    "arrays": "Arrays & Hashing",
-    "hashing": "Arrays & Hashing",
+    # 11 Standard AI Mode Topics
+    "arrays": "Arrays",
+    "arrays & hashing": "Arrays",
+    "hashing": "Arrays",
     "strings": "Strings",
     "string": "Strings",
-    "stack & queue": "Stack & Queue",
-    "stack": "Stack & Queue",
-    "queue": "Stack & Queue",
+    "linked lists": "Linked Lists",
+    "linked list": "Linked Lists",
+    "linked_lists": "Linked Lists",
+    "stacks and queues": "Stacks and Queues",
+    "stack & queue": "Stacks and Queues",
+    "stack": "Stacks and Queues",
+    "queue": "Stacks and Queues",
+    "trees and binary trees": "Trees and Binary Trees",
+    "trees & binary search trees": "Trees and Binary Trees",
+    "trees & bst": "Trees and Binary Trees",
+    "trees": "Trees and Binary Trees",
+    "graphs": "Graphs",
+    "graphs & traversal": "Graphs",
     "dynamic programming": "Dynamic Programming",
     "dp": "Dynamic Programming",
-    "algorithms & two pointers": "Algorithms & Two Pointers",
-    "two pointers": "Algorithms & Two Pointers",
-    "trees & binary search trees": "Trees & Binary Search Trees",
-    "trees & bst": "Trees & Binary Search Trees",
-    "trees": "Trees & Binary Search Trees",
-    "graphs & traversal": "Graphs & Traversal",
-    "graphs": "Graphs & Traversal"
+    "searching and sorting": "Searching and Sorting",
+    "algorithms & two pointers": "Searching and Sorting",
+    "two pointers": "Searching and Sorting",
+    "binary search": "Searching and Sorting",
+    "sorting": "Searching and Sorting",
+    "recursion and backtracking": "Recursion and Backtracking",
+    "recursion & backtracking": "Recursion and Backtracking",
+    "recursion": "Recursion and Backtracking",
+    "backtracking": "Recursion and Backtracking",
+    "object-oriented programming": "Object-Oriented Programming",
+    "oop": "Object-Oriented Programming",
+    "oops": "Object-Oriented Programming",
+    "mixed dsa problems": "Mixed DSA Problems",
+    "mixed dsa": "Mixed DSA Problems",
+    "mixed": "Mixed DSA Problems"
 }
 
 def normalize_topic(topic: str) -> str:
@@ -48,14 +64,26 @@ def normalize_language(language: str) -> str:
     return "python"
 
 TOPIC_SUBTOPICS: Dict[str, List[str]] = {
+    # Original Curated Names
     "Recursion & Backtracking": ["Basic Recursion", "Backtracking", "Divide & Conquer", "Tree Recursion"],
     "Arrays & Hashing": ["Hash Maps & Sets", "Prefix Sums", "Frequency Counting", "Array Manipulation"],
-    "Strings": ["String Manipulation", "Anagrams & Palindromes", "Pattern Matching", "Sliding Window"],
     "Stack & Queue": ["Monotonic Stack", "Parentheses Matching", "BFS Queue", "Deque"],
-    "Dynamic Programming": ["1D DP", "2D Grid DP", "Knapsack & Subsets", "Memoization"],
-    "Algorithms & Two Pointers": ["Two Pointers", "Binary Search", "Sorting & Partitioning", "Sliding Window"],
     "Trees & Binary Search Trees": ["DFS Traversal", "BFS Level Order", "BST Properties", "Path Sums"],
-    "Graphs & Traversal": ["BFS / Shortest Path", "DFS Traversal", "Topological Sort", "Cycle Detection"]
+    "Graphs & Traversal": ["BFS / Shortest Path", "DFS Traversal", "Topological Sort", "Cycle Detection"],
+    "Algorithms & Two Pointers": ["Two Pointers", "Binary Search", "Sorting & Partitioning", "Sliding Window"],
+
+    # 11 AI Mode Standard Topic Names
+    "Arrays": ["Hash Maps & Sets", "Prefix Sums", "Frequency Counting", "Array Manipulation", "Two Pointers"],
+    "Strings": ["String Manipulation", "Anagrams & Palindromes", "Pattern Matching", "Sliding Window"],
+    "Linked Lists": ["Singly Linked List", "Fast & Slow Pointers", "Reversal", "Merge & Sort", "Cycle Detection"],
+    "Stacks and Queues": ["Monotonic Stack", "Parentheses Matching", "BFS Queue", "Deque", "Stack Simulation"],
+    "Trees and Binary Trees": ["DFS Traversal", "BFS Level Order", "BST Properties", "Path Sums", "Lowest Common Ancestor"],
+    "Graphs": ["BFS / Shortest Path", "DFS Traversal", "Topological Sort", "Cycle Detection", "Connected Components"],
+    "Dynamic Programming": ["1D DP", "2D Grid DP", "Knapsack & Subsets", "Memoization", "Longest Subsequence"],
+    "Searching and Sorting": ["Binary Search", "Two Pointers", "Merge & Quick Sort", "Custom Comparator", "Rotated Array Search"],
+    "Recursion and Backtracking": ["Basic Recursion", "Backtracking", "Divide & Conquer", "Subsets & Permutations"],
+    "Object-Oriented Programming": ["Class Design", "Encapsulation & Methods", "Inheritance & Polymorphism", "Data Modeling"],
+    "Mixed DSA Problems": ["Array & Hash Mix", "Tree & DP", "Graph & Queue", "String & Stack", "Greedy & Sorting"]
 }
 
 # 24 Category Blueprints (Multiple questions per topic & difficulty)
@@ -2347,7 +2375,7 @@ def generate_coding_problem_service(
             "6. Output STRICT JSON only. Do not include markdown explanation outside the JSON object."
         )
 
-        max_attempts = 2
+        max_attempts = 1
         for attempt in range(max_attempts):
             prev_clause = ""
             if previous_titles:
@@ -2493,8 +2521,11 @@ def generate_coding_problems_batch(
 ) -> List[Dict[str, Any]]:
     """
     Generates a batch of distinct coding problems, preventing within-batch duplicates.
+    Uses concurrent execution for fast parallel generation.
     """
-    count = max(1, min(5, count))  # Cap between 1 and 5
+    import concurrent.futures
+
+    count = max(1, min(10, count))  # Support up to 10 questions for assessments
     results: List[Dict[str, Any]] = []
     seen_titles = list(previous_titles or [])
     seen_ids = list(previous_ids or [])
@@ -2502,24 +2533,63 @@ def generate_coding_problems_batch(
     effective_call_fn = call_llm_fn or kwargs.get("call_gemini_fn")
     effective_api_key = api_key or os.environ.get("GEMINI_API_KEY") or os.environ.get("LLM_API_KEY")
 
-    for i in range(count):
-        prob = generate_coding_problem_service(
+    norm_topic = normalize_topic(topic)
+    subtopics = TOPIC_SUBTOPICS.get(norm_topic, [subtopic] if subtopic else ["Core Algorithmic Technique"])
+
+    def _generate_one(idx: int) -> Optional[Dict[str, Any]]:
+        chosen_sub = subtopics[idx % len(subtopics)]
+        return generate_coding_problem_service(
             api_key=effective_api_key,
             call_llm_fn=effective_call_fn,
             topic=topic,
             difficulty=difficulty,
             language=language,
-            subtopic=subtopic,
+            subtopic=chosen_sub,
             previous_titles=seen_titles,
             previous_ids=seen_ids,
             **kwargs
         )
+
+    if count == 1:
+        prob = _generate_one(0)
         if prob:
             results.append(prob)
-            if prob.get("title"):
-                seen_titles.append(prob["title"])
-            if prob.get("id"):
-                seen_ids.append(prob["id"])
+        return results
+
+    # Run in parallel with max 4 workers to balance speed and rate limits
+    max_workers = min(4, count)
+    with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = {executor.submit(_generate_one, i): i for i in range(count)}
+        for future in concurrent.futures.as_completed(futures):
+            try:
+                prob = future.result()
+                if prob and prob.get("title") not in [r.get("title") for r in results]:
+                    results.append(prob)
+                    if prob.get("title"):
+                        seen_titles.append(prob["title"])
+                    if prob.get("id"):
+                        seen_ids.append(prob["id"])
+            except Exception as e:
+                print(f"[QuestionGenerator] Concurrent generation worker notice: {e}")
+
+    # Fallback to blueprint if any worker was unable to complete
+    while len(results) < count:
+        fb = generate_blueprint_fallback(
+            topic=topic,
+            difficulty=difficulty,
+            language=language,
+            previous_titles=seen_titles,
+            previous_ids=seen_ids,
+            subtopic=subtopics[len(results) % len(subtopics)]
+        )
+        if fb:
+            results.append(fb)
+            if fb.get("title"):
+                seen_titles.append(fb["title"])
+            if fb.get("id"):
+                seen_ids.append(fb["id"])
+        else:
+            break
 
     return results
 

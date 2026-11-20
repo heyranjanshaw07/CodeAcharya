@@ -766,3 +766,261 @@ def generate_student_performance_pdf(
     return buf.getvalue()
 
 generate_pdf_report = generate_student_performance_pdf
+
+
+def generate_ai_assessment_pdf(assessment_data: Dict[str, Any]) -> bytes:
+    """
+    Generates an official CodeAcharya AI Assessment Performance Report PDF.
+    Strictly adheres to brand styling, IST timezone formatting, and actual test results.
+    """
+    buf = io.BytesIO()
+    doc = SimpleDocTemplate(
+        buf,
+        pagesize=A4,
+        leftMargin=32,
+        rightMargin=32,
+        topMargin=36,
+        bottomMargin=36
+    )
+
+    styles = getSampleStyleSheet()
+
+    c_primary = colors.HexColor("#0f172a")
+    c_indigo = colors.HexColor("#4338ca")
+    c_cyan = colors.HexColor("#0284c7")
+    c_emerald = colors.HexColor("#059669")
+    c_amber = colors.HexColor("#d97706")
+    c_red = colors.HexColor("#dc2626")
+    c_muted = colors.HexColor("#64748b")
+    c_border = colors.HexColor("#cbd5e1")
+    c_bg = colors.HexColor("#f8fafc")
+
+    title_style = ParagraphStyle(
+        "AITitle",
+        parent=styles["Normal"],
+        fontName="Helvetica-Bold",
+        fontSize=20,
+        leading=24,
+        textColor=c_primary
+    )
+    subtitle_style = ParagraphStyle(
+        "AISubtitle",
+        parent=styles["Normal"],
+        fontName="Helvetica",
+        fontSize=10,
+        leading=14,
+        textColor=c_muted
+    )
+    h2_style = ParagraphStyle(
+        "AIH2",
+        parent=styles["Normal"],
+        fontName="Helvetica-Bold",
+        fontSize=12,
+        leading=16,
+        textColor=c_indigo,
+        spaceBefore=14,
+        spaceAfter=6
+    )
+    body_style = ParagraphStyle(
+        "AIBody",
+        parent=styles["Normal"],
+        fontName="Helvetica",
+        fontSize=9,
+        leading=13,
+        textColor=c_primary
+    )
+    meta_style = ParagraphStyle(
+        "AIMeta",
+        parent=styles["Normal"],
+        fontName="Helvetica-Bold",
+        fontSize=9,
+        leading=12,
+        textColor=c_muted
+    )
+    code_style = ParagraphStyle(
+        "AICode",
+        parent=styles["Normal"],
+        fontName="Courier",
+        fontSize=7.5,
+        leading=10,
+        textColor=colors.HexColor("#1e293b")
+    )
+
+    story = []
+
+    # 1. Header Banner
+    header_data = [
+        [
+            Paragraph("<b>CodeAcharya</b><br/><font size='8' color='#6366f1'>AI-POWERED CODING MENTOR</font>", title_style),
+            Paragraph(f"<b>AI MODE ASSESSMENT REPORT</b><br/><font size='8' color='#64748b'>Generated: {get_ist_now().strftime('%d %b %Y, %I:%M %p IST')}</font>", ParagraphStyle("HRight", parent=styles["Normal"], alignment=TA_RIGHT, fontSize=9, leading=13))
+        ]
+    ]
+    hdr_table = Table(header_data, colWidths=[265, 266])
+    hdr_table.setStyle(TableStyle([
+        ("VALIGN", (0, 0), (-1, -1), "TOP"),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 10)
+    ]))
+    story.append(hdr_table)
+    story.append(HRFlowable(width="100%", thickness=1.5, color=c_indigo, spaceBefore=4, spaceAfter=14))
+
+    # 2. Student & Assessment Metadata
+    student_name = assessment_data.get("student_name", "Student")
+    student_email = assessment_data.get("student_email", "N/A")
+    assessment_id = assessment_data.get("assessment_id", "N/A")
+    language = assessment_data.get("language", "python").capitalize()
+    topic = assessment_data.get("topic", "N/A")
+    difficulty = assessment_data.get("difficulty", "N/A")
+    time_taken = assessment_data.get("time_taken_formatted", "N/A")
+    tab_switches = assessment_data.get("tab_switch_count", 0)
+    overall_score = assessment_data.get("overall_score", 0.0)
+    passed_q = assessment_data.get("passed_count", 0)
+    total_q = assessment_data.get("total_count", 0)
+
+    meta_table_data = [
+        [
+            Paragraph(f"<b>Student:</b> {student_name}", body_style),
+            Paragraph(f"<b>Assessment ID:</b> <font name='Courier'>{assessment_id[:16]}...</font>", body_style)
+        ],
+        [
+            Paragraph(f"<b>Email:</b> {student_email}", body_style),
+            Paragraph(f"<b>Assessment Mode:</b> AI Mode (Gemini 3.8 Flash)", body_style)
+        ],
+        [
+            Paragraph(f"<b>Topic:</b> {topic}", body_style),
+            Paragraph(f"<b>Language:</b> {language}", body_style)
+        ],
+        [
+            Paragraph(f"<b>Difficulty:</b> {difficulty}", body_style),
+            Paragraph(f"<b>Duration:</b> {time_taken}  |  <b>Tab Switches:</b> {tab_switches}", body_style)
+        ]
+    ]
+    meta_table = Table(meta_table_data, colWidths=[265, 266])
+    meta_table.setStyle(TableStyle([
+        ("BACKGROUND", (0, 0), (-1, -1), c_bg),
+        ("BOX", (0, 0), (-1, -1), 0.5, c_border),
+        ("INNERGRID", (0, 0), (-1, -1), 0.5, colors.HexColor("#f1f5f9")),
+        ("TOPPADDING", (0, 0), (-1, -1), 5),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
+        ("LEFTPADDING", (0, 0), (-1, -1), 8),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 8)
+    ]))
+    story.append(meta_table)
+    story.append(Spacer(1, 14))
+
+    # 3. Overall Scorecard
+    story.append(Paragraph("Assessment Performance Scorecard", h2_style))
+    score_color = c_emerald if overall_score >= 70 else (c_amber if overall_score >= 40 else c_red)
+    score_cards = [
+        [
+            Paragraph(f"<font size='18' color='{score_color.hexval()}'><b>{overall_score:.1f}%</b></font><br/><font size='8' color='#64748b'>Overall Score</font>", ParagraphStyle("C1", parent=styles["Normal"], alignment=TA_CENTER)),
+            Paragraph(f"<font size='18' color='#4338ca'><b>{passed_q} / {total_q}</b></font><br/><font size='8' color='#64748b'>Problems Solved</font>", ParagraphStyle("C2", parent=styles["Normal"], alignment=TA_CENTER)),
+            Paragraph(f"<font size='18' color='#0284c7'><b>{time_taken}</b></font><br/><font size='8' color='#64748b'>Total Time</font>", ParagraphStyle("C3", parent=styles["Normal"], alignment=TA_CENTER)),
+            Paragraph(f"<font size='18' color='{'#dc2626' if tab_switches > 2 else '#059669'}'><b>{tab_switches}</b></font><br/><font size='8' color='#64748b'>Tab Switches</font>", ParagraphStyle("C4", parent=styles["Normal"], alignment=TA_CENTER))
+        ]
+    ]
+    score_table = Table(score_cards, colWidths=[132, 133, 133, 133])
+    score_table.setStyle(TableStyle([
+        ("BACKGROUND", (0, 0), (-1, -1), c_bg),
+        ("BOX", (0, 0), (-1, -1), 1, c_border),
+        ("INNERGRID", (0, 0), (-1, -1), 0.5, c_border),
+        ("TOPPADDING", (0, 0), (-1, -1), 10),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 10),
+        ("ALIGN", (0, 0), (-1, -1), "CENTER")
+    ]))
+    story.append(score_table)
+    story.append(Spacer(1, 16))
+
+    # 4. Question Breakdown
+    story.append(Paragraph("Coding Problem Evaluations & Verification", h2_style))
+    questions = assessment_data.get("questions", [])
+    submissions = assessment_data.get("submissions", {})
+
+    q_table_data = [
+        [
+            Paragraph("<b>#</b>", meta_style),
+            Paragraph("<b>Problem Title</b>", meta_style),
+            Paragraph("<b>Test Cases</b>", meta_style),
+            Paragraph("<b>Status</b>", meta_style),
+            Paragraph("<b>Score</b>", meta_style)
+        ]
+    ]
+
+    for idx, q in enumerate(questions, 1):
+        qid = q.get("id")
+        sub = submissions.get(qid, {})
+        status = sub.get("status", "Unattempted")
+        passed_tc = sub.get("passed_count", 0)
+        total_tc = sub.get("total_count", len(q.get("test_cases", [])))
+        q_score = sub.get("score", 0.0)
+
+        st_color = "#059669" if status == "Accepted" or (total_tc > 0 and passed_tc == total_tc) else ("#d97706" if passed_tc > 0 else "#dc2626")
+        status_label = "Solved" if (total_tc > 0 and passed_tc == total_tc) else (status if status != "Unattempted" else "Not Attempted")
+
+        q_table_data.append([
+            Paragraph(f"<b>Q{idx}</b>", body_style),
+            Paragraph(f"<b>{q.get('title', 'Question')}</b><br/><font size='7.5' color='#64748b'>{q.get('topic', topic)} • {q.get('difficulty', difficulty)}</font>", body_style),
+            Paragraph(f"{passed_tc} / {total_tc} passed", body_style),
+            Paragraph(f"<font color='{st_color}'><b>{status_label}</b></font>", body_style),
+            Paragraph(f"<b>{q_score:.1f}</b>/100", body_style)
+        ])
+
+    breakdown_table = Table(q_table_data, colWidths=[30, 240, 95, 95, 71])
+    breakdown_table.setStyle(TableStyle([
+        ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#ede9fe")),
+        ("BOX", (0, 0), (-1, -1), 0.5, c_border),
+        ("INNERGRID", (0, 0), (-1, -1), 0.5, c_border),
+        ("TOPPADDING", (0, 0), (-1, -1), 6),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 6),
+        ("LEFTPADDING", (0, 0), (-1, -1), 6),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 6),
+        ("ROWBACKGROUNDS", (0, 1), (-1, -1), [colors.white, c_bg])
+    ]))
+    story.append(breakdown_table)
+    story.append(Spacer(1, 16))
+
+    # 5. Code Submissions Inspection
+    story.append(Paragraph("Submitted Solutions Audit", h2_style))
+    for idx, q in enumerate(questions, 1):
+        qid = q.get("id")
+        sub = submissions.get(qid, {})
+        code_text = sub.get("code", "").strip() or "// No solution submitted"
+        # Truncate to first 30 lines for display
+        lines = code_text.splitlines()[:30]
+        safe_code = "<br/>".join([line.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace(" ", "&nbsp;") for line in lines])
+        
+        q_header = Paragraph(f"<b>Q{idx}: {q.get('title')}</b> — Language: {language}", ParagraphStyle("SubH", parent=styles["Normal"], fontName="Helvetica-Bold", fontSize=9, textColor=c_indigo))
+        code_p = Paragraph(safe_code, code_style)
+        
+        c_box = Table([[q_header], [code_p]], colWidths=[531])
+        c_box.setStyle(TableStyle([
+            ("BACKGROUND", (0, 0), (-1, -1), colors.HexColor("#f1f5f9")),
+            ("BOX", (0, 0), (-1, -1), 0.5, c_border),
+            ("TOPPADDING", (0, 0), (-1, -1), 5),
+            ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
+            ("LEFTPADDING", (0, 0), (-1, -1), 8),
+            ("RIGHTPADDING", (0, 0), (-1, -1), 8)
+        ]))
+        story.append(c_box)
+        story.append(Spacer(1, 10))
+
+    # 6. AI Assessment Integrity Footer
+    story.append(Spacer(1, 8))
+    integrity_text = (
+        "<b>Assessment Proctoring &amp; Integrity Statement:</b> This assessment was dynamically generated using the "
+        "Gemini 3.8 Flash model. Correctness was validated strictly via sandboxed code execution against hidden test cases. "
+        "Anti-cheating mechanisms including tab-switch tracking and full-screen enforcement were active during the session."
+    )
+    integrity_p = Paragraph(integrity_text, ParagraphStyle("Integ", parent=styles["Normal"], fontSize=8, leading=11, textColor=c_muted))
+    integ_box = Table([[integrity_p]], colWidths=[531])
+    integ_box.setStyle(TableStyle([
+        ("BACKGROUND", (0, 0), (-1, -1), colors.HexColor("#f8fafc")),
+        ("BOX", (0, 0), (-1, -1), 0.5, c_border),
+        ("TOPPADDING", (0, 0), (-1, -1), 6),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 6),
+        ("LEFTPADDING", (0, 0), (-1, -1), 8),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 8)
+    ]))
+    story.append(integ_box)
+
+    doc.build(story, canvasmaker=NumberedCanvas)
+    return buf.getvalue()

@@ -2,6 +2,7 @@ from fastapi import FastAPI, HTTPException, Request, Response, Depends, status
 from fastapi.middleware.cors import CORSMiddleware
 from typing import Dict, Any, List, Optional
 import os
+import json
 import random
 
 from models import (
@@ -41,7 +42,13 @@ from models import (
     SessionResumeRequest,
     SessionResumeResponse,
     SessionLockEventRequest,
-    SessionLockEventResponse
+    SessionLockEventResponse,
+    AIAssessmentStartRequest,
+    AIAssessmentStartResponse,
+    AIAssessmentQuestion,
+    AIAssessmentExecuteRequest,
+    AIAssessmentSubmitQuestionRequest,
+    AIAssessmentFinishRequest
 )
 from datetime import datetime, timezone
 from problems import PROBLEMS
@@ -1531,6 +1538,7 @@ def download_pdf_report_get(
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to generate PDF report: {str(e)}")
 
+
 @app.post("/api/reports/pdf")
 def download_pdf_report_post(
     req: PDFReportRequest,
@@ -1569,6 +1577,513 @@ def download_pdf_report_post(
         raise HTTPException(status_code=400, detail=str(e))
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to generate PDF report: {str(e)}")
+
+
+# ----------------- AI Mode – Dynamic Coding Question Generation & Assessment -----------------
+
+@app.post("/api/ai-mode/start", response_model=AIAssessmentStartResponse)
+def start_ai_assessment(
+    req: AIAssessmentStartRequest,
+    user: Dict[str, Any] = Depends(get_current_user)
+):
+    """
+    Starts an AI Mode assessment session:
+    Dynamically generates original coding questions powered by Gemini API,
+    persists the session in SQLite, registers problems in memory/store,
+    and returns sanitized questions (hidden test cases strictly withheld).
+    """
+    import uuid
+
+    # 1. Validation
+    language = req.language.strip().lower()
+    if language in ["c++"]:
+        language = "cpp"
+    if language not in ["python", "c", "cpp", "java"]:
+        raise HTTPException(status_code=400, detail=f"Unsupported language '{req.language}'. Supported: Python, C, C++, Java.")
+
+    difficulty = req.difficulty.strip().capitalize()
+    if difficulty not in ["Easy", "Medium", "Hard"]:
+        raise HTTPException(status_code=400, detail=f"Invalid difficulty '{req.difficulty}'. Must be Easy, Medium, or Hard.")
+
+    topic = normalize_topic(req.topic.strip())
+    num_questions = req.num_questions
+    if num_questions not in [3, 5, 10]:
+        num_questions = max(3, min(10, num_questions))
+
+    # 2. Gather recent problem titles & IDs for deduplication
+    recent_titles = question_store.get_recent_titles(topic=topic, limit=20)
+    for p in PROBLEMS.values():
+        if p.topic.lower() == topic.lower() and p.title not in recent_titles:
+            recent_titles.append(p.title)
+
+    recent_ids = question_store.get_recent_ids(topic=topic, limit=30)
+
+    # 3. Generate batch of distinct coding questions via Gemini / MentorAI
+    try:
+        problem_dicts = mentor_ai.generate_coding_problems_batch(
+            topic=topic,
+            difficulty=difficulty,
+            language=language,
+            count=num_questions,
+            previous_titles=recent_titles,
+            previous_ids=recent_ids
+        )
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        raise HTTPException(status_code=500, detail=f"Failed to dynamically generate AI questions: {str(e)}")
+
+    if not problem_dicts:
+        raise HTTPException(status_code=500, detail="Question generation returned no problems. Please try again.")
+
+    # 4. Convert to Problem models, register in in-memory PROBLEMS and save to question_store
+    registered_problems = []
+    sanitized_questions = []
+
+    for p_dict in problem_dicts:
+        prob_obj = _problem_dict_to_problem_obj(p_dict, language)
+        PROBLEMS[prob_obj.id] = prob_obj
+        question_store.save_problem(prob_obj)
+        registered_problems.append(prob_obj)
+
+        # Get starter code for requested language
+        starter_code = (
+            prob_obj.starter_code.get(language) or
+            prob_obj.starter_code.get("python") or
+            next(iter(prob_obj.starter_code.values()), "")
+        )
+
+        # Extract ONLY public test cases for the frontend (strict security: no hidden tests or expected solution exposed)
+        public_test_cases = [
+            {
+                "id": tc.id,
+                "input": tc.input,
+                "expected_output": tc.expected_output,
+                "explanation": tc.explanation or f"Sample test case {tc.id}"
+            }
+            for tc in prob_obj.test_cases
+            if not getattr(tc, "is_hidden", False)
+        ]
+        # If all test cases were marked hidden for some reason, ensure at least one sample is visible from examples
+        if not public_test_cases and prob_obj.examples:
+            for idx, ex in enumerate(prob_obj.examples[:2], 1):
+                public_test_cases.append({
+                    "id": idx,
+                    "input": ex.get("input"),
+                    "expected_output": ex.get("output"),
+                    "explanation": ex.get("explanation", f"Sample example {idx}")
+                })
+
+        sanitized_questions.append(AIAssessmentQuestion(
+            id=prob_obj.id,
+            title=prob_obj.title,
+            topic=prob_obj.topic,
+            subtopic=prob_obj.subtopic or "",
+            difficulty=prob_obj.difficulty,
+            language=language,
+            description=prob_obj.description,
+            input_format=prob_obj.input_format or "",
+            output_format=prob_obj.output_format or "",
+            constraints=prob_obj.constraints,
+            examples=prob_obj.examples,
+            starter_code=starter_code,
+            sample_test_cases=public_test_cases,
+            hint=prob_obj.hint or "",
+            progressive_hints=prob_obj.progressive_hints or []
+        ))
+
+    # 5. Persist the AI Assessment session in SQLite
+    assessment_id = f"ai_asmt_{uuid.uuid4().hex[:12]}"
+    full_questions_json = json.dumps([
+        {
+            "id": p.id,
+            "title": p.title,
+            "topic": p.topic,
+            "subtopic": p.subtopic,
+            "difficulty": p.difficulty,
+            "description": p.description,
+            "input_format": p.input_format,
+            "output_format": p.output_format,
+            "constraints": p.constraints,
+            "examples": p.examples,
+            "starter_code": p.starter_code,
+            "test_cases": [tc.dict() if hasattr(tc, 'dict') else tc for tc in p.test_cases],
+            "hint": p.hint,
+            "progressive_hints": p.progressive_hints
+        }
+        for p in registered_problems
+    ])
+
+    now_iso = utc_iso_now()
+    with get_db() as conn:
+        cursor = conn.cursor()
+        cursor.execute("""
+            INSERT INTO ai_assessments (
+                id, user_id, assessment_mode, language, difficulty, topic,
+                num_questions, questions_json, submissions_json, results_json,
+                overall_score, passed_count, total_count, time_taken_seconds,
+                tab_switch_count, status, started_at
+            ) VALUES (?, ?, 'ai_mode', ?, ?, ?, ?, ?, '{}', '{}', 0.0, 0, ?, 0, 0, 'in_progress', ?)
+        """, (
+            assessment_id,
+            user["id"],
+            language,
+            difficulty,
+            topic,
+            len(sanitized_questions),
+            full_questions_json,
+            len(sanitized_questions),
+            now_iso
+        ))
+        conn.commit()
+
+    return AIAssessmentStartResponse(
+        assessment_id=assessment_id,
+        user_id=user["id"],
+        language=language,
+        difficulty=difficulty,
+        topic=topic,
+        num_questions=len(sanitized_questions),
+        questions=sanitized_questions,
+        started_at=now_iso
+    )
+
+
+@app.post("/api/ai-mode/execute")
+def execute_ai_question_code(
+    req: AIAssessmentExecuteRequest,
+    user: Dict[str, Any] = Depends(get_current_user)
+):
+    """
+    Executes student code against PUBLIC test cases only for fast in-IDE debugging.
+    """
+    if req.question_id not in PROBLEMS:
+        raise HTTPException(status_code=404, detail="Problem not found in assessment registry.")
+
+    problem = PROBLEMS[req.question_id]
+    language = req.language.strip().lower()
+    if language in ["c++"]:
+        language = "cpp"
+
+    # Filter to public test cases only
+    public_cases = [tc for tc in problem.test_cases if not getattr(tc, "is_hidden", False)]
+    if not public_cases:
+        public_cases = problem.test_cases[:2]
+
+    if language == "python":
+        res = run_python_code(req.code, req.question_id, public_cases)
+    elif language == "c":
+        res = run_c_code(req.code, req.question_id, public_cases)
+    elif language == "cpp":
+        res = run_cpp_code(req.code, req.question_id, public_cases)
+    elif language == "java":
+        res = run_java_code(req.code, req.question_id, public_cases)
+    else:
+        raise HTTPException(status_code=400, detail=f"Language '{language}' not supported.")
+
+    return {
+        "status": res.status,
+        "passed_count": res.passed_count,
+        "total_count": res.total_count,
+        "results": res.results,
+        "stdout": res.stdout,
+        "execution_time_ms": getattr(res, "execution_time_ms", 0.0),
+        "error_info": getattr(res, "error_info", None)
+    }
+
+
+@app.post("/api/ai-mode/submit-question")
+def submit_ai_question_solution(
+    req: AIAssessmentSubmitQuestionRequest,
+    user: Dict[str, Any] = Depends(get_current_user)
+):
+    """
+    Submits student solution for a specific AI Mode question:
+    Runs against ALL test cases (including hidden validation tests) in sandbox,
+    evaluates correctness, calculates score using scoring_engine,
+    and updates session state in SQLite.
+    """
+    if req.question_id not in PROBLEMS:
+        raise HTTPException(status_code=404, detail="Problem not found.")
+
+    problem = PROBLEMS[req.question_id]
+    language = req.language.strip().lower()
+    if language in ["c++"]:
+        language = "cpp"
+
+    # Verify assessment exists and belongs to user
+    with get_db() as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM ai_assessments WHERE id = ?", (req.assessment_id,))
+        asmt = cursor.fetchone()
+        if not asmt:
+            raise HTTPException(status_code=404, detail="AI Assessment session not found.")
+        if asmt["user_id"] != user["id"]:
+            raise HTTPException(status_code=403, detail="Forbidden: Assessment session belongs to another user.")
+
+    # Execute against ALL test cases (sandboxed)
+    if language == "python":
+        res = run_python_code(req.code, req.question_id, problem.test_cases)
+    elif language == "c":
+        res = run_c_code(req.code, req.question_id, problem.test_cases)
+    elif language == "cpp":
+        res = run_cpp_code(req.code, req.question_id, problem.test_cases)
+    elif language == "java":
+        res = run_java_code(req.code, req.question_id, problem.test_cases)
+    else:
+        raise HTTPException(status_code=400, detail=f"Language '{language}' not supported.")
+
+    all_passed = (res.status == "success" and res.total_count > 0 and res.passed_count == res.total_count)
+    if all_passed:
+        submission_status = "Accepted"
+    elif res.status == "error":
+        submission_status = "Compilation / Runtime Error"
+    else:
+        submission_status = "Wrong Answer"
+
+    # Evaluate score using scoring engine
+    score_res = scoring_engine.evaluate(
+        problem=problem,
+        code=req.code,
+        language=language,
+        execution_status=res.status,
+        passed_count=res.passed_count,
+        total_count=res.total_count,
+        test_results=res.results,
+        runtime_ms=getattr(res, "execution_time_ms", 0.0),
+        coding_time_seconds=req.time_spent_seconds or 0,
+        time_spent_away_seconds=0,
+        tab_switch_count=req.tab_switch_count or 0
+    )
+
+    # Sanitize test results for response: hide inputs of hidden test cases
+    safe_results = []
+    for tr in res.results:
+        # tr can be dict or object
+        tr_dict = tr if isinstance(tr, dict) else tr.__dict__
+        is_hidden = tr_dict.get("is_hidden", False)
+        if is_hidden:
+            safe_results.append({
+                "test_case_id": tr_dict.get("test_case_id"),
+                "passed": tr_dict.get("passed", False),
+                "is_hidden": True,
+                "execution_time_ms": tr_dict.get("execution_time_ms", 0.0),
+                "safe_error_info": tr_dict.get("safe_error_info")
+            })
+        else:
+            safe_results.append(tr_dict)
+
+    # Update SQLite ai_assessments submissions_json
+    with get_db() as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT submissions_json, tab_switch_count FROM ai_assessments WHERE id = ?", (req.assessment_id,))
+        row = cursor.fetchone()
+        existing_subs = json.loads(row["submissions_json"]) if row and row["submissions_json"] else {}
+        curr_switches = row["tab_switch_count"] if row else 0
+
+        score_val = score_res.get("overall_score", 0.0) if isinstance(score_res, dict) else getattr(score_res, "overall_score", 0.0)
+        breakdown_val = score_res.get("breakdown", {}) if isinstance(score_res, dict) else getattr(score_res, "breakdown", {})
+
+        existing_subs[req.question_id] = {
+            "code": req.code,
+            "language": language,
+            "status": submission_status,
+            "passed_count": res.passed_count,
+            "total_count": res.total_count,
+            "score": score_val,
+            "time_spent_seconds": req.time_spent_seconds or 0,
+            "updated_at": utc_iso_now()
+        }
+
+        new_switches = max(curr_switches, req.tab_switch_count or 0)
+
+        cursor.execute("""
+            UPDATE ai_assessments 
+            SET submissions_json = ?, tab_switch_count = ?
+            WHERE id = ?
+        """, (json.dumps(existing_subs), new_switches, req.assessment_id))
+        conn.commit()
+
+    return {
+        "status": submission_status,
+        "is_passed": all_passed,
+        "passed_count": res.passed_count,
+        "total_count": res.total_count,
+        "score": score_val,
+        "score_breakdown": breakdown_val,
+        "results": safe_results,
+        "stdout": res.stdout,
+        "error_info": getattr(res, "error_info", None)
+    }
+
+
+@app.post("/api/ai-mode/finish")
+def finish_ai_assessment(
+    req: AIAssessmentFinishRequest,
+    user: Dict[str, Any] = Depends(get_current_user)
+):
+    """
+    Finalizes an AI Mode assessment:
+    Calculates overall score across all questions, persists status to 'completed',
+    and returns comprehensive performance summary.
+    """
+    with get_db() as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM ai_assessments WHERE id = ?", (req.assessment_id,))
+        asmt = cursor.fetchone()
+        if not asmt:
+            raise HTTPException(status_code=404, detail="AI Assessment session not found.")
+        if asmt["user_id"] != user["id"]:
+            raise HTTPException(status_code=403, detail="Forbidden: Assessment session belongs to another user.")
+
+        questions = json.loads(asmt["questions_json"]) if asmt["questions_json"] else []
+        submissions = json.loads(asmt["submissions_json"]) if asmt["submissions_json"] else {}
+
+        total_questions = len(questions)
+        solved_count = 0
+        total_score_sum = 0.0
+
+        for q in questions:
+            qid = q.get("id")
+            sub = submissions.get(qid)
+            if sub:
+                total_score_sum += sub.get("score", 0.0)
+                if sub.get("status") == "Accepted" or (sub.get("total_count", 0) > 0 and sub.get("passed_count") == sub.get("total_count")):
+                    solved_count += 1
+
+        overall_score = round(total_score_sum / total_questions, 1) if total_questions > 0 else 0.0
+        now_iso = utc_iso_now()
+        total_time = req.total_time_seconds or asmt["time_taken_seconds"] or 0
+        final_switches = max(asmt["tab_switch_count"] or 0, req.tab_switch_count or 0)
+
+        cursor.execute("""
+            UPDATE ai_assessments
+            SET status = 'completed', completed_at = ?, overall_score = ?,
+                passed_count = ?, time_taken_seconds = ?, tab_switch_count = ?
+            WHERE id = ?
+        """, (now_iso, overall_score, solved_count, total_time, final_switches, req.assessment_id))
+        conn.commit()
+
+    return {
+        "assessment_id": req.assessment_id,
+        "status": "completed",
+        "overall_score": overall_score,
+        "passed_count": solved_count,
+        "total_count": total_questions,
+        "time_taken_seconds": total_time,
+        "total_time_seconds": total_time,
+        "tab_switch_count": final_switches,
+        "completed_at": now_iso
+    }
+
+
+@app.get("/api/ai-mode/session/{assessment_id}")
+def get_ai_assessment_session(
+    assessment_id: str,
+    user: Dict[str, Any] = Depends(get_current_user)
+):
+    """
+    Fetches the status and results of an AI Mode assessment session.
+    """
+    with get_db() as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM ai_assessments WHERE id = ?", (assessment_id,))
+        asmt = cursor.fetchone()
+        if not asmt:
+            raise HTTPException(status_code=404, detail="Assessment not found.")
+        if asmt["user_id"] != user["id"]:
+            raise HTTPException(status_code=403, detail="Forbidden.")
+
+    questions = json.loads(asmt["questions_json"]) if asmt["questions_json"] else []
+    submissions = json.loads(asmt["submissions_json"]) if asmt["submissions_json"] else {}
+
+    # Sanitize questions (no hidden test cases exposed)
+    sanitized_q = []
+    for q in questions:
+        sanitized_q.append({
+            "id": q.get("id"),
+            "title": q.get("title"),
+            "topic": q.get("topic"),
+            "difficulty": q.get("difficulty"),
+            "description": q.get("description"),
+            "input_format": q.get("input_format"),
+            "output_format": q.get("output_format"),
+            "constraints": q.get("constraints", []),
+            "examples": q.get("examples", []),
+            "starter_code": q.get("starter_code", {}).get(asmt["language"], "") if isinstance(q.get("starter_code"), dict) else (q.get("starter_code") or ""),
+            "sample_test_cases": [tc for tc in q.get("test_cases", []) if not tc.get("is_hidden")]
+        })
+
+    return {
+        "assessment_id": asmt["id"],
+        "language": asmt["language"],
+        "difficulty": asmt["difficulty"],
+        "topic": asmt["topic"],
+        "status": asmt["status"],
+        "overall_score": asmt["overall_score"],
+        "passed_count": asmt["passed_count"],
+        "total_count": asmt["total_count"],
+        "time_taken_seconds": asmt["time_taken_seconds"],
+        "tab_switch_count": asmt["tab_switch_count"],
+        "started_at": asmt["started_at"],
+        "completed_at": asmt["completed_at"],
+        "questions": sanitized_q,
+        "submissions": submissions
+    }
+
+
+@app.get("/api/ai-mode/report/pdf/{assessment_id}")
+def download_ai_assessment_pdf(
+    assessment_id: str,
+    user: Dict[str, Any] = Depends(get_current_user)
+):
+    """
+    Generates and downloads a high-fidelity PDF report for an AI Mode assessment session.
+    """
+    with get_db() as conn:
+        cursor = conn.cursor()
+        cursor.execute("SELECT * FROM ai_assessments WHERE id = ?", (assessment_id,))
+        asmt = cursor.fetchone()
+        if not asmt:
+            raise HTTPException(status_code=404, detail="AI Assessment not found.")
+        if asmt["user_id"] != user["id"]:
+            raise HTTPException(status_code=403, detail="Forbidden.")
+
+    questions = json.loads(asmt["questions_json"]) if asmt["questions_json"] else []
+    submissions = json.loads(asmt["submissions_json"]) if asmt["submissions_json"] else {}
+
+    secs = asmt["time_taken_seconds"] or 0
+    m, s = divmod(secs, 60)
+    h, m = divmod(m, 60)
+    time_fmt = f"{h}h {m}m {s}s" if h > 0 else f"{m}m {s}s"
+
+    assessment_data = {
+        "assessment_id": asmt["id"],
+        "student_name": user.get("full_name", "Student"),
+        "student_email": user.get("email", ""),
+        "language": asmt["language"],
+        "topic": asmt["topic"],
+        "difficulty": asmt["difficulty"],
+        "overall_score": asmt["overall_score"],
+        "passed_count": asmt["passed_count"],
+        "total_count": asmt["total_count"],
+        "time_taken_formatted": time_fmt,
+        "tab_switch_count": asmt["tab_switch_count"],
+        "questions": questions,
+        "submissions": submissions
+    }
+
+    pdf_bytes = pdf_generator.generate_ai_assessment_pdf(assessment_data)
+    filename = f"CodeAcharya_AI_Assessment_{asmt['topic'].replace(' ', '_')}_{assessment_id[:8]}.pdf"
+
+    return Response(
+        content=pdf_bytes,
+        media_type="application/pdf",
+        headers={
+            "Content-Disposition": f'attachment; filename="{filename}"',
+            "Content-Type": "application/pdf"
+        }
+    )
 
 if __name__ == "__main__":
     import uvicorn

@@ -81,3 +81,7 @@ Thumbs.db
 *.sw?
 *.log
 
+# AI Assessment reports & temporary artifacts
+*.pdf
+backend/test_reports/
+

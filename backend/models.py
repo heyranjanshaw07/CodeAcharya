@@ -409,5 +409,61 @@ class SessionResumeResponse(BaseModel):
     message: str = "Full-screen mode verified. Editor unlocked and session resumed."
     event_timestamp_ist: Optional[str] = None
 
+# ==================== AI Mode Dynamic Assessment Models ====================
+
+class AIAssessmentStartRequest(BaseModel):
+    language: str = "python"
+    difficulty: str = "Easy"
+    topic: str = "Arrays"
+    num_questions: int = 3
+
+class AIAssessmentQuestion(BaseModel):
+    id: str
+    title: str
+    topic: str
+    subtopic: Optional[str] = ""
+    difficulty: str
+    language: str
+    description: str
+    input_format: Optional[str] = ""
+    output_format: Optional[str] = ""
+    constraints: List[str] = []
+    examples: List[Dict[str, Any]] = []
+    starter_code: str = ""
+    sample_test_cases: List[Dict[str, Any]] = []
+    hint: Optional[str] = ""
+    progressive_hints: Optional[List[Dict[str, Any]]] = []
+
+class AIAssessmentStartResponse(BaseModel):
+    assessment_id: str
+    user_id: str
+    language: str
+    difficulty: str
+    topic: str
+    num_questions: int
+    questions: List[AIAssessmentQuestion]
+    started_at: str
+
+class AIAssessmentExecuteRequest(BaseModel):
+    assessment_id: str
+    question_id: str
+    code: str
+    language: str = "python"
+    custom_input: Optional[str] = None
+
+class AIAssessmentSubmitQuestionRequest(BaseModel):
+    assessment_id: str
+    question_id: str
+    code: str
+    language: str = "python"
+    time_spent_seconds: Optional[int] = 0
+    tab_switch_count: Optional[int] = 0
+
+class AIAssessmentFinishRequest(BaseModel):
+    assessment_id: str
+    total_time_seconds: Optional[int] = 0
+    tab_switch_count: Optional[int] = 0
+
+
 
 
