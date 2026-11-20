@@ -169,7 +169,7 @@ export function configureMonacoPasteRestriction(editor, monaco, {
   attemptId = null,
   onBlocked = null
 } = {}) {
-  if (!editor || !monaco) return () => {};
+  if (!editor || !monaco || typeof monaco !== 'object') return () => {};
 
   if (!isRestricted) return () => {};
 
@@ -182,13 +182,15 @@ export function configureMonacoPasteRestriction(editor, monaco, {
   };
 
   // 1. Monaco KeyCommand overrides
-  editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyV, () => {
-    handleBlockedAction('monaco_ctrl_v');
-  });
+  if (monaco.KeyMod && monaco.KeyCode) {
+    editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyV, () => {
+      handleBlockedAction('monaco_ctrl_v');
+    });
 
-  editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Insert, () => {
-    handleBlockedAction('monaco_shift_insert');
-  });
+    editor.addCommand(monaco.KeyMod.Shift | monaco.KeyCode.Insert, () => {
+      handleBlockedAction('monaco_shift_insert');
+    });
+  }
 
   // 2. Override Monaco clipboard paste action if registered
   try {

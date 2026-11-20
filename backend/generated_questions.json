@@ -544,8 +544,8 @@
     "id": "contains-duplicate",
     "title": "Contains Duplicate",
     "difficulty": "Easy",
-    "topic": "Arrays",
-    "subtopic": "Hash Maps & Sets",
+    "topic": "Trees and Binary Trees",
+    "subtopic": "Path Sums",
     "description": "Given an integer array `nums`, return `True` if any value appears at least twice in the array, and return `False` if every element is distinct.",
     "examples": [
       {
@@ -627,7 +627,7 @@
       {
         "level": 1,
         "title": "Conceptual Understanding",
-        "content": "Consider the core characteristics of Arrays. What fundamental condition marks the start or termination of Contains Duplicate?",
+        "content": "Consider the core characteristics of Trees and Binary Trees. What fundamental condition marks the start or termination of Contains Duplicate?",
         "thought_questions": [
           "What is the simplest input possible?",
           "Can this be reduced to smaller subproblems?"
@@ -670,8 +670,8 @@
     "time_complexity": "O(N)",
     "space_complexity": "O(1)",
     "relevant_concepts": [
-      "Arrays",
-      "Hash Maps & Sets"
+      "Trees and Binary Trees",
+      "Path Sums"
     ],
     "is_generated": true,
     "source": "blueprint_fallback"
@@ -6863,8 +6863,8 @@
     "id": "valid-anagram",
     "title": "Valid Anagram",
     "difficulty": "Easy",
-    "topic": "Arrays",
-    "subtopic": "Prefix Sums",
+    "topic": "Trees and Binary Trees",
+    "subtopic": "Lowest Common Ancestor",
     "description": "Given two strings `s` and `t`, return `True` if `t` is an anagram of `s`, and `False` otherwise.\n\nAn Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.",
     "examples": [
       {
@@ -6934,7 +6934,7 @@
       {
         "level": 1,
         "title": "Conceptual Understanding",
-        "content": "Consider the core characteristics of Arrays. What fundamental condition marks the start or termination of Valid Anagram?",
+        "content": "Consider the core characteristics of Trees and Binary Trees. What fundamental condition marks the start or termination of Valid Anagram?",
         "thought_questions": [
           "What is the simplest input possible?",
           "Can this be reduced to smaller subproblems?"
@@ -6977,8 +6977,8 @@
     "time_complexity": "O(N)",
     "space_complexity": "O(1)",
     "relevant_concepts": [
-      "Arrays",
-      "Prefix Sums"
+      "Trees and Binary Trees",
+      "Lowest Common Ancestor"
     ],
     "is_generated": true,
     "source": "blueprint_fallback"
@@ -7688,8 +7688,8 @@
     "id": "maximum-depth-binary-tree",
     "title": "Maximum Depth of Binary Tree",
     "difficulty": "Easy",
-    "topic": "Arrays",
-    "subtopic": "Frequency Counting",
+    "topic": "Trees and Binary Trees",
+    "subtopic": "Lowest Common Ancestor",
     "description": "Given the root of a binary tree represented as a list (where `None` represents None nodes), return its maximum depth.\n\nA binary tree's maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.",
     "examples": [
       {
@@ -7757,7 +7757,7 @@
       {
         "level": 1,
         "title": "Conceptual Understanding",
-        "content": "Consider the core characteristics of Arrays. What fundamental condition marks the start or termination of Maximum Depth of Binary Tree?",
+        "content": "Consider the core characteristics of Trees and Binary Trees. What fundamental condition marks the start or termination of Maximum Depth of Binary Tree?",
         "thought_questions": [
           "What is the simplest input possible?",
           "Can this be reduced to smaller subproblems?"
@@ -7800,8 +7800,8 @@
     "time_complexity": "O(N)",
     "space_complexity": "O(1)",
     "relevant_concepts": [
-      "Arrays",
-      "Frequency Counting"
+      "Trees and Binary Trees",
+      "Lowest Common Ancestor"
     ],
     "is_generated": true,
     "source": "blueprint_fallback"
@@ -7936,8 +7936,8 @@
     "id": "two-sum-sorted",
     "title": "Two Sum II (Sorted Array)",
     "difficulty": "Easy",
-    "topic": "Arrays",
-    "subtopic": "Frequency Counting",
+    "topic": "Trees and Binary Trees",
+    "subtopic": "BFS Level Order",
     "description": "Given a **1-indexed** array of integers `numbers` that is already sorted in non-decreasing order, find two numbers such that they add up to a specific `target` number.\n\nReturn the indices of the two numbers, `index1` and `index2`, added by one as an integer array `[index1, index2]` of length 2.",
     "examples": [
       {
@@ -8024,7 +8024,7 @@
       {
         "level": 1,
         "title": "Conceptual Understanding",
-        "content": "Consider the core characteristics of Arrays. What fundamental condition marks the start or termination of Two Sum II (Sorted Array)?",
+        "content": "Consider the core characteristics of Trees and Binary Trees. What fundamental condition marks the start or termination of Two Sum II (Sorted Array)?",
         "thought_questions": [
           "What is the simplest input possible?",
           "Can this be reduced to smaller subproblems?"
@@ -8067,8 +8067,8 @@
     "time_complexity": "O(N)",
     "space_complexity": "O(1)",
     "relevant_concepts": [
-      "Arrays",
-      "Frequency Counting"
+      "Trees and Binary Trees",
+      "BFS Level Order"
     ],
     "is_generated": true,
     "source": "blueprint_fallback"
@@ -8077,8 +8077,8 @@
     "id": "valid-parentheses",
     "title": "Valid Parentheses",
     "difficulty": "Easy",
-    "topic": "Arrays",
-    "subtopic": "Frequency Counting",
+    "topic": "Trees and Binary Trees",
+    "subtopic": "DFS Traversal",
     "description": "Given a string `s` containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['` and `']'`, determine if the input string is valid.\n\nAn input string is valid if:\n1. Open brackets must be closed by the same type of brackets.\n2. Open brackets must be closed in the correct order.\n3. Every close bracket has a corresponding open bracket of the same type.",
     "examples": [
       {
@@ -8139,7 +8139,7 @@
       {
         "level": 1,
         "title": "Conceptual Understanding",
-        "content": "Consider the core characteristics of Arrays. What fundamental condition marks the start or termination of Valid Parentheses?",
+        "content": "Consider the core characteristics of Trees and Binary Trees. What fundamental condition marks the start or termination of Valid Parentheses?",
         "thought_questions": [
           "What is the simplest input possible?",
           "Can this be reduced to smaller subproblems?"
@@ -8182,8 +8182,8 @@
     "time_complexity": "O(N)",
     "space_complexity": "O(1)",
     "relevant_concepts": [
-      "Arrays",
-      "Frequency Counting"
+      "Trees and Binary Trees",
+      "DFS Traversal"
     ],
     "is_generated": true,
     "source": "blueprint_fallback"

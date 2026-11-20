@@ -123,8 +123,19 @@ export default function AIAssessmentView({
   // Monaco Editor Mount
   const handleEditorMount = (editor, monaco) => {
     editorRef.current = editor;
-    configureMonacoPasteRestriction(editor, true); // Enforce paste restrictions in AI Mode
-    registerCodeAcharyaIntelliSense(monaco);
+    if (editor && monaco) {
+      try {
+        configureMonacoPasteRestriction(editor, monaco, {
+          isRestricted: true,
+          pageType: 'assessment',
+          questionId: currentQuestion?.id,
+          attemptId: assessmentId
+        });
+        registerCodeAcharyaIntelliSense(monaco);
+      } catch (err) {
+        console.warn('[Monaco Mount Notice]:', err);
+      }
+    }
   };
 
   const handleCodeChange = (newCode) => {
