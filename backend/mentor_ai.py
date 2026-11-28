@@ -18,7 +18,7 @@ except ImportError:
     pass
 
 DEFAULT_LLM_BASE_URL = os.environ.get("LLM_BASE_URL", "")
-DEFAULT_GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.8-flash")
+DEFAULT_GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.1-flash-lite")
 
 class MentorAI:
     def __init__(
@@ -83,15 +83,21 @@ class MentorAI:
         if not self.api_key:
             return None
         
-        models_to_try = [self.model]
-        for m in ["gemini-3.8-flash", "gemini-3.5-flash", "gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash"]:
+        models_to_try = [self.model] if self.model else []
+        for m in [
+            "gemini-3.1-flash-lite",
+            "gemini-3-flash-preview",
+            "gemini-flash-lite-latest",
+            "gemini-3.5-flash-lite",
+            "gemini-3.8-flash"
+        ]:
             if m not in models_to_try:
                 models_to_try.append(m)
 
         is_json_request = "json" in system_instruction.lower() or "json" in prompt.lower()
         generation_config: Dict[str, Any] = {
             "temperature": 0.3,
-            "maxOutputTokens": 2048
+            "maxOutputTokens": 8192
         }
         if is_json_request:
             generation_config["responseMimeType"] = "application/json"
@@ -111,7 +117,7 @@ class MentorAI:
                     ],
                     "generationConfig": generation_config
                 }
-                res = requests.post(url, json=payload, timeout=60)
+                res = requests.post(url, json=payload, timeout=25)
                 if res.status_code == 200:
                     data = res.json()
                     candidates = data.get("candidates", [])
@@ -119,15 +125,15 @@ class MentorAI:
                         parts = candidates[0].get("content", {}).get("parts", [])
                         if parts:
                             return parts[0].get("text", "")
-                elif res.status_code == 404:
-                    # Model not found, try next in list
-                    continue
                 else:
-                    print(f"[MentorAI] Gemini API returned status {res.status_code}: {res.text[:150]}")
+                    print(f"[MentorAI] Model {model_name} returned status {res.status_code}: {res.text[:120]}")
+                    continue
             except requests.exceptions.Timeout:
                 print(f"[MentorAI] Gemini request timed out for model {model_name}")
+                continue
             except Exception as e:
-                print(f"[MentorAI] Error calling Gemini: {e}")
+                print(f"[MentorAI] Error calling model {model_name}: {e}")
+                continue
 
         return None
 

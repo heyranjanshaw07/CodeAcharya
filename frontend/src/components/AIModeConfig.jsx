@@ -41,17 +41,11 @@ const TOPICS = [
   { id: 'Mixed DSA Problems', name: 'Mixed DSA Problems', desc: 'Comprehensive multi-pattern challenges' }
 ];
 
-const QUESTION_COUNTS = [
-  { count: 3, label: '3 Questions', timeEstimate: '~30-45 mins', recommended: true },
-  { count: 5, label: '5 Questions', timeEstimate: '~60-75 mins' },
-  { count: 10, label: '10 Questions', timeEstimate: '~120-150 mins' }
-];
-
 export default function AIModeConfig({ onStartAssessment, isLoading, error }) {
   const [selectedLanguage, setSelectedLanguage] = useState('python');
   const [selectedDifficulty, setSelectedDifficulty] = useState('Easy');
   const [selectedTopic, setSelectedTopic] = useState('Arrays');
-  const [selectedCount, setSelectedCount] = useState(3);
+  const selectedCount = 3; // Standard 3 assessment questions
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -353,86 +347,6 @@ export default function AIModeConfig({ onStartAssessment, isLoading, error }) {
           </div>
         </div>
 
-        {/* Step 4: Number of Questions */}
-        <div style={{
-          background: 'rgba(15, 23, 42, 0.65)',
-          border: '1px solid var(--border-glass)',
-          borderRadius: 16,
-          padding: 24
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-            <div style={{
-              width: 28,
-              height: 28,
-              borderRadius: 8,
-              background: 'rgba(99, 102, 241, 0.2)',
-              color: '#818cf8',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontWeight: 700,
-              fontSize: '0.85rem'
-            }}>
-              4
-            </div>
-            <h2 style={{ margin: 0, fontSize: '1.1rem', fontWeight: 700, color: '#f8fafc' }}>
-              Number of Questions
-            </h2>
-          </div>
-
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
-            gap: 14
-          }}>
-            {QUESTION_COUNTS.map((opt) => {
-              const isSelected = selectedCount === opt.count;
-              return (
-                <button
-                  type="button"
-                  key={opt.count}
-                  onClick={() => setSelectedCount(opt.count)}
-                  style={{
-                    background: isSelected ? 'rgba(99, 102, 241, 0.15)' : 'rgba(30, 41, 59, 0.45)',
-                    border: isSelected ? '2px solid #6366f1' : '1px solid var(--border-glass)',
-                    borderRadius: 12,
-                    padding: '16px 18px',
-                    textAlign: 'left',
-                    cursor: 'pointer',
-                    transition: 'all 0.2s',
-                    position: 'relative'
-                  }}
-                >
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 6 }}>
-                    <div style={{ fontSize: '1.05rem', fontWeight: 700, color: '#f8fafc' }}>
-                      {opt.label}
-                    </div>
-                    {isSelected && <CheckCircle2 size={18} color="#6366f1" />}
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: '0.78rem', color: 'var(--text-muted)' }}>
-                    <Clock size={12} />
-                    <span>{opt.timeEstimate}</span>
-                  </div>
-                  {opt.recommended && (
-                    <div style={{
-                      marginTop: 8,
-                      display: 'inline-block',
-                      background: 'rgba(16, 185, 129, 0.15)',
-                      color: '#34d399',
-                      fontSize: '0.68rem',
-                      fontWeight: 700,
-                      padding: '2px 8px',
-                      borderRadius: 4
-                    }}>
-                      Recommended
-                    </div>
-                  )}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
         {/* Start Assessment Action */}
         <div style={{
           display: 'flex',
@@ -473,7 +387,7 @@ export default function AIModeConfig({ onStartAssessment, isLoading, error }) {
                   borderRadius: '50%',
                   animation: 'spin 1s linear infinite'
                 }} />
-                <span>Generating Original Questions with Gemini 3.8 Flash...</span>
+                <span>Generating Original Questions with AI...</span>
               </>
             ) : (
               <>
@@ -486,7 +400,7 @@ export default function AIModeConfig({ onStartAssessment, isLoading, error }) {
 
           {isLoading && (
             <p style={{ margin: 0, fontSize: '0.82rem', color: '#a5b4fc', textAlign: 'center' }}>
-              Gemini is crafting {selectedCount} unique {selectedDifficulty.toLowerCase()} {selectedTopic} problems with verified starter code &amp; test cases...
+              AI is crafting {selectedTopic} coding problems with verified starter code &amp; test cases...
             </p>
           )}
         </div>

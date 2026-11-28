@@ -110,12 +110,18 @@ def call_llm(
     if not effective_base_url:
         # Direct Gemini API call when no custom OpenAI-compatible base URL is provided
         is_json_request = "json" in system_instruction.lower() or "json" in prompt.lower()
-        generation_config = {"temperature": 0.3, "maxOutputTokens": 2048}
+        generation_config = {"temperature": 0.3, "maxOutputTokens": 8192}
         if is_json_request:
             generation_config["responseMimeType"] = "application/json"
 
-        models_to_try = [effective_model]
-        for m in ["gemini-3.8-flash", "gemini-3.5-flash", "gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash"]:
+        models_to_try = [effective_model] if effective_model else []
+        for m in [
+            "gemini-3.1-flash-lite",
+            "gemini-3-flash-preview",
+            "gemini-flash-lite-latest",
+            "gemini-3.5-flash-lite",
+            "gemini-3.8-flash"
+        ]:
             if m not in models_to_try:
                 models_to_try.append(m)
 

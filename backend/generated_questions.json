@@ -544,8 +544,8 @@
     "id": "contains-duplicate",
     "title": "Contains Duplicate",
     "difficulty": "Easy",
-    "topic": "Trees and Binary Trees",
-    "subtopic": "Path Sums",
+    "topic": "Arrays",
+    "subtopic": "Frequency Counting",
     "description": "Given an integer array `nums`, return `True` if any value appears at least twice in the array, and return `False` if every element is distinct.",
     "examples": [
       {
@@ -627,7 +627,7 @@
       {
         "level": 1,
         "title": "Conceptual Understanding",
-        "content": "Consider the core characteristics of Trees and Binary Trees. What fundamental condition marks the start or termination of Contains Duplicate?",
+        "content": "Consider the core characteristics of Arrays. What fundamental condition marks the start or termination of Contains Duplicate?",
         "thought_questions": [
           "What is the simplest input possible?",
           "Can this be reduced to smaller subproblems?"
@@ -670,8 +670,8 @@
     "time_complexity": "O(N)",
     "space_complexity": "O(1)",
     "relevant_concepts": [
-      "Trees and Binary Trees",
-      "Path Sums"
+      "Arrays",
+      "Frequency Counting"
     ],
     "is_generated": true,
     "source": "blueprint_fallback"
@@ -3933,7 +3933,7 @@
     "title": "Valid Anagram (Practice Variant v48)",
     "difficulty": "Easy",
     "topic": "Strings",
-    "subtopic": "String Manipulation",
+    "subtopic": "Anagrams & Palindromes",
     "description": "Given two strings `s` and `t`, return `True` if `t` is an anagram of `s`, and `False` otherwise.\n\nAn Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n*Note: This problem variant is tailored for targeted deliberate practice.*",
     "examples": [
       {
@@ -4047,7 +4047,7 @@
     "space_complexity": "O(1)",
     "relevant_concepts": [
       "Strings",
-      "String Manipulation"
+      "Anagrams & Palindromes"
     ],
     "is_generated": true,
     "source": "blueprint_fallback"
@@ -6863,8 +6863,8 @@
     "id": "valid-anagram",
     "title": "Valid Anagram",
     "difficulty": "Easy",
-    "topic": "Trees and Binary Trees",
-    "subtopic": "Lowest Common Ancestor",
+    "topic": "Arrays",
+    "subtopic": "Hash Maps & Sets",
     "description": "Given two strings `s` and `t`, return `True` if `t` is an anagram of `s`, and `False` otherwise.\n\nAn Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.",
     "examples": [
       {
@@ -6934,7 +6934,7 @@
       {
         "level": 1,
         "title": "Conceptual Understanding",
-        "content": "Consider the core characteristics of Trees and Binary Trees. What fundamental condition marks the start or termination of Valid Anagram?",
+        "content": "Consider the core characteristics of Arrays. What fundamental condition marks the start or termination of Valid Anagram?",
         "thought_questions": [
           "What is the simplest input possible?",
           "Can this be reduced to smaller subproblems?"
@@ -6977,8 +6977,8 @@
     "time_complexity": "O(N)",
     "space_complexity": "O(1)",
     "relevant_concepts": [
-      "Trees and Binary Trees",
-      "Lowest Common Ancestor"
+      "Arrays",
+      "Hash Maps & Sets"
     ],
     "is_generated": true,
     "source": "blueprint_fallback"
@@ -7688,8 +7688,8 @@
     "id": "maximum-depth-binary-tree",
     "title": "Maximum Depth of Binary Tree",
     "difficulty": "Easy",
-    "topic": "Trees and Binary Trees",
-    "subtopic": "Lowest Common Ancestor",
+    "topic": "Arrays",
+    "subtopic": "Prefix Sums",
     "description": "Given the root of a binary tree represented as a list (where `None` represents None nodes), return its maximum depth.\n\nA binary tree's maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.",
     "examples": [
       {
@@ -7757,7 +7757,7 @@
       {
         "level": 1,
         "title": "Conceptual Understanding",
-        "content": "Consider the core characteristics of Trees and Binary Trees. What fundamental condition marks the start or termination of Maximum Depth of Binary Tree?",
+        "content": "Consider the core characteristics of Arrays. What fundamental condition marks the start or termination of Maximum Depth of Binary Tree?",
         "thought_questions": [
           "What is the simplest input possible?",
           "Can this be reduced to smaller subproblems?"
@@ -7800,8 +7800,8 @@
     "time_complexity": "O(N)",
     "space_complexity": "O(1)",
     "relevant_concepts": [
-      "Trees and Binary Trees",
-      "Lowest Common Ancestor"
+      "Arrays",
+      "Prefix Sums"
     ],
     "is_generated": true,
     "source": "blueprint_fallback"
@@ -7936,8 +7936,8 @@
     "id": "two-sum-sorted",
     "title": "Two Sum II (Sorted Array)",
     "difficulty": "Easy",
-    "topic": "Trees and Binary Trees",
-    "subtopic": "BFS Level Order",
+    "topic": "Arrays",
+    "subtopic": "Array Manipulation",
     "description": "Given a **1-indexed** array of integers `numbers` that is already sorted in non-decreasing order, find two numbers such that they add up to a specific `target` number.\n\nReturn the indices of the two numbers, `index1` and `index2`, added by one as an integer array `[index1, index2]` of length 2.",
     "examples": [
       {
@@ -8024,7 +8024,7 @@
       {
         "level": 1,
         "title": "Conceptual Understanding",
-        "content": "Consider the core characteristics of Trees and Binary Trees. What fundamental condition marks the start or termination of Two Sum II (Sorted Array)?",
+        "content": "Consider the core characteristics of Arrays. What fundamental condition marks the start or termination of Two Sum II (Sorted Array)?",
         "thought_questions": [
           "What is the simplest input possible?",
           "Can this be reduced to smaller subproblems?"
@@ -8067,8 +8067,8 @@
     "time_complexity": "O(N)",
     "space_complexity": "O(1)",
     "relevant_concepts": [
-      "Trees and Binary Trees",
-      "BFS Level Order"
+      "Arrays",
+      "Array Manipulation"
     ],
     "is_generated": true,
     "source": "blueprint_fallback"
@@ -8077,8 +8077,8 @@
     "id": "valid-parentheses",
     "title": "Valid Parentheses",
     "difficulty": "Easy",
-    "topic": "Trees and Binary Trees",
-    "subtopic": "DFS Traversal",
+    "topic": "Arrays",
+    "subtopic": "Two Pointers",
     "description": "Given a string `s` containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['` and `']'`, determine if the input string is valid.\n\nAn input string is valid if:\n1. Open brackets must be closed by the same type of brackets.\n2. Open brackets must be closed in the correct order.\n3. Every close bracket has a corresponding open bracket of the same type.",
     "examples": [
       {
@@ -8139,7 +8139,7 @@
       {
         "level": 1,
         "title": "Conceptual Understanding",
-        "content": "Consider the core characteristics of Trees and Binary Trees. What fundamental condition marks the start or termination of Valid Parentheses?",
+        "content": "Consider the core characteristics of Arrays. What fundamental condition marks the start or termination of Valid Parentheses?",
         "thought_questions": [
           "What is the simplest input possible?",
           "Can this be reduced to smaller subproblems?"
@@ -8182,8 +8182,8 @@
     "time_complexity": "O(N)",
     "space_complexity": "O(1)",
     "relevant_concepts": [
-      "Trees and Binary Trees",
-      "DFS Traversal"
+      "Arrays",
+      "Two Pointers"
     ],
     "is_generated": true,
     "source": "blueprint_fallback"
@@ -10642,5 +10642,1126 @@
     ],
     "is_generated": true,
     "source": "blueprint_fallback"
+  },
+  {
+    "id": "valid-anagram-v78",
+    "title": "Valid Anagram (Practice Variant v78)",
+    "difficulty": "Easy",
+    "topic": "Strings",
+    "subtopic": "Pattern Matching",
+    "description": "Given two strings `s` and `t`, return `True` if `t` is an anagram of `s`, and `False` otherwise.\n\nAn Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n*Note: This problem variant is tailored for targeted deliberate practice.*",
+    "examples": [
+      {
+        "input": "s = 'anagram', t = 'nagaram'",
+        "output": "True",
+        "explanation": "Characters match frequency exactly."
+      },
+      {
+        "input": "s = 'rat', t = 'car'",
+        "output": "False",
+        "explanation": "Frequencies do not match."
+      }
+    ],
+    "constraints": [
+      "1 <= s.length, t.length <= 5 * 10^4",
+      "s and t consist of lowercase English letters."
+    ],
+    "starter_code": {
+      "python": "def is_anagram(s: str, t: str) -> bool:\n    pass\n",
+      "c": "#include <stdio.h>\n#include <stdbool.h>\n#include <string.h>\n\nbool isAnagram(char* s, char* t) {\n    \n}\n",
+      "cpp": "#include <string>\n#include <vector>\n\nbool isAnagram(std::string s, std::string t) {\n    \n}\n",
+      "java": "public class Solution {\n    public static boolean isAnagram(String s, String t) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": {
+          "s": "anagram",
+          "t": "nagaram"
+        },
+        "expected_output": true,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": {
+          "s": "rat",
+          "t": "car"
+        },
+        "expected_output": false,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": {
+          "s": "ab",
+          "t": "a"
+        },
+        "expected_output": false,
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Counting frequencies with constant O(1) space for 26 alphabet characters",
+      "Quick rejection using string length invariant"
+    ],
+    "common_misconceptions": [
+      "Sorting both strings (O(N log N)) when O(N) frequency tallying is faster"
+    ],
+    "input_format": "Two strings `s` and `t`.",
+    "output_format": "Boolean `True` if valid anagram, `False` otherwise.",
+    "hint": "If the lengths differ, return False. Count character frequencies using a fixed 26-element array or hash map.",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Strings. What fundamental condition marks the start or termination of Valid Anagram (Practice Variant v78)?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "If the lengths differ, return False. Count character frequencies using a fixed 26-element array or hash map. Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "def is_anagram(s: str, t: str) -> bool:\n    # TODO: Compare character frequencies\n    if len(s) != len(t): return False\n    counts = {}\n    for ch in s: counts[ch] = counts.get(ch, 0) + 1\n    for ch in t:\n        if ch not in counts or counts[ch] == 0: return False\n        counts[ch] -= 1\n    return True\n",
+      "c": "#include <stdio.h>\n#include <stdbool.h>\n#include <string.h>\n\nbool isAnagram(char* s, char* t) {\n    // TODO: Compare character counts\n    if (strlen(s) != strlen(t)) return False;\n    int counts[26] = {0};\n    for (int i = 0; s[i] != '\u0000'; i++) counts[s[i] - 'a']++;\n    for (int i = 0; t[i] != '\u0000'; i++) {\n        if (--counts[t[i] - 'a'] < 0) return False;\n    }\n    return True;\n}\n",
+      "cpp": "#include <string>\n#include <vector>\n\nbool isAnagram(std::string s, std::string t) {\n    // TODO: Compare character counts\n    if (s.length() != t.length()) return False;\n    std::vector<int> counts(26, 0);\n    for (char c : s) counts[c - 'a']++;\n    for (char c : t) {\n        if (--counts[c - 'a'] < 0) return False;\n    }\n    return True;\n}\n",
+      "java": "public class Solution {\n    public static boolean isAnagram(String s, String t) {\n        // TODO: Compare character counts\n        if (s.length() != t.length()) return False;\n        int[] counts = new int[26];\n        for (char c : s.toCharArray()) counts[c - 'a']++;\n        for (char c : t.toCharArray()) {\n            if (--counts[c - 'a'] < 0) return False;\n        }\n        return True;\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Strings",
+      "Pattern Matching"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "climbing-stairs-v65",
+    "title": "Climbing Stairs (Dynamic Programming) (Practice Variant v65)",
+    "difficulty": "Easy",
+    "topic": "Arrays",
+    "subtopic": "Frequency Counting",
+    "description": "You are climbing a staircase. It takes `n` steps to reach the top.\n\nEach time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?\n\n*Note: This problem variant is tailored for targeted deliberate practice.*",
+    "examples": [
+      {
+        "input": "n = 2",
+        "output": "2",
+        "explanation": "1 step + 1 step, or 2 steps."
+      },
+      {
+        "input": "n = 3",
+        "output": "3",
+        "explanation": "1+1+1, 1+2, 2+1."
+      }
+    ],
+    "constraints": [
+      "1 <= n <= 45"
+    ],
+    "starter_code": {
+      "python": "def climb_stairs(n: int) -> int:\n    pass\n",
+      "c": "#include <stdio.h>\n\nint climbStairs(int n) {\n    \n}\n",
+      "cpp": "#include <iostream>\n\nint climbStairs(int n) {\n    \n}\n",
+      "java": "public class Solution {\n    public static int climbStairs(int n) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": 2,
+        "expected_output": 2,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": 3,
+        "expected_output": 3,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": 5,
+        "expected_output": 8,
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Identify optimal substructure and overlapping subproblems",
+      "Reduce space complexity from O(N) array to O(1) rolling variables"
+    ],
+    "common_misconceptions": [
+      "Using unmemoized recursion triggering exponential O(2^N) call tree"
+    ],
+    "input_format": "An integer `n` representing number of steps.",
+    "output_format": "Number of distinct ways to climb.",
+    "hint": "To reach step n, you could have come from step (n-1) with 1 step, or from step (n-2) with 2 steps: ways(n) = ways(n-1) + ways(n-2).",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Arrays. What fundamental condition marks the start or termination of Climbing Stairs (Dynamic Programming) (Practice Variant v65)?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "To reach step n, you could have come from step (n-1) with 1 step, or from step (n-2) with 2 steps: ways(n) = ways(n-1) + ways(n-2). Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "def climb_stairs(n: int) -> int:\n    # TODO: DP state transition\n    if n <= 2: return n\n    a, b = 1, 2\n    for _ in range(3, n + 1):\n        a, b = b, a + b\n    return b\n",
+      "c": "#include <stdio.h>\n\nint climbStairs(int n) {\n    // TODO: DP state transition\n    if (n <= 2) return n;\n    int a = 1, b = 2;\n    for (int i = 3; i <= n; i++) {\n        int next = a + b;\n        a = b;\n        b = next;\n    }\n    return b;\n}\n",
+      "cpp": "#include <iostream>\n\nint climbStairs(int n) {\n    // TODO: Write solution here\n    if (n <= 2) return n;\n    int a = 1, b = 2;\n    for (int i = 3; i <= n; i++) {\n        int next = a + b;\n        a = b;\n        b = next;\n    }\n    return b;\n}\n",
+      "java": "public class Solution {\n    public static int climbStairs(int n) {\n        // TODO: Write solution here\n        if (n <= 2) return n;\n        int a = 1, b = 2;\n        for (int i = 3; i <= n; i++) {\n            int next = a + b;\n            a = b;\n            b = next;\n        }\n        return b;\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Arrays",
+      "Frequency Counting"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "find-path-exists-graph-v18",
+    "title": "Find if Path Exists in Graph (Practice Variant v18)",
+    "difficulty": "Easy",
+    "topic": "Arrays",
+    "subtopic": "Array Manipulation",
+    "description": "There is a bi-directional graph with `n` vertices, where each vertex is labeled from `0` to `n - 1`.\n\nGiven an integer `n` and an array `edges` where each `edges[i] = [u, v]` denotes an edge between vertices `u` and `v`, determine if there is a valid path from vertex `source` to vertex `destination`.\n\n*Note: This problem variant is tailored for targeted deliberate practice.*",
+    "examples": [
+      {
+        "input": "n = 3, edges = [[0,1],[1,2],[2,0]], source = 0, destination = 2",
+        "output": "True",
+        "explanation": "Edges form a triangle, path exists."
+      }
+    ],
+    "constraints": [
+      "1 <= n <= 2 * 10^5",
+      "0 <= edges.length <= 2 * 10^5",
+      "0 <= source, destination < n"
+    ],
+    "starter_code": {
+      "python": "def valid_path(n: int, edges: list[list[int]], source: int, destination: int) -> bool:\n    pass\n",
+      "c": "#include <stdio.h>\n#include <stdbool.h>\n\nbool validPath(int n, int** edges, int edgesSize, int* edgesColSize, int source, int destination) {\n    \n}\n",
+      "cpp": "#include <vector>\n#include <queue>\n\nbool validPath(int n, std::vector<std::vector<int>>& edges, int source, int destination) {\n    \n}\n",
+      "java": "import java.util.*;\n\npublic class Solution {\n    public static boolean validPath(int n, int[][] edges, int source, int destination) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": {
+          "n": 3,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              0
+            ]
+          ],
+          "source": 0,
+          "destination": 2
+        },
+        "expected_output": true,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": {
+          "n": 6,
+          "edges": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              2
+            ],
+            [
+              3,
+              5
+            ],
+            [
+              5,
+              4
+            ],
+            [
+              4,
+              3
+            ]
+          ],
+          "source": 0,
+          "destination": 5
+        },
+        "expected_output": false,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": {
+          "n": 1,
+          "edges": [],
+          "source": 0,
+          "destination": 0
+        },
+        "expected_output": true,
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Construct undirected adjacency representation from edge pairs",
+      "Track visited nodes to prevent cycles in graph exploration"
+    ],
+    "common_misconceptions": [
+      "Failing to add bi-directional edges (u -> v and v -> u)"
+    ],
+    "input_format": "Integer `n`, 2D list `edges`, integer `source`, integer `destination`.",
+    "output_format": "Boolean `True` if path exists, `False` otherwise.",
+    "hint": "Build an adjacency list and run BFS or DFS from `source`. If `destination` is visited, return True.",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Arrays. What fundamental condition marks the start or termination of Find if Path Exists in Graph (Practice Variant v18)?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "Build an adjacency list and run BFS or DFS from `source`. If `destination` is visited, return True. Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "from collections import defaultdict, deque\n\ndef valid_path(n: int, edges: list[list[int]], source: int, destination: int) -> bool:\n    # TODO: BFS or DFS traversal\n    if source == destination: return True\n    adj = defaultdict(list)\n    for u, v in edges:\n        adj[u].append(v)\n        adj[v].append(u)\n    visited = {source}\n    queue = deque([source])\n    while queue:\n        curr = queue.popleft()\n        if curr == destination: return True\n        for neighbor in adj[curr]:\n            if neighbor not in visited:\n                visited.add(neighbor)\n                queue.append(neighbor)\n    return False\n",
+      "c": "#include <stdio.h>\n#include <stdbool.h>\n\nbool validPath(int n, int** edges, int edgesSize, int* edgesColSize, int source, int destination) {\n    // TODO: BFS traversal\n    return source == destination;\n}\n",
+      "cpp": "#include <vector>\n#include <queue>\n\nbool validPath(int n, std::vector<std::vector<int>>& edges, int source, int destination) {\n    // TODO: Write solution here\n    if (source == destination) return True;\n    std::vector<std::vector<int>> adj(n);\n    for (auto& e : edges) {\n        adj[e[0]].push_back(e[1]);\n        adj[e[1]].push_back(e[0]);\n    }\n    std::vector<bool> visited(n, False);\n    visited[source] = True;\n    std::queue<int> q;\n    q.push(source);\n    while (!q.empty()) {\n        int curr = q.front(); q.pop();\n        if (curr == destination) return True;\n        for (int nxt : adj[curr]) {\n            if (!visited[nxt]) {\n                visited[nxt] = True;\n                q.push(nxt);\n            }\n        }\n    }\n    return False;\n}\n",
+      "java": "import java.util.*;\n\npublic class Solution {\n    public static boolean validPath(int n, int[][] edges, int source, int destination) {\n        // TODO: Write solution here\n        if (source == destination) return True;\n        List<List<Integer>> adj = new ArrayList<>();\n        for (int i = 0; i < n; i++) adj.add(new ArrayList<>());\n        for (int[] e : edges) {\n            adj.get(e[0]).add(e[1]);\n            adj.get(e[1]).add(e[0]);\n        }\n        boolean[] visited = new boolean[n];\n        visited[source] = True;\n        Queue<Integer> q = new ArrayDeque<>();\n        q.offer(source);\n        while (!q.isEmpty()) {\n            int curr = q.poll();\n            if (curr == destination) return True;\n            for (int nxt : adj.get(curr)) {\n                if (!visited[nxt]) {\n                    visited[nxt] = True;\n                    q.offer(nxt);\n                }\n            }\n        }\n        return False;\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Arrays",
+      "Array Manipulation"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "climbing-stairs-v30",
+    "title": "Climbing Stairs (Dynamic Programming) (Practice Variant v30)",
+    "difficulty": "Easy",
+    "topic": "Arrays",
+    "subtopic": "Two Pointers",
+    "description": "You are climbing a staircase. It takes `n` steps to reach the top.\n\nEach time you can either climb 1 or 2 steps. In how many distinct ways can you climb to the top?\n\n*Note: This problem variant is tailored for targeted deliberate practice.*",
+    "examples": [
+      {
+        "input": "n = 2",
+        "output": "2",
+        "explanation": "1 step + 1 step, or 2 steps."
+      },
+      {
+        "input": "n = 3",
+        "output": "3",
+        "explanation": "1+1+1, 1+2, 2+1."
+      }
+    ],
+    "constraints": [
+      "1 <= n <= 45"
+    ],
+    "starter_code": {
+      "python": "def climb_stairs(n: int) -> int:\n    pass\n",
+      "c": "#include <stdio.h>\n\nint climbStairs(int n) {\n    \n}\n",
+      "cpp": "#include <iostream>\n\nint climbStairs(int n) {\n    \n}\n",
+      "java": "public class Solution {\n    public static int climbStairs(int n) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": 2,
+        "expected_output": 2,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": 3,
+        "expected_output": 3,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": 5,
+        "expected_output": 8,
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Identify optimal substructure and overlapping subproblems",
+      "Reduce space complexity from O(N) array to O(1) rolling variables"
+    ],
+    "common_misconceptions": [
+      "Using unmemoized recursion triggering exponential O(2^N) call tree"
+    ],
+    "input_format": "An integer `n` representing number of steps.",
+    "output_format": "Number of distinct ways to climb.",
+    "hint": "To reach step n, you could have come from step (n-1) with 1 step, or from step (n-2) with 2 steps: ways(n) = ways(n-1) + ways(n-2).",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Arrays. What fundamental condition marks the start or termination of Climbing Stairs (Dynamic Programming) (Practice Variant v30)?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "To reach step n, you could have come from step (n-1) with 1 step, or from step (n-2) with 2 steps: ways(n) = ways(n-1) + ways(n-2). Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "def climb_stairs(n: int) -> int:\n    # TODO: DP state transition\n    if n <= 2: return n\n    a, b = 1, 2\n    for _ in range(3, n + 1):\n        a, b = b, a + b\n    return b\n",
+      "c": "#include <stdio.h>\n\nint climbStairs(int n) {\n    // TODO: DP state transition\n    if (n <= 2) return n;\n    int a = 1, b = 2;\n    for (int i = 3; i <= n; i++) {\n        int next = a + b;\n        a = b;\n        b = next;\n    }\n    return b;\n}\n",
+      "cpp": "#include <iostream>\n\nint climbStairs(int n) {\n    // TODO: Write solution here\n    if (n <= 2) return n;\n    int a = 1, b = 2;\n    for (int i = 3; i <= n; i++) {\n        int next = a + b;\n        a = b;\n        b = next;\n    }\n    return b;\n}\n",
+      "java": "public class Solution {\n    public static int climbStairs(int n) {\n        // TODO: Write solution here\n        if (n <= 2) return n;\n        int a = 1, b = 2;\n        for (int i = 3; i <= n; i++) {\n            int next = a + b;\n            a = b;\n            b = next;\n        }\n        return b;\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Arrays",
+      "Two Pointers"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "valid-anagram-v73",
+    "title": "Valid Anagram (Practice Variant v73)",
+    "difficulty": "Easy",
+    "topic": "Arrays",
+    "subtopic": "Prefix Sums",
+    "description": "Given two strings `s` and `t`, return `True` if `t` is an anagram of `s`, and `False` otherwise.\n\nAn Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n*Note: This problem variant is tailored for targeted deliberate practice.*",
+    "examples": [
+      {
+        "input": "s = 'anagram', t = 'nagaram'",
+        "output": "True",
+        "explanation": "Characters match frequency exactly."
+      },
+      {
+        "input": "s = 'rat', t = 'car'",
+        "output": "False",
+        "explanation": "Frequencies do not match."
+      }
+    ],
+    "constraints": [
+      "1 <= s.length, t.length <= 5 * 10^4",
+      "s and t consist of lowercase English letters."
+    ],
+    "starter_code": {
+      "python": "def is_anagram(s: str, t: str) -> bool:\n    pass\n",
+      "c": "#include <stdio.h>\n#include <stdbool.h>\n#include <string.h>\n\nbool isAnagram(char* s, char* t) {\n    \n}\n",
+      "cpp": "#include <string>\n#include <vector>\n\nbool isAnagram(std::string s, std::string t) {\n    \n}\n",
+      "java": "public class Solution {\n    public static boolean isAnagram(String s, String t) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": {
+          "s": "anagram",
+          "t": "nagaram"
+        },
+        "expected_output": true,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": {
+          "s": "rat",
+          "t": "car"
+        },
+        "expected_output": false,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": {
+          "s": "ab",
+          "t": "a"
+        },
+        "expected_output": false,
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Counting frequencies with constant O(1) space for 26 alphabet characters",
+      "Quick rejection using string length invariant"
+    ],
+    "common_misconceptions": [
+      "Sorting both strings (O(N log N)) when O(N) frequency tallying is faster"
+    ],
+    "input_format": "Two strings `s` and `t`.",
+    "output_format": "Boolean `True` if valid anagram, `False` otherwise.",
+    "hint": "If the lengths differ, return False. Count character frequencies using a fixed 26-element array or hash map.",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Arrays. What fundamental condition marks the start or termination of Valid Anagram (Practice Variant v73)?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "If the lengths differ, return False. Count character frequencies using a fixed 26-element array or hash map. Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "def is_anagram(s: str, t: str) -> bool:\n    # TODO: Compare character frequencies\n    if len(s) != len(t): return False\n    counts = {}\n    for ch in s: counts[ch] = counts.get(ch, 0) + 1\n    for ch in t:\n        if ch not in counts or counts[ch] == 0: return False\n        counts[ch] -= 1\n    return True\n",
+      "c": "#include <stdio.h>\n#include <stdbool.h>\n#include <string.h>\n\nbool isAnagram(char* s, char* t) {\n    // TODO: Compare character counts\n    if (strlen(s) != strlen(t)) return False;\n    int counts[26] = {0};\n    for (int i = 0; s[i] != '\u0000'; i++) counts[s[i] - 'a']++;\n    for (int i = 0; t[i] != '\u0000'; i++) {\n        if (--counts[t[i] - 'a'] < 0) return False;\n    }\n    return True;\n}\n",
+      "cpp": "#include <string>\n#include <vector>\n\nbool isAnagram(std::string s, std::string t) {\n    // TODO: Compare character counts\n    if (s.length() != t.length()) return False;\n    std::vector<int> counts(26, 0);\n    for (char c : s) counts[c - 'a']++;\n    for (char c : t) {\n        if (--counts[c - 'a'] < 0) return False;\n    }\n    return True;\n}\n",
+      "java": "public class Solution {\n    public static boolean isAnagram(String s, String t) {\n        // TODO: Compare character counts\n        if (s.length() != t.length()) return False;\n        int[] counts = new int[26];\n        for (char c : s.toCharArray()) counts[c - 'a']++;\n        for (char c : t.toCharArray()) {\n            if (--counts[c - 'a'] < 0) return False;\n        }\n        return True;\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Arrays",
+      "Prefix Sums"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "contains-duplicate-v59",
+    "title": "Contains Duplicate (Practice Variant v59)",
+    "difficulty": "Easy",
+    "topic": "Arrays",
+    "subtopic": "Frequency Counting",
+    "description": "Given an integer array `nums`, return `True` if any value appears at least twice in the array, and return `False` if every element is distinct.\n\n*Note: This problem variant is tailored for targeted deliberate practice.*",
+    "examples": [
+      {
+        "input": "nums = [1, 2, 3, 1]",
+        "output": "True",
+        "explanation": "Element 1 appears twice."
+      },
+      {
+        "input": "nums = [1, 2, 3, 4]",
+        "output": "False",
+        "explanation": "All elements are unique."
+      }
+    ],
+    "constraints": [
+      "1 <= nums.length <= 10^5",
+      "-10^9 <= nums[i] <= 10^9"
+    ],
+    "starter_code": {
+      "python": "def contains_duplicate(nums: list[int]) -> bool:\n    pass\n",
+      "c": "#include <stdio.h>\n#include <stdbool.h>\n\nbool containsDuplicate(int* nums, int numsSize) {\n    \n}\n",
+      "cpp": "#include <vector>\n#include <unordered_set>\n\nbool containsDuplicate(std::vector<int>& nums) {\n    \n}\n",
+      "java": "import java.util.*;\n\npublic class Solution {\n    public static boolean containsDuplicate(int[] nums) {\n        \n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": [
+          1,
+          2,
+          3,
+          1
+        ],
+        "expected_output": true,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 2,
+        "input": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "expected_output": false,
+        "is_hidden": false,
+        "explanation": null
+      },
+      {
+        "id": 3,
+        "input": [
+          1,
+          1,
+          1,
+          3,
+          3,
+          4,
+          3,
+          2,
+          4,
+          2
+        ],
+        "expected_output": true,
+        "is_hidden": true,
+        "explanation": null
+      }
+    ],
+    "learning_objectives": [
+      "Trade O(N) extra space for O(N) linear time lookup",
+      "Understand hash set membership complexity"
+    ],
+    "common_misconceptions": [
+      "Using nested loops with O(N^2) complexity causing TLE"
+    ],
+    "input_format": "A list of integers `nums`.",
+    "output_format": "Boolean `True` if duplicate exists, `False` otherwise.",
+    "hint": "Use a Hash Set to track seen numbers in O(1) amortized time per lookup.",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Understanding",
+        "content": "Consider the core characteristics of Arrays. What fundamental condition marks the start or termination of Contains Duplicate (Practice Variant v59)?",
+        "thought_questions": [
+          "What is the simplest input possible?",
+          "Can this be reduced to smaller subproblems?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "Use a Hash Set to track seen numbers in O(1) amortized time per lookup. Identify which state or data structure keeps track of your progress efficiently.",
+        "thought_questions": [
+          "What data structure provides the fastest lookup here?",
+          "Are repeated calculations occurring?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule & Invariant",
+        "content": "Verify invariant properties: check edge cases (empty collection, single element, boundary limits) and ensure constraints are respected.",
+        "thought_questions": [
+          "What happens at the boundaries of the constraints?",
+          "Are indices maintained without off-by-one errors?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Detailed Resolution Walkthrough",
+        "content": "Synthesize the base cases, process each element or state step-by-step, and return the aggregated result.",
+        "thought_questions": [
+          "Does the space complexity remain within expected bounds?"
+        ]
+      }
+    ],
+    "explanation": "",
+    "expected_solution": {
+      "python": "def contains_duplicate(nums: list[int]) -> bool:\n    # TODO: Write your solution using a set\n    seen = set()\n    for x in nums:\n        if x in seen:\n            return True\n        seen.add(x)\n    return False\n",
+      "c": "#include <stdio.h>\n#include <stdbool.h>\n\nbool containsDuplicate(int* nums, int numsSize) {\n        for (int i = 0; i < numsSize; i++) {\n        for (int j = i + 1; j < numsSize; j++) {\n            if (nums[i] == nums[j]) return True;\n        }\n    }\n    return False;\n}\n",
+      "cpp": "#include <vector>\n#include <unordered_set>\n\nbool containsDuplicate(std::vector<int>& nums) {\n        std::unordered_set<int> seen;\n    for (int x : nums) {\n        if (seen.count(x)) return True;\n        seen.insert(x);\n    }\n    return False;\n}\n",
+      "java": "import java.util.*;\n\npublic class Solution {\n    public static boolean containsDuplicate(int[] nums) {\n                Set<Integer> seen = new HashSet<>();\n        for (int x : nums) {\n            if (seen.contains(x)) return True;\n            seen.add(x);\n        }\n        return False;\n    }\n}\n"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Arrays",
+      "Frequency Counting"
+    ],
+    "is_generated": true,
+    "source": "blueprint_fallback"
+  },
+  {
+    "id": "vowel-shift-cipher",
+    "title": "Vowel Shift Cipher",
+    "difficulty": "Easy",
+    "topic": "Strings",
+    "subtopic": "String Manipulation",
+    "description": "You are tasked with implementing a simple 'Vowel Shift' cipher. Given a string, you must replace every vowel (a, e, i, o, u) with the next vowel in the sequence (a -> e, e -> i, i -> o, o -> u, u -> a). Consonants and non-alphabetic characters should remain unchanged. The transformation should be case-insensitive regarding the input, but the output must preserve the original casing of the vowels (e.g., 'A' becomes 'E', 'u' becomes 'a').",
+    "examples": [
+      {
+        "input": "Hello World",
+        "output": "Hilli Wurld",
+        "explanation": "e -> i, o -> u. All other characters remain the same."
+      },
+      {
+        "input": "Apple",
+        "output": "Eppli",
+        "explanation": "A -> E, e -> i."
+      }
+    ],
+    "constraints": [
+      "1 <= len(s) <= 10^5",
+      "Time Limit: 2.0s"
+    ],
+    "starter_code": {
+      "python": "def solution(s):\n    pass\n",
+      "c": "#include <stdio.h>\n\nvoid solution(char* s) {\n    // TODO: Write your solution here\n}\n",
+      "cpp": "#include <string>\n\nstd::string solution(std::string s) {\n    // TODO: Write your solution here\n    return \"\";\n}\n",
+      "java": "public class Solution {\n    public static String solution(String s) {\n        // TODO: Write your solution here\n        return \"\";\n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": "Hello World",
+        "expected_output": "Hillu Wurld",
+        "is_hidden": false,
+        "explanation": "Standard case with mixed vowels."
+      },
+      {
+        "id": 2,
+        "input": "AEIOU",
+        "expected_output": "EIOUA",
+        "is_hidden": false,
+        "explanation": "Uppercase vowel shift."
+      },
+      {
+        "id": 3,
+        "input": "bcdfghjklmnpqrstvwxyz",
+        "expected_output": "bcdfghjklmnpqrstvwxyz",
+        "is_hidden": true,
+        "explanation": "String with no vowels."
+      }
+    ],
+    "learning_objectives": [
+      "Understand dictionary lookups for character mapping",
+      "Efficient string construction in Python"
+    ],
+    "common_misconceptions": [
+      "Using repeated string concatenation (s += char) which is O(N^2) in some languages",
+      "Forgetting to handle uppercase vowels"
+    ],
+    "input_format": "A single string s consisting of lowercase and uppercase English letters and spaces.",
+    "output_format": "A single string representing the transformed text.",
+    "hint": "Consider using a dictionary or a mapping string to define the transformation rules for both lowercase and uppercase vowels.",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Insight",
+        "content": "Identify all vowels in the string and map them to their successor.",
+        "thought_questions": [
+          "Which characters are considered vowels?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "Create a lookup table (dictionary) that maps each vowel to its replacement.",
+        "thought_questions": [
+          "How can you handle both uppercase and lowercase vowels efficiently?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule",
+        "content": "Iterate through the string character by character. If the character is a key in your map, replace it; otherwise, keep it as is.",
+        "thought_questions": [
+          "Is it better to use a list of characters and join them at the end or string concatenation?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Step-by-Step Resolution",
+        "content": "Initialize an empty list, iterate through the input string, check if the character is in your mapping, append the mapped value (or original) to the list, and join the list into a string.",
+        "thought_questions": [
+          "Why is joining a list of characters more efficient than repeated string concatenation in Python?"
+        ]
+      }
+    ],
+    "explanation": "The problem is solved by creating a hash map (dictionary) that stores the transformation rules for all 10 vowel variants (5 lowercase, 5 uppercase). By iterating through the string once and using the dictionary's .get() method, we can perform the replacement in O(N) time complexity. Using a list comprehension and ''.join() ensures O(N) space complexity and avoids the overhead of immutable string concatenation.",
+    "expected_solution": {
+      "python": "def solution(s):\n    mapping = {'a': 'e', 'e': 'i', 'i': 'o', 'o': 'u', 'u': 'a', 'A': 'E', 'E': 'I', 'I': 'O', 'O': 'U', 'U': 'A'}\n    return ''.join(mapping.get(char, char) for char in s)"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(N)",
+    "relevant_concepts": [
+      "Hash Maps",
+      "String Traversal",
+      "Character Encoding"
+    ],
+    "is_generated": true,
+    "source": "ai_generated"
+  },
+  {
+    "id": "palindrome-rearrangement-check",
+    "title": "Palindrome Rearrangement Check",
+    "difficulty": "Easy",
+    "topic": "Strings",
+    "subtopic": "Anagrams & Palindromes",
+    "description": "Given a string `s`, determine if it is possible to rearrange the characters of the string to form a palindrome. A palindrome is a string that reads the same forwards and backwards. Return `True` if a rearrangement is possible, and `False` otherwise.",
+    "examples": [
+      {
+        "input": "aabb",
+        "output": "True",
+        "explanation": "Can be rearranged to 'abba' or 'baab'."
+      },
+      {
+        "input": "abc",
+        "output": "False",
+        "explanation": "No possible rearrangement forms a palindrome."
+      },
+      {
+        "input": "racecar",
+        "output": "True",
+        "explanation": "Already a palindrome."
+      }
+    ],
+    "constraints": [
+      "1 <= len(s) <= 10^5",
+      "Time Limit: 2.0s"
+    ],
+    "starter_code": {
+      "python": "def can_form_palindrome(s: str) -> bool:\n    pass\n",
+      "c": "#include <stdbool.h>\n#include <string.h>\n\nbool can_form_palindrome(char* s) {\n    return false;\n}\n",
+      "cpp": "#include <string>\n#include <unordered_map>\n\nbool can_form_palindrome(std::string s) {\n    return false;\n}\n",
+      "java": "public class Solution {\n    public static boolean canFormPalindrome(String s) {\n        return false;\n    }\n}"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": "aabb",
+        "expected_output": true,
+        "is_hidden": false,
+        "explanation": "Even counts for all characters."
+      },
+      {
+        "id": 2,
+        "input": "code",
+        "expected_output": false,
+        "is_hidden": false,
+        "explanation": "Multiple odd counts."
+      },
+      {
+        "id": 3,
+        "input": "a",
+        "expected_output": true,
+        "is_hidden": true,
+        "explanation": "Single character is always a palindrome."
+      }
+    ],
+    "learning_objectives": [
+      "Understand character frequency analysis",
+      "Identify properties of palindromic structures"
+    ],
+    "common_misconceptions": [
+      "Trying to generate all permutations (O(N!)) instead of checking frequency parity."
+    ],
+    "input_format": "A single string `s` consisting of lowercase English letters.",
+    "output_format": "A boolean value: `True` or `False`.",
+    "hint": "Focus on the frequency of each character in the string.",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Conceptual Insight",
+        "content": "Consider what property makes a string a palindrome regarding the count of its characters.",
+        "thought_questions": [
+          "If a string has an even length, how many times must each character appear?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Algorithmic Direction",
+        "content": "Count the occurrences of every character in the input string.",
+        "thought_questions": [
+          "What happens if you have an odd-length string? How many characters can have an odd frequency?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Structural Rule",
+        "content": "A string can be rearranged into a palindrome if and only if at most one character appears an odd number of times.",
+        "thought_questions": [
+          "Why can't there be two characters with odd frequencies in a palindrome?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Step-by-Step Resolution",
+        "content": "Iterate through the frequency map of the string and count how many characters have an odd frequency. If this count is <= 1, return True.",
+        "thought_questions": [
+          "Does the total length of the string matter for the final check?"
+        ]
+      }
+    ],
+    "explanation": "To form a palindrome, characters must be balanced on both sides of the center. If the string length is even, every character must appear an even number of times. If the string length is odd, exactly one character must appear an odd number of times (to serve as the center), and all others must appear an even number of times. Thus, the condition is simply that the number of characters with an odd frequency count must be 0 or 1.",
+    "expected_solution": {
+      "python": "from collections import Counter\n\ndef can_form_palindrome(s: str) -> bool:\n    counts = Counter(s)\n    odd_counts = 0\n    for char in counts:\n        if counts[char] % 2 != 0:\n            odd_counts += 1\n    return odd_counts <= 1"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "Frequency Counting",
+      "Palindrome Properties",
+      "Parity"
+    ],
+    "is_generated": true,
+    "source": "ai_generated"
+  },
+  {
+    "id": "vowel-sequence-validator",
+    "title": "Vowel Sequence Validator",
+    "difficulty": "Easy",
+    "topic": "Strings",
+    "subtopic": "Pattern Matching",
+    "description": "A linguistic research tool needs to verify if a given string follows a specific 'vowel-heavy' pattern. A string is considered 'vowel-heavy' if every occurrence of a consonant is immediately followed by at least one vowel (a, e, i, o, u). Consonants are defined as any alphabetic character that is not a vowel. Assume the input string contains only lowercase English letters.",
+    "examples": [
+      {
+        "input": "banana",
+        "output": "True",
+        "explanation": "b is followed by a, n is followed by a, n is followed by a. All consonants have a following vowel."
+      },
+      {
+        "input": "apple",
+        "output": "False",
+        "explanation": "The consonant 'p' is followed by another 'p', not a vowel."
+      },
+      {
+        "input": "sky",
+        "output": "False",
+        "explanation": "The consonant 'k' is followed by 'y', which is not a vowel."
+      }
+    ],
+    "constraints": [
+      "1 <= len(s) <= 10^5",
+      "Time Limit: 2.0s"
+    ],
+    "starter_code": {
+      "python": "def solution(s):\n    pass\n",
+      "c": "#include <stdio.h>\n#include <stdbool.h>\n\nbool solution(char* s) {\n    return false;\n}\n",
+      "cpp": "#include <string>\n\nbool solution(std::string s) {\n    return false;\n}\n",
+      "java": "public class Solution {\n    public static boolean solution(String s) {\n        return false;\n    }\n}\n"
+    },
+    "test_cases": [
+      {
+        "id": 1,
+        "input": "banana",
+        "expected_output": true,
+        "is_hidden": false,
+        "explanation": "Standard valid case"
+      },
+      {
+        "id": 2,
+        "input": "apple",
+        "expected_output": false,
+        "is_hidden": false,
+        "explanation": "Consonant followed by consonant"
+      },
+      {
+        "id": 3,
+        "input": "cat",
+        "expected_output": true,
+        "is_hidden": true,
+        "explanation": "Valid short string"
+      },
+      {
+        "id": 4,
+        "input": "dogz",
+        "expected_output": false,
+        "is_hidden": true,
+        "explanation": "Ends in consonant"
+      }
+    ],
+    "learning_objectives": [
+      "Implement conditional logic within string iterations",
+      "Handle edge cases like string boundaries"
+    ],
+    "common_misconceptions": [
+      "Forgetting to check if the consonant is the last character",
+      "Treating 'y' as a vowel"
+    ],
+    "input_format": "A single string s consisting of lowercase English letters.",
+    "output_format": "Return a boolean: True if the string is vowel-heavy, False otherwise.",
+    "hint": "Focus on the condition that must be met whenever you encounter a consonant.",
+    "progressive_hints": [
+      {
+        "level": 1,
+        "title": "Identify the target",
+        "content": "Define a set of vowels: {'a', 'e', 'i', 'o', 'u'}. Any character not in this set is a consonant.",
+        "thought_questions": [
+          "How can you efficiently check if a character is a vowel?"
+        ]
+      },
+      {
+        "level": 2,
+        "title": "Iterative approach",
+        "content": "Iterate through the string and check the character at index i. If it is a consonant, what must be true about the character at index i+1?",
+        "thought_questions": [
+          "What happens if the consonant is the very last character of the string?"
+        ]
+      },
+      {
+        "level": 3,
+        "title": "Boundary conditions",
+        "content": "If a consonant is at the last index of the string, it cannot be followed by a vowel. Therefore, any string ending in a consonant is automatically invalid.",
+        "thought_questions": [
+          "How do you handle the index out of bounds error when checking i+1?"
+        ]
+      },
+      {
+        "level": 4,
+        "title": "Logic refinement",
+        "content": "For every index i from 0 to len(s)-2, if s[i] is a consonant, check if s[i+1] is a vowel. If s[len(s)-1] is a consonant, return False immediately.",
+        "thought_questions": [
+          "Can you write this logic in a single pass?"
+        ]
+      }
+    ],
+    "explanation": "The problem requires a linear scan of the string. By maintaining a set of vowels for O(1) lookup, we check each character. If a character is a consonant, we verify the existence and vowel-status of the subsequent character. If the consonant is the last character, it fails the condition.",
+    "expected_solution": {
+      "python": "def solution(s):\n    vowels = set('aeiou')\n    n = len(s)\n    for i in range(n):\n        if s[i] not in vowels:\n            if i + 1 == n or s[i+1] not in vowels:\n                return False\n    return True"
+    },
+    "time_complexity": "O(N)",
+    "space_complexity": "O(1)",
+    "relevant_concepts": [
+      "String Traversal",
+      "Set Lookups",
+      "Boundary Checking"
+    ],
+    "is_generated": true,
+    "source": "ai_generated"
   }
 ]

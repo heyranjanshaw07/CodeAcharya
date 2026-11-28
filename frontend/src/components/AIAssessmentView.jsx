@@ -129,7 +129,7 @@ export default function AIAssessmentView({
           isRestricted: true,
           pageType: 'assessment',
           questionId: currentQuestion?.id,
-          attemptId: assessmentId
+          attemptId: assessment?.assessment_id
         });
         registerCodeAcharyaIntelliSense(monaco);
       } catch (err) {

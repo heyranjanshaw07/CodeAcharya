@@ -2442,11 +2442,16 @@ Required JSON structure:
                 if not raw:
                     continue
 
-                clean = raw.strip()
-                if clean.startswith("```json"):
-                    clean = clean[7:-3].strip()
-                elif clean.startswith("```"):
-                    clean = clean[3:-3].strip()
+                match = re.search(r'```(?:json)?\s*([\s\S]*?)\s*```', raw)
+                if match:
+                    clean = match.group(1).strip()
+                else:
+                    clean = raw.strip()
+
+                if not clean.startswith('{') and '{' in clean:
+                    clean = clean[clean.index('{'):]
+                if not clean.endswith('}') and '}' in clean:
+                    clean = clean[:clean.rindex('}') + 1]
 
                 parsed = json.loads(clean)
                 if not isinstance(parsed, dict):
